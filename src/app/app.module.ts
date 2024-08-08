@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,62 +37,56 @@ export class missingTranslationHandler implements MissingTranslationHandler {
 
 const providers = [LoaderService, EndpointsService];
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    // imports modules
-    BrowserModule,
-    SharedModule,
-    ComponentsModule,
-    AppRoutingModule,
-    IndexModule,
-    MomentModule,
-    SecurityModule,
-    // configure the imports
-    HttpClientModule,
-    SweetAlert2Module.forRoot(),
-    NgxPermissionsModule.forRoot(),
-    ToastrModule.forRoot({
-      closeButton: true,
-      disableTimeOut: false,
-      preventDuplicates: true,
-      enableHtml: true,
-      progressBar: true,
-      timeOut: 15000,
-      extendedTimeOut: 15000,
-    }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: missingTranslationHandler },
-    }),
-    BrowserAnimationsModule,
-  ],
-  exports: [ToastrModule, ComponentsModule, SharedModule],
-  providers: [
-    // import services
-    LoggedInGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JsonDateInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHandlerInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent],
+    exports: [ToastrModule, ComponentsModule, SharedModule],
+    bootstrap: [AppComponent], imports: [
+        // imports modules
+        BrowserModule,
+        SharedModule,
+        ComponentsModule,
+        AppRoutingModule,
+        IndexModule,
+        MomentModule,
+        SecurityModule,
+        SweetAlert2Module.forRoot(),
+        NgxPermissionsModule.forRoot(),
+        ToastrModule.forRoot({
+            closeButton: true,
+            disableTimeOut: false,
+            preventDuplicates: true,
+            enableHtml: true,
+            progressBar: true,
+            timeOut: 15000,
+            extendedTimeOut: 15000,
+        }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: { provide: MissingTranslationHandler, useClass: missingTranslationHandler },
+        }),
+        BrowserAnimationsModule], providers: [
+        // import services
+        LoggedInGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JsonDateInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorHandlerInterceptor,
+            multi: true,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {
   static forRoot(): ModuleWithProviders<AppModule> {
     return {
