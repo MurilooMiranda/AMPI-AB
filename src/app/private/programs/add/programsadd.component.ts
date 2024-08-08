@@ -4,10 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProgramsAddService } from './programsadd.service';
 import { StepPanelComponent } from './step-panel/step-panel.component';
 
-@Component({
-  selector: 'esm-programs-add',
-  templateUrl: './programsadd.component.html',
-})
 export class ProgramsAddComponent {
   @ViewChild(StepPanelComponent) stepPanel: StepPanelComponent;
   constructor(private router: Router, private activeRoute: ActivatedRoute, private programsAddService: ProgramsAddService) {}

@@ -13,11 +13,6 @@ import { ESPIM_REST_Media } from '../../../app.api';
 import { DAOService } from '../../dao/dao.service';
 import { Media } from '../../models/media';
 
-@Component({
-  selector: 'esm-modal-midia',
-  templateUrl: './modal-midia.component.html',
-  styleUrls: ['./modal-midia.component.scss'],
-})
 export class ModalMidiaComponent implements OnInit {
   @Output() response: EventEmitter<Media> = new EventEmitter<Media>();
   @Output() responseIntervention: EventEmitter<InterventionComponent> = new EventEmitter<InterventionComponent>();

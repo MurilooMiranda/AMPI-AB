@@ -3,10 +3,6 @@ import { QuestionIntervention } from 'src/app/private/models/intervention.model'
 
 import { InterventionService } from '../../intervention.service';
 
-@Component({
-  selector: 'esm-multiple-choice',
-  templateUrl: './multiple-choice.component.html',
-})
 export class MultipleChoiceComponent implements OnInit {
   @Input() intervention: QuestionIntervention;
   @Input() graphIndex: number;

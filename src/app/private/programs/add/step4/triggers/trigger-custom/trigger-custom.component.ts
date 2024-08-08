@@ -8,11 +8,6 @@ import { minLengthArray } from 'src/app/util/functions';
 
 import { RowHourComponent } from './row-hour/row-hour.component';
 
-@Component({
-  selector: 'esm-trigger-custom',
-  templateUrl: './trigger-custom.component.html',
-  styleUrls: ['./trigger-custom.component.scss'],
-})
 export class TriggerCustomComponent {
   @ViewChildren(RowHourComponent) hourRows: RowHourComponent[];
   @Output() response: EventEmitter<Trigger[]> = new EventEmitter<Trigger[]>();

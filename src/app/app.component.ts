@@ -7,10 +7,6 @@ import { LoginService } from 'src/app/security/login/login.service';
 
 import { LoaderService } from './services/loader.service';
 
-@Component({
-  selector: 'esm-root',
-  templateUrl: './app.component.html',
-})
 export class AppComponent implements OnDestroy {
   private _user$: Subscription;
   private _unsubscribe: Subscription[] = [];

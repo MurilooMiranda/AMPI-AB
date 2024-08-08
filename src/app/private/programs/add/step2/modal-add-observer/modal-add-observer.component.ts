@@ -9,11 +9,6 @@ import { Observer } from 'src/app/private/models/observer.model';
 import { LoaderService } from 'src/app/services/loader.service';
 import { FormUtil } from 'src/app/util/util.form.service';
 
-@Component({
-  selector: 'esm-modal-add-observer',
-  templateUrl: './modal-add-observer.component.html',
-  styleUrls: ['./modal-add-observer.component.scss'],
-})
 export class ModalAddObserverComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
   @Output() response: EventEmitter<Observer> = new EventEmitter<Observer>();

@@ -2,10 +2,6 @@ import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges
 import { Pagination } from './pagination.model';
 
 
-@Component({
-  selector: 'esm-pagination',
-  templateUrl: './pagination.component.html'
-})
 export class PaginationComponent implements OnInit, OnChanges {
 
   @Input() pagination: Pagination;

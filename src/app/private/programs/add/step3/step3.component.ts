@@ -14,10 +14,6 @@ import { LETRAS_FILTRO } from '../../constants';
 import { ProgramsAddService } from '../programsadd.service';
 import { ModalAddParticipantComponent } from './modal-add-participant/modal-add-participant.component';
 
-@Component({
-  selector: 'esm-step3',
-  templateUrl: './step3.component.html',
-})
 export class Step3Component implements OnInit {
   @ViewChild('search') searchElement: SearchComponent;
   program: Observable<Program>; // These are the users of this program

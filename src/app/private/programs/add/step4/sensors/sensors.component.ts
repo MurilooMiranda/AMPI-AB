@@ -5,11 +5,6 @@ import { v4 as uuid } from 'uuid';
 
 import { COLLECTORS, SENSORS_LIST } from '../../../constants';
 
-@Component({
-  selector: 'esm-sensors',
-  templateUrl: './sensors.component.html',
-  styleUrls: ['./sensors.component.scss'],
-})
 export class SensorsComponent implements OnInit {
   sensors: any[] = cloneDeep(SENSORS_LIST);
   collectors: any[] = COLLECTORS;

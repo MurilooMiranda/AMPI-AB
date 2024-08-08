@@ -9,10 +9,6 @@ import { Observer } from '../models/observer.model';
 import { User } from '../models/user.model';
 import { ObserversService } from './observers.service';
 
-@Component({
-  selector: 'esm-observers',
-  templateUrl: './observers.component.html',
-})
 export class ObserversComponent implements OnInit {
   urlObservers: string = ESPIM_REST_Observers;
 

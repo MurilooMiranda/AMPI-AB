@@ -7,10 +7,6 @@ import { Observable, Subscription } from 'rxjs';
 import { Program } from '../../../models/program.model';
 import { ProgramsAddService } from '../programsadd.service';
 
-@Component({
-  selector: 'esm-step1',
-  templateUrl: './step1.component.html',
-})
 export class Step1Component implements OnDestroy {
   program: Observable<Program>;
   form: UntypedFormGroup;

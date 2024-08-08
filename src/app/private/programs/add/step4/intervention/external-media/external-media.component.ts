@@ -5,11 +5,6 @@ import { DAOService } from 'src/app/private/dao/dao.service';
 import { ExternalApplication } from 'src/app/private/models/external-application.model';
 import { TaskIntervention } from 'src/app/private/models/intervention.model';
 
-@Component({
-  selector: 'esm-external-media',
-  templateUrl: './external-media.component.html',
-  styleUrls: ['./external-media.component.scss'],
-})
 export class ExternalMediaComponent implements OnInit {
   urlExternalApplications: string = ESPIM_REST_ExternalApplications;
 

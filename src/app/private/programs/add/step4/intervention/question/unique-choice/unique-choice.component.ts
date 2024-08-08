@@ -4,10 +4,6 @@ import { isNullOrUndefined } from 'src/app/util/functions';
 
 import { HTMLInterventionElement, InterventionService } from '../../intervention.service';
 
-@Component({
-  selector: 'esm-unique-choice',
-  templateUrl: './unique-choice.component.html',
-})
 export class UniqueChoiceComponent implements OnInit {
   @Input() intervention: QuestionIntervention;
   @Input() graphIndex: number;

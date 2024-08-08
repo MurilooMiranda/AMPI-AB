@@ -4,10 +4,6 @@ import { LoginService } from 'src/app/security/login/login.service';
 
 import { User } from '../models/user.model';
 
-@Component({
-  selector: 'esm-private-header',
-  templateUrl: './header.component.html',
-})
 export class HeaderComponent implements OnInit {
   constructor(private _loginService: LoginService) {}
 

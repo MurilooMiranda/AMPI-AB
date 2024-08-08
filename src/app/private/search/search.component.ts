@@ -1,10 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
-@Component({
-  selector: 'esm-search',
-  templateUrl: './search.component.html',
-})
 export class SearchComponent implements OnInit {
   form: UntypedFormGroup;
   @Output() doSearch: EventEmitter<any> = new EventEmitter();

@@ -6,10 +6,6 @@ import { Observer } from '../../../models/observer.model';
 
 // This component is used on step2 & step3
 
-@Component({
-  selector: 'esm-user-checkbox',
-  templateUrl: './user-checkbox.component.html',
-})
 export class UserCheckBoxComponent implements OnInit {
   @Input() user: Observer | User;
   @Input() label: string;

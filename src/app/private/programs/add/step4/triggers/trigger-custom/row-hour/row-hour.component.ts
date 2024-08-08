@@ -4,11 +4,6 @@ import { Day, Hour } from 'src/app/private/models/date.model';
 import { NOTIFICATIONS_TYPES } from 'src/app/private/programs/constants';
 import { v4 as uuid } from 'uuid';
 
-@Component({
-  selector: 'esm-row-hour',
-  templateUrl: './row-hour.component.html',
-  styleUrls: ['./row-hour.component.scss'],
-})
 export class RowHourComponent implements OnInit {
   @Input() weekDay: Day;
   @Input() hour: Hour;

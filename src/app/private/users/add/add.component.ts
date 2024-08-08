@@ -12,10 +12,6 @@ import { FormUtil } from 'src/app/util/util.form.service';
 import { DAOService } from '../../dao/dao.service';
 import { Role } from '../../models/role.model';
 
-@Component({
-  selector: 'esm-roles-add',
-  templateUrl: './add.component.html',
-})
 export class AddComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
 

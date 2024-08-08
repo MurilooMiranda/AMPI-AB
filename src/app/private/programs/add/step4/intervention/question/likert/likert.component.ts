@@ -3,10 +3,6 @@ import { QuestionIntervention } from 'src/app/private/models/intervention.model'
 
 import { InterventionService } from '../../intervention.service';
 
-@Component({
-  selector: 'esm-likert',
-  templateUrl: './likert.component.html',
-})
 export class LikertComponent implements OnInit {
   @Input() intervention: QuestionIntervention;
   @Input() graphIndex: number;

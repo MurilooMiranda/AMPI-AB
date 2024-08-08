@@ -3,10 +3,6 @@ import { QuestionIntervention } from 'src/app/private/models/intervention.model'
 
 import { InterventionService } from '../../intervention.service';
 
-@Component({
-  selector: 'esm-differential-semantic',
-  templateUrl: './differential-semantic.component.html',
-})
 export class DifferentialSemanticComponent implements OnInit {
   @Input() intervention: QuestionIntervention;
   @Input() graphIndex: number;

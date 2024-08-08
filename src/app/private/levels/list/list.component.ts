@@ -11,11 +11,6 @@ import { SwalService } from 'src/app/services/swal.service';
 import { DAOService } from '../../dao/dao.service';
 import { Level } from '../../models/level.model';
 
-@Component({
-  selector: 'esm-levels-list',
-  templateUrl: './list.component.html',
-  providers: [DecimalPipe],
-})
 export class LevelListComponent {
   url: string = ESPIM_REST_Levels;
   levels: Level[];

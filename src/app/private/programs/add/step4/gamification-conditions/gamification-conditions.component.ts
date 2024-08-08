@@ -15,11 +15,6 @@ import { v4 as uuid } from 'uuid';
 import { ModalAddBadgeComponent } from '../modal-add-badge/modal-add-badge.component';
 
 @UntilDestroy({ checkProperties: true })
-@Component({
-  selector: 'esm-gamification-conditions',
-  templateUrl: './gamification-conditions.component.html',
-  styleUrls: ['./gamification-conditions.component.scss'],
-})
 export class GamificationConditionsComponent implements OnInit {
   uid: string = uuid();
   openComplex: boolean = false;

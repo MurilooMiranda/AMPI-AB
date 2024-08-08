@@ -5,11 +5,6 @@ import { v4 as uuid } from 'uuid';
 
 import { COMPLEX_CONDITIONS } from '../../../constants';
 
-@Component({
-  selector: 'esm-complex-conditions',
-  templateUrl: './complex-conditions.component.html',
-  styleUrls: ['./complex-conditions.component.scss'],
-})
 export class ComplexConditionComponent implements OnInit {
   complexConditions: { text: string; complexConditions: ComplexCondition[] }[] = cloneDeep(COMPLEX_CONDITIONS);
   uid: string = uuid();
