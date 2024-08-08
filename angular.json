@@ -137,7 +137,6 @@
       }
     }
   },
-  "defaultProject": "espim-app",
   "cli": {
     "analytics": "eba90a0b-0580-4fdb-b105-0cbcfd364595"
   }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,7 @@ import { ModalAddBadgeComponent } from '../modal-add-badge/modal-add-badge.compo
 export class GamificationConditionsComponent implements OnInit {
   uid: string = uuid();
   openComplex: boolean = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
   urlBadges: string = ESPIM_REST_Badges;
 
   @Input() activeEvent: ActiveEvent;
@@ -31,7 +31,7 @@ export class GamificationConditionsComponent implements OnInit {
   @Output() response: EventEmitter<GamificationConditions> = new EventEmitter<GamificationConditions>();
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private readonly _modalService: BsModalService,
     private readonly _loaderService: LoaderService,
     private readonly _endpointsService: EndpointsService,
@@ -71,8 +71,8 @@ export class GamificationConditionsComponent implements OnInit {
     }
   }
 
-  get badgesFormArray(): FormArray {
-    return this.form.get('badges') as FormArray;
+  get badgesFormArray(): UntypedFormArray {
+    return this.form.get('badges') as UntypedFormArray;
   }
 
   openModalBadge(): void {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Cron } from 'src/app/private/models/cron.model';
 import { Day, Hour } from 'src/app/private/models/date.model';
 import { Trigger } from 'src/app/private/models/trigger.model';
@@ -17,16 +17,16 @@ export class TriggerCustomComponent {
   @ViewChildren(RowHourComponent) hourRows: RowHourComponent[];
   @Output() response: EventEmitter<Trigger[]> = new EventEmitter<Trigger[]>();
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     days: this.formBuilder.array([], minLengthArray(1)),
   });
 
   weeklyDays: any[] = WEEKLY_DAYS;
   notificationTypes: any[] = NOTIFICATIONS_TYPES;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.weeklyDays.forEach(() => {
-      (this.form.get('days') as FormArray).push(this.formBuilder.control(false));
+      (this.form.get('days') as UntypedFormArray).push(this.formBuilder.control(false));
     });
   }
 

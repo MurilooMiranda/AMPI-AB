@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { ExternalApplicationParameter } from '../../models/external-application.model';
 
@@ -15,9 +15,9 @@ export class ParameterComponent implements OnInit {
 
   @Output() remover: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({

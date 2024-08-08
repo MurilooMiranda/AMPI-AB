@@ -1,8 +1,8 @@
 import { ElementRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 export class FormUtil {
-  static setErrorsBackend(form: FormGroup, response: any, formElement: ElementRef = null): void {
+  static setErrorsBackend(form: UntypedFormGroup, response: any, formElement: ElementRef = null): void {
     let errors = response.errors;
 
     if (response.error && response.message) {

@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
@@ -19,14 +19,14 @@ export class ModalAddParticipantComponent implements OnInit {
   @Output() response: EventEmitter<User> = new EventEmitter<User>();
 
   urlParticipants: string = ESPIM_REST_Participants;
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     email: this.formBuilder.control('', [Validators.required]),
     alias: this.formBuilder.control('', [Validators.required]),
   });
 
   constructor(
     public bsModalRef: BsModalRef,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private _toastr: ToastrService,
     private _loaderService: LoaderService,
     private _daoService: DAOService

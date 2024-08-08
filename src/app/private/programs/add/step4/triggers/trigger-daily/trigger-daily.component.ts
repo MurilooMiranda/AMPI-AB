@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Cron } from 'src/app/private/models/cron.model';
 import { Trigger } from 'src/app/private/models/trigger.model';
 import { NOTIFICATIONS_TYPES } from 'src/app/private/programs/constants';
@@ -12,7 +12,7 @@ import { NOTIFICATIONS_TYPES } from 'src/app/private/programs/constants';
 export class TriggerDailyComponent implements OnInit {
   @Output() response: EventEmitter<Trigger> = new EventEmitter<Trigger>();
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     time: ['', Validators.required],
     notificationType: ['', Validators.required],
     timeout: ['', Validators.required],
@@ -20,7 +20,7 @@ export class TriggerDailyComponent implements OnInit {
 
   notificationTypes: any[] = NOTIFICATIONS_TYPES;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   ngOnInit(): void {}
 

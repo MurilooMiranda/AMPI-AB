@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ export class AddComponent implements OnInit {
   url: string = ESPIM_REST_Roles;
   urlPermissions: string = ESPIM_REST_Permissions;
   permissions: Permission[] = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   editing: boolean = false;
   loading: boolean = true;
   id: string = '';
@@ -29,7 +29,7 @@ export class AddComponent implements OnInit {
   constructor(
     private _daoService: DAOService,
     private _toastr: ToastrService,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _loaderService: LoaderService,
     private route: Router,
     private activeRoute: ActivatedRoute
@@ -111,7 +111,7 @@ export class AddComponent implements OnInit {
   }
 
   get permissionFormArray() {
-    return this.form.controls.permissions as FormArray;
+    return this.form.controls.permissions as UntypedFormArray;
   }
 
   getPermissions(): void {

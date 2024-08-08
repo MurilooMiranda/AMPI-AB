@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Event } from 'src/app/private/models/event.model';
 import { Sensor } from 'src/app/private/models/sensor.model';
@@ -18,7 +18,7 @@ export class PassiveEventComponent implements OnInit {
 
   isOpen: boolean = false;
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     id: this.formBuilder.control(''),
     title: ['', Validators.required],
     color: this.formBuilder.control(''),
@@ -27,7 +27,7 @@ export class PassiveEventComponent implements OnInit {
     triggers: this.formBuilder.array([]),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     if (!this.event.id) {
@@ -59,12 +59,12 @@ export class PassiveEventComponent implements OnInit {
     this.triggerFormArray.removeAt(index);
   }
 
-  get triggerFormArray(): FormArray {
-    return this.form.get('triggers') as FormArray;
+  get triggerFormArray(): UntypedFormArray {
+    return this.form.get('triggers') as UntypedFormArray;
   }
 
-  get sensorFormArray(): FormArray {
-    return this.form.get('sensors') as FormArray;
+  get sensorFormArray(): UntypedFormArray {
+    return this.form.get('sensors') as UntypedFormArray;
   }
 
   get formValue(): any {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Trigger } from 'src/app/private/models/trigger.model';
 import { v4 as uuid } from 'uuid';
 
@@ -27,11 +27,11 @@ export class TriggersComponent {
     },
   ];
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     selectedChoice: this.formBuilder.control(''),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   addTriggers(triggers: Trigger[]): void {
     triggers.forEach((trigger: Trigger) => {
