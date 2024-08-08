@@ -1,15 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  CanLoad,
-  Route,
-  Router,
-  RouterStateSnapshot,
-  UrlSegment,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 
@@ -20,7 +11,7 @@ import { LoginService } from './login/login.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoggedInGuard implements CanLoad, CanActivate, CanActivateChild {
+export class LoggedInGuard  {
   urlSignup: string = '/security/signup';
   constructor(private readonly _router: Router, private loginService: LoginService, private _loaderService: LoaderService) {}
 

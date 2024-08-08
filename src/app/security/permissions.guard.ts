@@ -1,14 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  CanLoad,
-  Route,
-  Router,
-  RouterStateSnapshot,
-  UrlSegment,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -20,7 +11,7 @@ type ReturnGuard = Observable<boolean> | Promise<boolean> | boolean;
 @Injectable({
   providedIn: 'root',
 })
-export class PermissionsGuard implements CanActivate, CanActivateChild, CanLoad {
+export class PermissionsGuard  {
   routeURL: string = '/private';
 
   constructor(
