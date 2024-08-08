@@ -1,8 +1,5 @@
 import { Directive, ElementRef } from '@angular/core';
 
-@Directive({
-  selector: '[focusInput]',
-})
 export class FocusInput {
   constructor(private el: ElementRef) {
     if (!el.nativeElement['focus']) {
