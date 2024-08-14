@@ -16,11 +16,9 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": {
-              "base": "dist/espim-app"
-            },
+            "outputPath": "dist/espim-app",
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
@@ -32,9 +30,6 @@
               {
                 "input": "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
               },
-              // {
-              //   "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"
-              // },
               {
                 "input": "src/styles.scss"
               }
@@ -50,12 +45,11 @@
                 "input": "node_modules/bootstrap/dist/js/bootstrap.js"
               }
             ],
-            "es5BrowserSupport": true,
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
                 "."
