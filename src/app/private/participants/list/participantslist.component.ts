@@ -12,6 +12,11 @@ import { SwalService } from 'src/app/services/swal.service';
 import { DAOService } from '../../dao/dao.service';
 import { Participant } from '../../models/participant.model';
 
+@Component({
+  selector: 'esm-particpants-list',
+  templateUrl: './participantslist.component.html',
+  providers: [DecimalPipe],
+})
 export class ParticipantsListComponent {
   urlParticipants: string = ESPIM_REST_Participants;
   participants: Participant[];

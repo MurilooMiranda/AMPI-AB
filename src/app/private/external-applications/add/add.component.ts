@@ -12,6 +12,10 @@ import { DAOService } from '../../dao/dao.service';
 import { ExternalApplicationParameter } from '../../models/external-application.model';
 import { ParameterComponent } from '../parameter/parameter.component';
 
+@Component({
+  selector: 'esm-external-applications-add',
+  templateUrl: './add.component.html',
+})
 export class ExternalApplicationAddComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
   @ViewChildren(ParameterComponent) parameterComponents: ParameterComponent[];

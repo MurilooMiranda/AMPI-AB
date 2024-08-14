@@ -12,6 +12,10 @@ import { LoaderService } from 'src/app/services/loader.service';
 import { isNullOrUndefined } from 'src/app/util/functions';
 import { FormUtil } from 'src/app/util/util.form.service';
 
+@Component({
+  selector: 'esm-signup',
+  templateUrl: './signup.component.html',
+})
 export class SignupComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
 

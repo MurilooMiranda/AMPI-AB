@@ -12,6 +12,11 @@ import { SwalService } from 'src/app/services/swal.service';
 import { DAOService } from '../../dao/dao.service';
 import { ExternalApplication } from '../../models/external-application.model';
 
+@Component({
+  selector: 'esm-external-application-list',
+  templateUrl: './list.component.html',
+  providers: [DecimalPipe],
+})
 export class ExternalApplicationListComponent {
   urlExternalApplications: string = ESPIM_REST_ExternalApplications;
   externalApplications: ExternalApplication[];

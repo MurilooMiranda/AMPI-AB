@@ -5,6 +5,12 @@ import { Program } from 'src/app/private/models/program.model';
 
 import { ProgramsAddService } from '../programsadd.service';
 
+@Component({
+  selector: 'esm-step-panel',
+  styleUrls: ['./step-panel.component.scss'],
+
+  templateUrl: './step-panel.component.html',
+})
 export class StepPanelComponent implements OnInit {
   program: Observable<Program>; // These are the observers of this program
 

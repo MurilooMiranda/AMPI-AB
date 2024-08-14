@@ -3,6 +3,11 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 
 import { ExternalApplicationParameter } from '../../models/external-application.model';
 
+@Component({
+  selector: 'esm-parameter',
+  templateUrl: './parameter.component.html',
+  styleUrls: ['./parameter.component.scss'],
+})
 export class ParameterComponent implements OnInit {
   @Input() parameters: Array<ExternalApplicationParameter>;
   @Input() parameter: ExternalApplicationParameter;

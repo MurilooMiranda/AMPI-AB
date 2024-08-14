@@ -11,6 +11,11 @@ import { ESPIM_REST_Programs } from '../../../../../app.api';
 import { InterventionComponent } from '../intervention/intervention.component';
 
 @UntilDestroy({ checkProperties: true })
+@Component({
+  selector: 'esm-active-event',
+  templateUrl: './active-event.component.html',
+  styleUrls: ['./active-event.component.scss', './../step4.component.scss'],
+})
 export class ActiveEventComponent implements OnInit {
   urlPrograms: string = ESPIM_REST_Programs;
   @Input() event: ActiveEvent;

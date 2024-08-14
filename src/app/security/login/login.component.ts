@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 
 import { LoginService } from './login.service';
 
+@Component({
+  selector: 'esm-login',
+  templateUrl: './login.component.html',
+})
 export class LoginComponent implements OnInit {
   constructor(private _loginService: LoginService, private router: Router) {}
 

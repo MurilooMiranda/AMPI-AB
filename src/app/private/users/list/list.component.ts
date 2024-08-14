@@ -8,6 +8,11 @@ import { ESPIM_REST_Users } from 'src/app/app.api';
 import { DAOService } from '../../dao/dao.service';
 import { User } from '../../models/user.model';
 
+@Component({
+  selector: 'esm-users-list',
+  templateUrl: './list.component.html',
+  providers: [DecimalPipe],
+})
 export class ListComponent {
   url: string = ESPIM_REST_Users;
   users: User[];

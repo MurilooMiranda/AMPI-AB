@@ -11,6 +11,11 @@ import { LoaderService } from 'src/app/services/loader.service';
 
 import { ProgramsAddService } from '../../programsadd.service';
 
+@Component({
+  selector: 'esm-modal-add-badge',
+  templateUrl: './modal-add-badge.component.html',
+  styleUrls: ['./modal-add-badge.component.scss'],
+})
 export class ModalAddBadgeComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
   @Output() response: EventEmitter<Badge> = new EventEmitter<Badge>();

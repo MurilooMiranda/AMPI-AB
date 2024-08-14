@@ -8,6 +8,11 @@ import { isNullOrUndefined } from 'src/app/util/functions';
 
 import { HTMLInterventionElement, InterventionService } from '../intervention.service';
 
+@Component({
+  selector: 'esm-intervention-item',
+  templateUrl: './intervention-item.component.html',
+  styleUrls: ['./intervention-item.component.scss'],
+})
 export class InterventionItemComponent implements OnInit, AfterViewInit {
   @ViewChild('interventionDiv') interventionDiv: ElementRef;
 

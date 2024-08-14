@@ -22,6 +22,11 @@ import { ProgramsAddService } from '../../programsadd.service';
 import { InterventionItemComponent } from './intervention-item/intervention-item.component';
 import { HTMLInterventionElement, InterventionService } from './intervention.service';
 
+@Component({
+  selector: 'esm-intervention',
+  templateUrl: './intervention.component.html',
+  styleUrls: ['./intervention.component.scss'],
+})
 export class InterventionComponent implements AfterViewInit {
   previousPosition: { x?: number; y?: number } = {};
   offset: { x: number; y: number } = { x: 0, y: 0 };

@@ -3,6 +3,10 @@ import { isNullOrUndefined } from 'src/app/util/functions';
 
 import { HTMLInterventionElement, InterventionService } from '../intervention.service';
 
+@Component({
+  selector: 'esm-canvas',
+  templateUrl: './canvas.component.html',
+})
 export class CanvasComponent implements OnInit, AfterViewInit {
   canvas: HTMLCanvasElement;
 

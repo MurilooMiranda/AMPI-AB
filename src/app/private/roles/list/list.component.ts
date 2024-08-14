@@ -11,6 +11,11 @@ import { SwalService } from 'src/app/services/swal.service';
 import { DAOService } from '../../dao/dao.service';
 import { Role } from '../../models/role.model';
 
+@Component({
+  selector: 'esm-roles-list',
+  templateUrl: './list.component.html',
+  providers: [DecimalPipe],
+})
 export class ListComponent {
   url: string = ESPIM_REST_Roles;
   roles: Role[];

@@ -10,6 +10,10 @@ import { FormUtil } from 'src/app/util/util.form.service';
 
 import { DAOService } from '../../dao/dao.service';
 
+@Component({
+  selector: 'esm-participants-add',
+  templateUrl: './participantsadd.component.html',
+})
 export class ParticipanstAddComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
 

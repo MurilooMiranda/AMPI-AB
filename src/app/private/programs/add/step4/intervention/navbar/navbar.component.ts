@@ -13,6 +13,11 @@ import { SwalService } from 'src/app/services/swal.service';
 import { HTMLInterventionElement, InterventionService } from '../intervention.service';
 import { ITENS_QUESTION } from './constants';
 
+@Component({
+  selector: 'esm-navbar',
+  styleUrls: ['./navbar.component.scss'],
+  templateUrl: './navbar.component.html',
+})
 export class NavbarComponent implements OnInit {
   over1200px: boolean;
   mobileToggleActivated: boolean;

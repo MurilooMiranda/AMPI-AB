@@ -9,6 +9,11 @@ import { User } from 'src/app/private/models/user.model';
 import { LoaderService } from 'src/app/services/loader.service';
 import { FormUtil } from 'src/app/util/util.form.service';
 
+@Component({
+  selector: 'esm-modal-add-participant',
+  templateUrl: './modal-add-participant.component.html',
+  styleUrls: ['./modal-add-participant.component.scss'],
+})
 export class ModalAddParticipantComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
   @Output() response: EventEmitter<User> = new EventEmitter<User>();

@@ -9,6 +9,11 @@ import { ProgramsAddService } from '../programsadd.service';
 import { ActiveEventComponent } from './active-event/active-event.component';
 import { PassiveEventComponent } from './passive-event/passive-event.component';
 
+@Component({
+  selector: 'esm-step4',
+  styleUrls: ['./step4.component.scss'],
+  templateUrl: './step4.component.html',
+})
 export class Step4Component implements OnInit {
   @ViewChildren(PassiveEventComponent) passiveEventsComponents: PassiveEventComponent[];
   @ViewChildren(ActiveEventComponent) activeEventsComponents: ActiveEventComponent[];

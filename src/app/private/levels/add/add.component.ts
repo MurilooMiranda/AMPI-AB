@@ -10,6 +10,10 @@ import { FormUtil } from 'src/app/util/util.form.service';
 
 import { DAOService } from '../../dao/dao.service';
 
+@Component({
+  selector: 'esm-levels-add',
+  templateUrl: './add.component.html',
+})
 export class LevelsAddComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
 

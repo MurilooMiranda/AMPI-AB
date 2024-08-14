@@ -6,6 +6,11 @@ import { Sensor } from 'src/app/private/models/sensor.model';
 import { Trigger } from 'src/app/private/models/trigger.model';
 
 @UntilDestroy({ checkProperties: true })
+@Component({
+  selector: 'esm-passive-event',
+  templateUrl: './passive-event.component.html',
+  styleUrls: ['./passive-event.component.scss', './../step4.component.scss'],
+})
 export class PassiveEventComponent implements OnInit {
   @Input() event: Event;
   @Input() events: Event[];

@@ -2,6 +2,12 @@ import { message } from './../../util/validate';
 import { inputFormsConfig } from './../../util/input-form-configs';
 import { Component, Input } from '@angular/core';
 
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'input-validations',
+  templateUrl: './input-validations.component.html',
+  styleUrls: ['./input-validations.component.scss']
+})
 export class InputValidationsComponent {
   @Input() errors: Array<string>;
   @Input() label: string;

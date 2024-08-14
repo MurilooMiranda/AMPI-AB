@@ -15,6 +15,10 @@ import { LETRAS_FILTRO } from '../../constants';
 import { ProgramsAddService } from '../programsadd.service';
 import { ModalAddObserverComponent } from './modal-add-observer/modal-add-observer.component';
 
+@Component({
+  selector: 'esm-step2',
+  templateUrl: './step2.component.html',
+})
 export class Step2Component implements OnInit, OnDestroy {
   @ViewChild('search') searchElement: SearchComponent;
 

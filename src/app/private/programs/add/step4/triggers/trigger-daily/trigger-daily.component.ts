@@ -4,6 +4,11 @@ import { Cron } from 'src/app/private/models/cron.model';
 import { Trigger } from 'src/app/private/models/trigger.model';
 import { NOTIFICATIONS_TYPES } from 'src/app/private/programs/constants';
 
+@Component({
+  selector: 'esm-trigger-daily',
+  templateUrl: './trigger-daily.component.html',
+  styleUrls: ['./trigger-daily.component.scss'],
+})
 export class TriggerDailyComponent implements OnInit {
   @Output() response: EventEmitter<Trigger> = new EventEmitter<Trigger>();
 

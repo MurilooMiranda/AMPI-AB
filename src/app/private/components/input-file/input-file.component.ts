@@ -7,6 +7,11 @@ import { LoaderService } from 'src/app/services/loader.service';
 import { DAOService } from '../../dao/dao.service';
 import { Media } from '../../models/media';
 
+@Component({
+  selector: 'esm-input-file',
+  templateUrl: './input-file.component.html',
+  styleUrls: ['./input-file.component.scss'],
+})
 export class InputFileComponent implements OnInit {
   @Output() response: EventEmitter<Media> = new EventEmitter<Media>();
   @ViewChild('inputFile')

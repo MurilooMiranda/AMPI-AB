@@ -5,6 +5,11 @@ import { Trigger } from 'src/app/private/models/trigger.model';
 import { NOTIFICATIONS_TYPES, WEEKLY_DAYS } from 'src/app/private/programs/constants';
 import { minLengthArray } from 'src/app/util/functions';
 
+@Component({
+  selector: 'esm-trigger-weekly',
+  templateUrl: './trigger-weekly.component.html',
+  styleUrls: ['./trigger-weekly.component.scss'],
+})
 export class TriggerWeeklyComponent {
   @Output() response: EventEmitter<Trigger> = new EventEmitter<Trigger>();
 
