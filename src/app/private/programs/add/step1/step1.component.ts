@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Observable, Subscription } from 'rxjs';
 
 import { Program } from '../../../models/program.model';

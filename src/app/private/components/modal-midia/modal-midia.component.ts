@@ -74,7 +74,7 @@ export class ModalMidiaComponent implements OnInit {
 
   uploadZip() {
     let interventions = cloneDeep(this.interventionService.getCurrentState());
-    console.log(this.programAddService.program.source.value.id);
+    // console.log(this.programAddService.program.source.value.id);
     const formData: FormData = new FormData();
     formData.append('file', this.file.file);
     this._loaderService.show();

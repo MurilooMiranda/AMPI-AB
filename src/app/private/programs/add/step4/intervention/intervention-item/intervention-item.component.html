@@ -1,12 +1,22 @@
 <div
   #interventionDiv
   class="card position-absolute"
-  style="top: 0; width: 300px"
+  style="top: 0; min-width: 300px"
   cdkDrag
+  [ngStyle]="style"
+  mwlResizable
+  [validateResize]="validate"
+  [enableGhostResize]="true"
+  [resizeSnapGrid]="{ left: 50, right: 50 }"
+  (resizeEnd)="onResizeEnd($event)"
   [cdkDragFreeDragPosition]="offset"
   (cdkDragStarted)="onDragStart()"
   (cdkDragMoved)="moving()"
 >
+  <div class="resize-handle-top" mwlResizeHandle [resizeEdges]="{ top: true }"></div>
+  <div class="resize-handle-left" mwlResizeHandle [resizeEdges]="{ left: true }"></div>
+  <div class="resize-handle-right" mwlResizeHandle [resizeEdges]="{ right: true }"></div>
+  <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
   <div class="d-flex align-items-center justify-content-between bg-primary text-white w-100 p-2" cdkDragHandle>
     <span class="font-weight-bold">{{ interventionCoordinate.orderDescription }} - {{ interventionCoordinate.typeDescription }}</span>
     <i class="fas fa-times pointer" (click)="remove()"></i>

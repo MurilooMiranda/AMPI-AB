@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
-import * as SecureLS from 'secure-ls';
+import SecureLS from 'secure-ls';
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ResizeEvent } from 'angular-resizable-element';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -14,6 +15,8 @@ import { HTMLInterventionElement, InterventionService } from '../intervention.se
   styleUrls: ['./intervention-item.component.scss'],
 })
 export class InterventionItemComponent implements OnInit, AfterViewInit {
+  public style: object = {};
+
   @ViewChild('interventionDiv') interventionDiv: ElementRef;
 
   interventionCoordinate: HTMLInterventionElement;
@@ -146,5 +149,27 @@ export class InterventionItemComponent implements OnInit, AfterViewInit {
     this._modalMediaRef.content.response.pipe(take(1)).subscribe((value: Media) => {
       this.interventionCoordinate.intervention.medias.push(value);
     });
+  }
+
+  validate(event: ResizeEvent): boolean {
+    const MIN_DIMENSIONS_PX: number = 50;
+    if (
+      event.rectangle.width &&
+      event.rectangle.height &&
+      (event.rectangle.width < MIN_DIMENSIONS_PX || event.rectangle.height < MIN_DIMENSIONS_PX)
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  onResizeEnd(event: ResizeEvent): void {
+    this.style = {
+      position: 'fixed',
+      left: `${event.rectangle.left}px`,
+      top: `${event.rectangle.top}px`,
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.height}px`,
+    };
   }
 }

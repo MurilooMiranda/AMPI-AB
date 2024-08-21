@@ -20,9 +20,7 @@
           "options": {
             "outputPath": "dist/espim-app",
             "index": "src/index.html",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
@@ -51,9 +49,7 @@
             "namedChunks": true,
             "main": "src/main.ts",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "."
-              ]
+              "includePaths": ["."]
             }
           },
           "allowedCommonJsDependencies": ["moment/locale/pt-br"],
