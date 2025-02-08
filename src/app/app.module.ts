@@ -1,13 +1,8 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MissingTranslationHandler,
-  MissingTranslationHandlerParams,
-  TranslateLoader,
-  TranslateModule,
-} from '@ngx-translate/core';
+import { MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MomentModule } from 'ngx-moment';
@@ -39,6 +34,8 @@ const providers = [LoaderService, EndpointsService];
 
 @NgModule({
   declarations: [AppComponent],
+  exports: [ToastrModule, ComponentsModule, SharedModule],
+  bootstrap: [AppComponent],
   imports: [
     // imports modules
     BrowserModule,
@@ -48,8 +45,6 @@ const providers = [LoaderService, EndpointsService];
     IndexModule,
     MomentModule,
     SecurityModule,
-    // configure the imports
-    HttpClientModule,
     SweetAlert2Module.forRoot(),
     NgxPermissionsModule.forRoot(),
     ToastrModule.forRoot({
@@ -71,7 +66,6 @@ const providers = [LoaderService, EndpointsService];
     }),
     BrowserAnimationsModule,
   ],
-  exports: [ToastrModule, ComponentsModule, SharedModule],
   providers: [
     // import services
     LoggedInGuard,
@@ -90,8 +84,8 @@ const providers = [LoaderService, EndpointsService];
       useClass: ErrorHandlerInterceptor,
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {
   static forRoot(): ModuleWithProviders<AppModule> {

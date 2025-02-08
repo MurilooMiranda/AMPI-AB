@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import cloneDeep from 'lodash/cloneDeep';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class ModalAddBadgeComponent implements OnInit {
   @Input() activeEvent: ActiveEvent;
 
   urlBadges: string = ESPIM_REST_Badges;
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: this.formBuilder.control('', [Validators.required]),
     media: this.formBuilder.control('', [Validators.required]),
   });
@@ -30,7 +30,7 @@ export class ModalAddBadgeComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private readonly programAddService: ProgramsAddService,
     private readonly _endpointsService: EndpointsService,
     private readonly _loaderService: LoaderService,

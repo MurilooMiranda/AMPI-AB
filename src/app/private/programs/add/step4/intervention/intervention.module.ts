@@ -1,8 +1,9 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgChunkPipeModule } from 'angular-pipes';
+import { ResizableModule } from 'angular-resizable-element';
 import { SharedModule } from 'src/app/app.shared.module';
+import { NgChunkPipeModule } from 'src/app/array/chunk.pipe';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 import { CanvasComponent } from './canvas/canvas.component';
@@ -33,7 +34,7 @@ import { UniqueChoiceComponent } from './question/unique-choice/unique-choice.co
     MediaComponent,
     ExternalMediaComponent,
   ],
-  imports: [CommonModule, DragDropModule, SharedModule, ComponentsModule, NgChunkPipeModule],
+  imports: [CommonModule, DragDropModule, SharedModule, ComponentsModule, NgChunkPipeModule, ResizableModule],
   exports: [InterventionComponent],
 })
 export class InterventionModule {}

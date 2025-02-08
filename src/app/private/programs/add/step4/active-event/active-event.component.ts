@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
@@ -25,7 +25,7 @@ export class ActiveEventComponent implements OnInit {
   private _modalInterventionRef: BsModalRef;
   loadingInterventions: boolean = false;
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     id: this.formBuilder.control(''),
     title: ['', Validators.required],
     type: this.formBuilder.control(''),
@@ -38,7 +38,7 @@ export class ActiveEventComponent implements OnInit {
     gamificationConditions: this.formBuilder.control(null),
   });
 
-  constructor(private formBuilder: FormBuilder, private readonly _modalService: BsModalService) {}
+  constructor(private formBuilder: UntypedFormBuilder, private readonly _modalService: BsModalService) {}
 
   ngOnInit(): void {
     // Verifica se é um "NOVO EVENTO"
@@ -67,8 +67,8 @@ export class ActiveEventComponent implements OnInit {
     this.triggerFormArray.removeAt(index);
   }
 
-  get triggerFormArray(): FormArray {
-    return this.form.get('triggers') as FormArray;
+  get triggerFormArray(): UntypedFormArray {
+    return this.form.get('triggers') as UntypedFormArray;
   }
 
   get formValue(): any {
@@ -90,8 +90,8 @@ export class ActiveEventComponent implements OnInit {
     this.complexConditionsFormArray.push(this.formBuilder.control(complexCondition));
   }
 
-  get complexConditionsFormArray(): FormArray {
-    return this.form.get('complexConditions') as FormArray;
+  get complexConditionsFormArray(): UntypedFormArray {
+    return this.form.get('complexConditions') as UntypedFormArray;
   }
 
   deleteEvent() {

@@ -1,7 +1,7 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 
-@Directive({
-  selector: '[focusInvalidInput]',
+@Component({
+  template: '',
 })
 export class FocusInvalidInputDirective {
   constructor(private el: ElementRef) {}

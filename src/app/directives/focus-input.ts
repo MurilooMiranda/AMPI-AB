@@ -1,7 +1,7 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
-@Directive({
-  selector: '[focusInput]',
+@Component({
+  template: '',
 })
 export class FocusInput {
   constructor(private el: ElementRef) {

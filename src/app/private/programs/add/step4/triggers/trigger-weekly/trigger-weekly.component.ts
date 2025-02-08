@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Cron } from 'src/app/private/models/cron.model';
 import { Trigger } from 'src/app/private/models/trigger.model';
 import { NOTIFICATIONS_TYPES, WEEKLY_DAYS } from 'src/app/private/programs/constants';
@@ -13,7 +13,7 @@ import { minLengthArray } from 'src/app/util/functions';
 export class TriggerWeeklyComponent {
   @Output() response: EventEmitter<Trigger> = new EventEmitter<Trigger>();
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     time: ['', Validators.required],
     notificationType: ['', Validators.required],
     timeout: ['', Validators.required],
@@ -23,9 +23,9 @@ export class TriggerWeeklyComponent {
   weeklyDays: any[] = WEEKLY_DAYS;
   notificationTypes: any[] = NOTIFICATIONS_TYPES;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.weeklyDays.forEach(() => {
-      (this.form.get('days') as FormArray).push(this.formBuilder.control(false));
+      (this.form.get('days') as UntypedFormArray).push(this.formBuilder.control(false));
     });
   }
 

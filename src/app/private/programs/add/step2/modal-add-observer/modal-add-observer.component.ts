@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class ModalAddObserverComponent implements OnInit {
   @Output() response: EventEmitter<Observer> = new EventEmitter<Observer>();
 
   urlObservers: string = ESPIM_REST_Observers;
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: this.formBuilder.control('', [Validators.required]),
     email: this.formBuilder.control('', [Validators.required]),
     role: this.formBuilder.control('', [Validators.required]),
@@ -27,7 +27,7 @@ export class ModalAddObserverComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private _toastr: ToastrService,
     private _loaderService: LoaderService,
     private _daoService: DAOService

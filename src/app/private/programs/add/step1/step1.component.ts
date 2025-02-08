@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Observable, Subscription } from 'rxjs';
 
 import { Program } from '../../../models/program.model';
@@ -13,13 +13,13 @@ import { ProgramsAddService } from '../programsadd.service';
 })
 export class Step1Component implements OnDestroy {
   program: Observable<Program>;
-  form: FormGroup;
+  form: UntypedFormGroup;
   bsConfig: any = { dateInputFormat: 'DD/MM/YYYY' };
   private _subscription$: Subscription;
 
   constructor(
     private programAddService: ProgramsAddService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private _route: ActivatedRoute
   ) {

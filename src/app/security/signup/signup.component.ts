@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   @ViewChild('formElement') formElement: ElementRef;
 
   urlObservers: string = ESPIM_REST_Observers;
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: this.formBuilder.control('', [Validators.required]),
     email: this.formBuilder.control('', [Validators.required]),
     role: this.formBuilder.control('', [Validators.required]),
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private _loginService: LoginService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private _toastr: ToastrService,
     private _loaderService: LoaderService,
