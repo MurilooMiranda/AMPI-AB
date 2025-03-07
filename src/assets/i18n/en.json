@@ -134,6 +134,7 @@
         "name": "Name",
         "email": "E-mail",
         "alias": "Alias",
+        "profession": "Profession",
         "addNew": "New participant",
         "saveButton": "SAVE",
         "saveAndAddAnother": "SAVE AND ADD ANOTHER",

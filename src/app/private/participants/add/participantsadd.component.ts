@@ -38,6 +38,9 @@ export class ParticipanstAddComponent implements OnInit {
     this.form = this._formBuilder.group({
       email: this._formBuilder.control({ value: '', disabled: !!this.id }, [Validators.required, Validators.email]),
       alias: this._formBuilder.control('', [Validators.required]),
+      user: this._formBuilder.group({
+        profession: this._formBuilder.control(''),
+      }),
     });
 
     if (this.id) {
@@ -53,7 +56,17 @@ export class ParticipanstAddComponent implements OnInit {
       .getObject(this.urlParticipants, id)
       .pipe(finalize(() => this._loaderService.hide()))
       .subscribe((response) => {
-        this.form.patchValue({ ...response.data });
+        this.form.patchValue({
+          email: response.data.email,
+          alias: response.data.alias,
+        });
+        if (response.data.user) {
+          this.form.patchValue({
+            user: {
+              profession: response.data.user.profession,
+            },
+          });
+        }
       });
   }
 

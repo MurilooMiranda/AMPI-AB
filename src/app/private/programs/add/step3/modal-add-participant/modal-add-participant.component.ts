@@ -22,6 +22,9 @@ export class ModalAddParticipantComponent implements OnInit {
   form: UntypedFormGroup = this.formBuilder.group({
     email: this.formBuilder.control('', [Validators.required]),
     alias: this.formBuilder.control('', [Validators.required]),
+    user:  this.formBuilder.group({
+      profession: this.formBuilder.control(''),
+    }),
   });
 
   constructor(
@@ -48,14 +51,19 @@ export class ModalAddParticipantComponent implements OnInit {
       this._daoService
         .postObject(this.urlParticipants, dados)
         .pipe(finalize(() => this._loaderService.hide()))
-        .subscribe(
-          (resp) => {
-            this._toastr.success(resp.message);
-            this.response.emit(resp.data);
-            this.bsModalRef.hide();
-          },
-          (resp) => FormUtil.setErrorsBackend(this.form, resp.data, this.formElement)
-        );
+        .subscribe((response) => {
+          this.form.patchValue({
+            email: response.data.email,
+            alias: response.data.alias,
+          });
+          if (response.data.user) {
+            this.form.patchValue({
+              user: {
+                profession: response.data.user.profession,
+              },
+            });
+          }
+        });
     }
   }
 }

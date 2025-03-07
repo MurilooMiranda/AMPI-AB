@@ -141,6 +141,7 @@
         "name": "Name",
         "email": "E-mail",
         "alias": "Alias",
+        "profession": "Cargo",
         "addNew": "Novo participante",
         "saveButton": "SALVAR",
         "saveAndAddAnother": "SALVAR E ADICIONAR OUTRO",

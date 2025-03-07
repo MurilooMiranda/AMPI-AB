@@ -138,8 +138,22 @@
 
     <div class="row">
       <div class="col-12 form-group">
-        <input type="checkbox" [id]="'is-manual-' + index" formControlName="isManual" />
-        <label [for]="'is-manual-' + index">Participante pode auto-iniciar o evento?</label>
+        <input type="checkbox" [id]="'manual-' + index" formControlName="manual" />
+        <label [for]="'manual-' + index">Participante pode auto-iniciar o evento?</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 form-group">
+        <input type="checkbox" [id]="'downlodable-' + index" formControlName="downloadable" />
+        <label [for]="'downloadable-' + index">Participante pode baixar o evento?</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 form-group">
+        <input type="checkbox" [id]="'ampi-ab-' + index" formControlName="ampiab" />
+        <label [for]="'ampi-ab-' + index">Evento é do tipo "AMPI-AB"?</label>
       </div>
     </div>
 
