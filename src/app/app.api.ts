@@ -1,6 +1,6 @@
 // configure default backend location
 
-export const BASE_ESPIM_API = 'http://localhost:8083/api/';
+export const BASE_ESPIM_API = 'https://www.espim-lab.com.br:8083/api/';
 
 export const ESPIM_API = BASE_ESPIM_API + 'web/';
 
