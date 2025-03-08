@@ -50,10 +50,45 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12 form-group">
+      <label for="profession">Profissão</label>
+      <div class="form-label-group">
+        <select
+          id="profession"
+          name="profession"
+          class="form-control border-bottom"
+          [formControl]="form.get('user.profession')"
+        >
+          <option value="" disabled>Selecione uma profissão</option>
+          <option value="Enfermeiro">Enfermeiro</option>
+          <option value="Médico">Médico</option>
+          <option value="Cirurgião Dentista">Cirurgião Dentista</option>
+          <option value="Fisioterapeuta">Fisioterapeuta</option>
+          <option value="Assistente Social">Assistente Social</option>
+          <option value="Nutricionista">Nutricionista</option>
+          <option value="Psicólogo">Psicólogo</option>
+          <option value="Técnico de Enfermagem">Técnico de Enfermagem</option>
+          <option value="Auxiliar de Saúde Bucal">Auxiliar de Saúde Bucal</option>
+          <option value="Agente Comunitário de Saúde">Agente Comunitário de Saúde</option>
+          <option value="Estudante">Estudante</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <input-validations
+        *ngIf="form.get('user.profession').invalid && form.get('user.profession').touched"
+        [errors]="form.get('user.profession').errors"
+        label="Profissão"
+      >
+      </input-validations>
+    </div>
+  </div>
+
   <div class="modal-footer">
     <div class="row justify-content-end">
       <a (click)="close()" class="btn btn-white btn-shadow mr-4">CANCELAR</a>
-      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-100" translate>SALVAR</button>
+      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-100">SALVAR</button>
     </div>
   </div>
 </form>
