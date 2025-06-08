@@ -9,6 +9,9 @@ import { ProgramsAddService } from '../programsadd.service';
 import { ActiveEventComponent } from './active-event/active-event.component';
 import { PassiveEventComponent } from './passive-event/passive-event.component';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CollapseModule } from 'ngx-bootstrap/collapse'; 
+
 @Component({
   selector: 'esm-step4',
   styleUrls: ['./step4.component.scss'],
@@ -25,7 +28,7 @@ export class Step4Component implements OnInit {
   constructor(private programAddService: ProgramsAddService, private _swalService: SwalService) {}
 
   trackByFn(index, item) {
-    return index;
+    return item;
   }
 
   ngOnInit() {

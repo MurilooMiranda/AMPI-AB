@@ -1,16 +1,34 @@
-<form [formGroup]="form" autocomplete="off" focusInvalidInput #formElement (ngSubmit)="save()">
+<form
+  [formGroup]="form"
+  autocomplete="off"
+  focusInvalidInput
+  #formElement
+  (ngSubmit)="save()"
+>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Adicionar badge</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <h4 class="modal-title pull-left">Adicionar medalha</h4>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      (click)="close()"
+      aria-label="Close"
+    ></button>
   </div>
   <div class="modal-body">
     <div class="row">
       <!-- Título -->
-      <div class="col-12 form-group">
-        <div class="form-label-group">
-          <input class="form-control" autocomplete="off" name="name" id="name" formControlName="name" type="text" placeholder="Título" />
+      <div class="col-12 mb-4">
+        <div class="form-label-group form-floating">
+          <input
+            class="form-control"
+            autocomplete="off"
+            name="name"
+            id="name"
+            formControlName="name"
+            type="text"
+            placeholder="Título"
+          />
           <label for="name">Título <b class="text-danger">*</b></label>
         </div>
         <input-validations
@@ -23,7 +41,7 @@
     </div>
 
     <div class="row">
-      <div class="holder-media col-12 form-group text-center">
+      <div class="holder-media col-12 mb-4 text-center">
         <esm-input-file (response)="adicionarMidia($event)"></esm-input-file>
       </div>
       <input-validations
@@ -35,9 +53,17 @@
     </div>
   </div>
   <div class="modal-footer">
-    <div class="row justify-content-end">
-      <a (click)="close()" class="btn btn-white btn-shadow mr-4">CANCELAR</a>
-      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-100" translate>SALVAR</button>
+    <div class="justify-content-end">
+      <a
+        (click)="close()"
+        class="btn btn-white btn-shadow me-4"
+      >CANCELAR</a>
+      <button
+        type="submit"
+        name="saveButton"
+        class="btn btn-success btn-shadow min-200"
+        translate
+      >SALVAR</button>
     </div>
   </div>
 </form>

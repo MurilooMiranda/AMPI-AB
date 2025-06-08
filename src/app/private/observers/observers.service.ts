@@ -12,7 +12,7 @@ export class ObserversService extends DAOService {
   }
 
   authenticate(urlObject: string, token: string) {
-    let params = new HttpParams().set('include', 'observer').set('token', token);
+    let params = new HttpParams().set('include', 'observer.user').set('token', token);
 
     return this.http.post(urlObject, params);
   }

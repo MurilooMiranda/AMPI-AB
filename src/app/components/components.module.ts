@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -27,9 +27,16 @@ export function getTimepickerConfig(): TimepickerConfig {
     mousewheel: true,
     showMinutes: true,
     showSeconds: false,
-    labelHours: 'Hours',
-    labelMinutes: 'Minutes',
-    labelSeconds: 'Seconds',
+    labelHours: 'Horas',
+    labelMinutes: 'Minutos',
+    labelSeconds: 'Segundos',
+  });
+}
+
+export function getBsDatepickerConfig(): BsDatepickerConfig {
+  return Object.assign(new BsDatepickerConfig(), {
+    containerClass: 'theme-blue',
+    dateInputFormat: 'DD/MM/YYYY',
   });
 }
 
@@ -37,6 +44,10 @@ export function getTimepickerConfig(): TimepickerConfig {
   declarations: [...components],
   imports: [...modules, BsDatepickerModule.forRoot(), TimepickerModule.forRoot(), BsDropdownModule.forRoot(), CollapseModule],
   exports: [...modules, ...components, BsDatepickerModule, TimepickerModule, CollapseModule],
-  providers: [BsLocaleService, BsModalService, { provide: TimepickerConfig, useFactory: getTimepickerConfig }],
+  providers: [
+    BsModalService,
+    { provide: TimepickerConfig, useFactory: getTimepickerConfig },
+    { provide: BsDatepickerConfig, useFactory: getBsDatepickerConfig },
+  ],
 })
 export class ComponentsModule {}

@@ -1,0 +1,18 @@
+<div class="mx-4 mt-4 card card-lg">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4"><span translate>private.results.show.title</span> - {{ program?.title }}</h1>
+      </div>
+    </div>
+
+    <hr />
+    <div class="row mt-4">
+      <div class="col-12">
+        <h5>Por eventos:</h5>
+      </div>
+    </div>
+
+    <esm-event-result *ngFor="let event of program?.activeEventsWithResults" [event]="event"></esm-event-result>
+  </section>
+</div>

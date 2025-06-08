@@ -18,23 +18,35 @@
   <div class="resize-handle-right" mwlResizeHandle [resizeEdges]="{ right: true }"></div>
   <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
   <div class="d-flex align-items-center justify-content-between bg-primary text-white w-100 p-2" cdkDragHandle>
-    <span class="font-weight-bold">{{ interventionCoordinate.orderDescription }} - {{ interventionCoordinate.typeDescription }}</span>
+    <span class="fw-bold">{{ interventionCoordinate.orderDescription }} - {{ interventionCoordinate.typeDescription }}</span>
     <i class="fas fa-times pointer" (click)="remove()"></i>
   </div>
   <div class="w-100 p-3">
     <div class="w-100 mb-3">
-      <input type="radio" [checked]="interventionCoordinate.first" name="first" [id]="graphIndex + '-first'" (click)="setFirst()" />
-      <label [for]="graphIndex + '-first'">1ª Intervenção</label>
+      <div class="form-check">
+        <input
+          type="radio"
+          class="form-check-input"
+          [checked]="interventionCoordinate.first"
+          name="first"
+          [id]="graphIndex + '-first'"
+          (click)="setFirst()"
+        />
+        <label class="form-check-label" [for]="graphIndex + '-first'">1ª Intervenção</label>
+      </div>
     </div>
     <div class="w-100 mb-3">
-      <input
-        type="checkbox"
-        [(ngModel)]="interventionCoordinate.obrigatory"
-        [id]="graphIndex + '-obrigatory'"
-        [checked]="obrigatory"
-        [disabled]="obrigatory"
-      />
-      <label [for]="graphIndex + '-obrigatory'">Obrigatória</label>
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [(ngModel)]="interventionCoordinate.obrigatory"
+          [id]="graphIndex + '-obrigatory'"
+          [checked]="obrigatory"
+          [disabled]="obrigatory"
+        />
+        <label class="form-check-label" [for]="graphIndex + '-obrigatory'">Obrigatória</label>
+      </div>
     </div>
     <div class="d-flex flex-column">
       <label [for]="graphIndex + '-statement'"
@@ -47,10 +59,10 @@
 
     <div class="holder-media my-4">
       <div class="mb-2" *ngFor="let media of interventionCoordinate.intervention.medias; index as i">
-        <img [src]="media.url" class="img-thumbnail w-100 mb-1" [alt]="media.name" *ngIf="media.type == 'image'" />
-        <video [src]="media.url" class="img-thumbnail mb-1" controls height="120" *ngIf="media.type == 'video'"></video>
+        <img [src]="media.url | safe | async" class="img-thumbnail w-100 mb-1" [alt]="media.name" *ngIf="media.type == 'image'" />
+        <video [src]="media.url | safe | async" class="img-thumbnail mb-1" controls height="120" *ngIf="media.type == 'video'"></video>
         <div class="img-thumbnail mb-1" *ngIf="media.type == 'audio'">
-          <audio [src]="media.url" class="w-100" height="70" controls></audio>
+          <audio [src]="media.url | safe | async" class="w-100" height="70" controls></audio>
         </div>
         <button class="btn btn-danger w-100" (click)="removerMidia(i)" *ngIf="interventionCoordinate.intervention.medias.length > 0">
           Remover mídia <i class="far fa-trash-alt"></i>

@@ -10,7 +10,7 @@ import { WorksComponent } from './works/works.component';
 
 const routes: Routes = [
   {
-    path: 'index',
+    path: '',
     component: IndexComponent,
     children: [
       {

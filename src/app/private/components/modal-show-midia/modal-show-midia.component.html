@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title margin-0">Visualizar mídia</h4>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <img [src]="media.url | safe | async" class="img-thumbnail w-100 mb-1" [alt]="media.name" *ngIf="media.type == 'image'" />
+  <video [src]="media.url | safe | async" class="img-thumbnail mb-1" controls height="120" *ngIf="media.type == 'video'"></video>
+  <div class="img-thumbnail mb-1" *ngIf="media.type == 'audio'">
+    <audio [src]="media.url | safe | async" class="w-100" height="70" controls></audio>
+  </div>
+
+  <div class="row">
+    <div class="col-12 justify-content-end d-flex">
+      <a (click)="close()" class="btn btn-white btn-shadow me-4">FECHAR</a>
+    </div>
+  </div>
+</div>

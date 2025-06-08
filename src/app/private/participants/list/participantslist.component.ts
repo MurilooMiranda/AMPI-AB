@@ -5,7 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, finalize, switchMap } from 'rxjs/operators';
-import { ESPIM_REST_Participants } from 'src/app/app.api';
+import { ESPIM_REST_Participants, FIRST_TEXT, LAST_TEXT, NEXT_TEXT, PREV_TEXT } from 'src/app/app.api';
 import { LoaderService } from 'src/app/services/loader.service';
 import { SwalService } from 'src/app/services/swal.service';
 
@@ -19,6 +19,11 @@ import { Participant } from '../../models/participant.model';
 })
 export class ParticipantsListComponent {
   urlParticipants: string = ESPIM_REST_Participants;
+  firstText: string = FIRST_TEXT;
+  lastText: string = LAST_TEXT;
+  prevText: string = PREV_TEXT;
+  nextText: string = NEXT_TEXT;
+
   participants: Participant[];
   total: number;
   loading: boolean = true;

@@ -1,10 +1,11 @@
 <form [formGroup]="form" class="flex-wrap px-0 my-3 d-flex justify-content-around align-items-center">
-  <div class="form-group w-100">
+  <div class="mb-4 w-100">
     <div class="input-with-icon-l">
       <i class="fa fa-search"></i>
       <input
         class="form-control-plaintext border-bottom"
         type="text"
+        maxlength="255"
         placeholder="{{ 'private.search.searchPlaceholder' | translate }}"
         name="searchTerm"
         (ngModelChange)="handleChange($event)"

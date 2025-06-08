@@ -1,10 +1,11 @@
 import { DecimalPipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, finalize, switchMap } from 'rxjs/operators';
-import { ESPIM_REST_Programs } from 'src/app/app.api';
+import { ESPIM_REST_Programs, FIRST_TEXT, LAST_TEXT, NEXT_TEXT, PREV_TEXT } from 'src/app/app.api';
 import { LoaderService } from 'src/app/services/loader.service';
 import { SwalService } from 'src/app/services/swal.service';
 
@@ -17,6 +18,11 @@ import { Program } from '../../models/program.model';
   providers: [DecimalPipe],
 })
 export class ProgramsListComponent {
+  firstText: string = FIRST_TEXT;
+  lastText: string = LAST_TEXT;
+  prevText: string = PREV_TEXT;
+  nextText: string = NEXT_TEXT;
+
   urlPrograms: string = ESPIM_REST_Programs;
   programs: Program[];
   total: number;
@@ -28,6 +34,7 @@ export class ProgramsListComponent {
 
   constructor(
     private daoService: DAOService,
+    private readonly _router: Router,
     private _loaderService: LoaderService,
     private readonly _swalService: SwalService,
     private _toastr: ToastrService
@@ -76,7 +83,7 @@ export class ProgramsListComponent {
     this.programs = response.data;
   }
 
-  deleteParticipant(program: Program) {
+  deleteProgram(program: Program) {
     this._swalService.confirmDelete(program.title, 'Programa').then((result) => {
       if (result.isConfirmed) {
         this._loaderService.show();
@@ -89,5 +96,22 @@ export class ProgramsListComponent {
           });
       }
     });
+  }
+
+  cloneProgram(program: Program) {
+    this._swalService
+      .warning(`Tem certeza que deseja fazer uma cópia do programa "${program.title}"`, 'Fazer cópia do programa')
+      .then((result) => {
+        if (result.isConfirmed) {
+          this._loaderService.show();
+          this.daoService
+            .postObject(this.urlPrograms + program.id + '/copy', {})
+            .pipe(finalize(() => this._loaderService.hide()))
+            .subscribe((resp) => {
+              this._router.navigate([`/private/programs/edit/${resp.data.id}`]);
+              this._toastr.success(resp.message);
+            });
+        }
+      });
   }
 }

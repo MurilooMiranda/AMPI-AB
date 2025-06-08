@@ -1,4 +1,4 @@
-<main class="px-5 mx-auto mt-4 mb-5 card card-lg w-main">
+<main class="mx-auto mt-4 mb-5 card card-lg w-main container-xxl">
   <!--Título & busca-->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h4" translate>private.users.list.pageTitle</h1>
@@ -14,39 +14,45 @@
 
     <div class="alert alert-info" *ngIf="!loading && users.length == 0">Nenhum usuário encontrado</div>
 
-    <table class="table table-hover">
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td scope="row">
-            <a [routerLink]="['/private/users/edit', user.id]">
-              {{ user.name }} <small> - {{ user.email }}</small>
-            </a>
-          </td>
-
-          <td width="70" *ngxPermissionsOnly="['USERS_EDIT']">
-            <div class="mx-3 d-flex align-items-center">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td scope="row">
               <a [routerLink]="['/private/users/edit', user.id]">
-                <i class="mr-3 fas fa-edit fa-lg text-primary"></i>
+                {{ user.name }} <small> - {{ user.email }}</small>
               </a>
-            </div>
-          </td>
-        </tr>
-
-        <ng-template [ngIf]="loading">
-          <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]" class="loading">
-            <td>
-              <div class="loader-bg"></div>
             </td>
-            <td width="100">
-              <div class="loader-bg"></div>
+
+            <td width="70" *ngxPermissionsOnly="['USERS_EDIT']">
+              <div class="mx-3 d-flex align-items-center">
+                <a [routerLink]="['/private/users/edit', user.id]">
+                  <i class="me-3 fas fa-edit fa-lg text-primary"></i>
+                </a>
+              </div>
             </td>
           </tr>
-        </ng-template>
-      </tbody>
-    </table>
+
+          <ng-template [ngIf]="loading">
+            <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]" class="loading">
+              <td>
+                <div class="loader-bg"></div>
+              </td>
+              <td width="100">
+                <div class="loader-bg"></div>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
 
     <div class="p-2">
       <pagination
+        [firstText]="firstText"
+        [lastText]="lastText"
+        [previousText]="prevText"
+        [nextText]="nextText"
         [totalItems]="total"
         *ngIf="total"
         [(ngModel)]="page"

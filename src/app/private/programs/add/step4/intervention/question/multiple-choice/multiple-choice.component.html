@@ -1,9 +1,9 @@
-<span class="font-weight-bold text-primary mb-2">Alternativas</span>
+<span class="fw-bold text-primary mb-2">Alternativas</span>
 <div
   class="mb-2 d-flex justify-content-between align-items-center"
   *ngFor="let alternative of intervention.options; index as i; trackBy: trackByFn"
 >
-  <label class="pl-1 pr-3" style="font-size: 1.2em" [for]="graphIndex + 'alternative' + i">{{ i + 1 }}</label>
+  <label class="ps-1 pe-3" style="font-size: 1.2em" [for]="graphIndex + 'alternative' + i">{{ i + 1 }}</label>
   <textarea
     class="w-100"
     cols="1"
@@ -11,7 +11,12 @@
     [(ngModel)]="intervention.options[i]"
     [id]="graphIndex + 'alternative' + i"
   ></textarea>
-  <i class="fas fa-minus-circle text-primary pr-1 pl-3" (click)="removeChoice(i)" style="font-size: 1.3em"></i>
+  <i
+    class="fas fa-minus-circle text-primary pe-1 ps-3"
+    (click)="removeChoice(i)"
+    [ngClass]="{ 'link-disabled': intervention.options.length == 1 }"
+    style="font-size: 1.3em"
+  ></i>
 </div>
 
 <button class="btn btn-success mt-2" (click)="addChoice()">Adicionar alternativa</button>

@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
   addInterventionPopUp = false;
   itensQuestion: any[] = ITENS_QUESTION;
   zoom: number = 1;
+  activeMenu: boolean = false;
   @Output() updateZoom: EventEmitter<number> = new EventEmitter<number>();
   @Output() finishIntervention: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -48,6 +49,8 @@ export class NavbarComponent implements OnInit {
     else if (type === 'taskpython') intervention = new TaskPythonIntervention();
 
     this.interventionService.addIntervention(new HTMLInterventionElement(intervention));
+
+    this.activeMenu = false;
   }
 
   nextStateEnabled(): boolean {
@@ -85,11 +88,15 @@ export class NavbarComponent implements OnInit {
   }
 
   close() {
-    this._swalService.warning('Tem certeza que deseja sair do editor de intervenções?', 'Sair do editor').then((result) => {
+    this._swalService.warning('Todas as suas alterações não serão salvas!', 'Sair do editor?', 'danger').then((result) => {
       if (result.isConfirmed) {
         this.bsModalRef.hide();
       }
     });
+  }
+
+  toggleMenu() {
+    this.activeMenu = !this.activeMenu;
   }
 
   debug() {

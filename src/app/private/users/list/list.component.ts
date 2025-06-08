@@ -3,7 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ESPIM_REST_Users } from 'src/app/app.api';
+import { ESPIM_REST_Users, FIRST_TEXT, LAST_TEXT, NEXT_TEXT, PREV_TEXT } from 'src/app/app.api';
 
 import { DAOService } from '../../dao/dao.service';
 import { User } from '../../models/user.model';
@@ -14,6 +14,11 @@ import { User } from '../../models/user.model';
   providers: [DecimalPipe],
 })
 export class ListComponent {
+  firstText: string = FIRST_TEXT;
+  lastText: string = LAST_TEXT;
+  prevText: string = PREV_TEXT;
+  nextText: string = NEXT_TEXT;
+
   url: string = ESPIM_REST_Users;
   users: User[];
   total: number;

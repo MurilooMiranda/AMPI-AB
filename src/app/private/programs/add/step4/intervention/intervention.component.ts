@@ -17,6 +17,7 @@ import { ActiveEvent } from 'src/app/private/models/event.model';
 import { Intervention } from 'src/app/private/models/intervention.model';
 import { SwalService } from 'src/app/services/swal.service';
 import { isNullOrUndefined } from 'src/app/util/functions';
+import { Helper } from 'src/app/util/helpers';
 
 import { ProgramsAddService } from '../../programsadd.service';
 import { InterventionItemComponent } from './intervention-item/intervention-item.component';
@@ -186,8 +187,15 @@ export class InterventionComponent implements AfterViewInit {
             let interventionsToSave = this.programAddService.fixInterventionsToSave(cloneDeep(interventions));
             this.programAddService
               .saveStep({ activeEvent: { id: this.activeEvent.id, interventions: interventionsToSave } })
-              .subscribe(() => {
-                this.response.emit(interventions);
+              .subscribe((response) => {
+                let currentAactiveEvent = response.activeEvent;
+
+                if (currentAactiveEvent) {
+                  let interventionsSaved = currentAactiveEvent.interventions.map((it) => Helper.getInterventionClass(it));
+                  this.response.emit(interventionsSaved);
+                } else {
+                  this.response.emit(interventions);
+                }
                 this.bsModalRef.hide();
               });
           } else {

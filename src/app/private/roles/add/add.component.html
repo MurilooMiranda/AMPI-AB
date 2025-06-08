@@ -1,66 +1,69 @@
-<div class="mx-auto mt-4 card card-lg w-main container-fluid">
-  <div class="row">
-    <section class="p-0 mx-auto bg-white rounded col-12 p-xl-2">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="h4" translate *ngIf="!id">private.roles.add.title</h1>
-            <h1 class="h4" translate *ngIf="id">private.roles.add.titleEdit</h1>
+<div class="mx-auto mt-4 card card-lg w-main container-xxl">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4" translate *ngIf="!id">private.roles.add.title</h1>
+        <h1 class="h4" translate *ngIf="id">private.roles.add.titleEdit</h1>
+      </div>
+    </div>
+
+    <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              maxlength="255"
+              placeholder="{{ 'private.roles.add.name' | translate }}"
+              class="form-control border-bottom"
+              formControlName="name"
+            />
+            <label for="text" translate>private.roles.add.name</label>
           </div>
+          <input-validations
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+            [errors]="form.controls['name'].errors"
+            label="Nome"
+          >
+          </input-validations>
         </div>
+      </div>
 
-        <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
-          <div class="row">
-            <div class="col-6 form-group">
-              <div class="form-label-group">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="{{ 'private.roles.add.name' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="name"
-                />
-                <label for="text" translate>private.roles.add.name</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
-                [errors]="form.controls['name'].errors"
-                label="Nome"
+      <div class="row mb-5">
+        <div class="col-12 mb-4">
+          <h3 class="h6">Permissões</h3>
+          <div class="card card-body">
+            <div class="row">
+              <div
+                class="col-12 col-sm-6 col-md-3 d-flex form-check align-items-center overflow-hidden text-nowrap"
+                *ngFor="let permission of permissions"
               >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row mb-5">
-            <div class="col-12 form-group">
-              <h3 class="h6">Permissões</h3>
-              <div class="card card-body">
-                <div class="row">
-                  <div class="col-3 d-flex align-items-center overflow-hidden text-nowrap" *ngFor="let permission of permissions">
-                    <input
-                      type="checkbox"
-                      [id]="'permission' + permission.id"
-                      [checked]="isChecked(permission)"
-                      (click)="checkboxHandler($event.target.checked, permission)"
-                    />
-                    <label class="m-0" [for]="'permission' + permission.id">{{ permission.name }}</label>
-                  </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    [id]="'permission' + permission.id"
+                    [checked]="isChecked(permission)"
+                    (click)="checkboxHandler($event.target.checked, permission)"
+                  />
+                  <label class="m-0 form-check-label" [for]="'permission' + permission.id">{{ permission.name }}</label>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="row justify-content-end">
-            <div class="col-auto">
-              <a routerLink="/private/roles/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
-            </div>
-            <div class="col-auto">
-              <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>SALVAR</button>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-    </section>
-  </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a routerLink="/private/roles/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
+        </div>
+        <div class="col-auto">
+          <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>SALVAR</button>
+        </div>
+      </div>
+    </form>
+  </section>
 </div>

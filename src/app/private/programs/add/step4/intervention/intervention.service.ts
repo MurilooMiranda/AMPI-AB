@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import cloneDeep from 'lodash/cloneDeep';
 import { Subject } from 'rxjs';
 import {
-  CalendarIntervention,
   Intervention,
   MediaIntervention,
   QuestionIntervention,
@@ -12,6 +11,7 @@ import {
 import { LocalStorageService } from 'src/app/security/login/local-storage.service';
 import { SwalService } from 'src/app/services/swal.service';
 import { isNullOrUndefined } from 'src/app/util/functions';
+import { Helper } from 'src/app/util/helpers';
 import { v4 as uuid } from 'uuid';
 
 @Injectable({
@@ -134,6 +134,17 @@ export class InterventionService {
   loadState(state: Intervention[]) {
     let stateToLoad = cloneDeep(state);
 
+    // order position correctly by graphIndex
+    stateToLoad.sort((a, b) => {
+      if (a.graph_index < b.graph_index) {
+        return -1;
+      } else if (a.graph_index > b.graph_index) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
     this.clearBoard$.next();
     this.graphElements = [];
     this.interventionElementsGraph = [];
@@ -186,7 +197,8 @@ export class InterventionService {
     return new HTMLInterventionElement(this.getInterventionClass(data));
   }
 
-  getInterventionClass(
+  /*
+   getInterventionClass(
     data: Intervention
   ): Intervention | MediaIntervention | QuestionIntervention | TaskIntervention | CalendarIntervention | TaskPythonIntervention {
     let intervention: Intervention;
@@ -199,6 +211,10 @@ export class InterventionService {
     else if (data.type === 'taskpython') intervention = new TaskPythonIntervention(data);
 
     return intervention;
+  */
+
+  getInterventionClass(data: Intervention): Intervention | MediaIntervention | QuestionIntervention | TaskIntervention {
+    return Helper.getInterventionClass(data);
   }
 
   addIntervention(intervention: HTMLInterventionElement) {
@@ -229,6 +245,8 @@ export class InterventionService {
 
   removeIntervention(graphIndex: number) {
     this.saveCurrentState();
+
+    var deletedGraphElement = this.graphElement(graphIndex);
 
     this.interventionElementsGraph.splice(graphIndex, 1);
     this.graphElements.splice(graphIndex, 1);

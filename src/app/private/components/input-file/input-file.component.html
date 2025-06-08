@@ -9,10 +9,10 @@
       </label>
     </div>
   </div>
-  <div class="row d-flex justify-content-center" *ngIf="media">
+  <div class="d-flex justify-content-center" *ngIf="media">
     <br />
-    <div class="img-thumbnail">
-      <img [src]="media.url" id="uploadImage" class="w-100" />
+    <div class="img-thumbnail mt-2">
+      <img [src]="media.url | safe | async" id="uploadImage" class="w-100" />
       <button class="btn btn-danger btn-sm w-100" (click)="removerMidia()">Remover imagem <i class="far fa-trash-alt"></i></button>
     </div>
   </div>

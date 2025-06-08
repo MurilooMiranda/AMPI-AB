@@ -53,7 +53,7 @@ export class Step2Component implements OnInit, OnDestroy {
       )
       .subscribe((response) => {
         this.loading = false;
-        this.observers = response.data;
+        this.observers = response.data.map((observer) => new Observer(observer));
       });
   }
 
@@ -62,7 +62,7 @@ export class Step2Component implements OnInit, OnDestroy {
   }
 
   isDisabled(observer: Observer) {
-    return observer.id === this.loginService.userValue.id;
+    return observer.user.id == this.loginService.userValue.id;
   }
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class Step2Component implements OnInit, OnDestroy {
     this.search.next('');
 
     this._subscription$ = this.programAddService.program.subscribe((programInstance: Program) => {
-      this.programObservers = programInstance.observers;
+      this.programObservers = programInstance.observers.map((observer) => new Observer(observer));
     });
   }
 
@@ -124,7 +124,7 @@ export class Step2Component implements OnInit, OnDestroy {
   }
 
   sort(observers: Observer[]): Observer[] {
-    return observers.sort((a, b) => (a.user.name.toLowerCase() > b.user.name.toLowerCase() ? 1 : -1));
+    return observers.sort((a, b) => (a.user.getName().toLowerCase() > b.user.getName().toLowerCase() ? 1 : -1));
   }
 
   submit(): void {

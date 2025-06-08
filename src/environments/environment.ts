@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // API: 'http://localhost:8083/api',
+  API: 'https://espim.icmc.usp.br:8083/api',
+  BASE_URL: 'http://localhost:4200',
 };
 
 /*

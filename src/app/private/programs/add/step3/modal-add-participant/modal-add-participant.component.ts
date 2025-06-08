@@ -42,28 +42,40 @@ export class ModalAddParticipantComponent implements OnInit {
   }
 
   save() {
-    this.form.markAllAsTouched();
+  this.form.markAllAsTouched();
 
-    if (this.form.valid) {
-      var dados = { ...this.form.value };
-      this._loaderService.show();
+  if (this.form.valid) {
+    const dados = { ...this.form.value };
+    this._loaderService.show();
 
-      this._daoService
-        .postObject(this.urlParticipants, dados)
-        .pipe(finalize(() => this._loaderService.hide()))
-        .subscribe((response) => {
-          this.form.patchValue({
-            email: response.data.email,
-            alias: response.data.alias,
-          });
-          if (response.data.user) {
+    this._daoService
+      .postObject(this.urlParticipants, dados)
+      .pipe(finalize(() => this._loaderService.hide()))
+      .subscribe(
+        (resp) => {
+          if (resp.error) {
+            FormUtil.setErrorsBackend(this.form, resp);
+          } else {
             this.form.patchValue({
-              user: {
-                profession: response.data.user.profession,
-              },
+              email: resp.data.email,
+              alias: resp.data.alias,
             });
+            if (resp.data.user) {
+              this.form.patchValue({
+                user: {
+                  profession: resp.data.user.profession,
+                },
+              });
+            }
+
+            this._toastr.success(resp.message);
+            this.response.emit(new User(resp.data));
+            this.bsModalRef.hide();
           }
-        });
-    }
+        },
+        (error) => FormUtil.setErrorsBackend(this.form, error.data, this.formElement)
+      );
   }
+}
+
 }

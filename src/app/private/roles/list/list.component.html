@@ -1,4 +1,4 @@
-<main class="px-5 mx-auto mt-4 mb-5 card card-lg w-main">
+<main class="mx-auto mt-4 mb-5 card card-lg w-main container-xxl">
   <!--Título & busca-->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h4" translate>private.roles.list.pageTitle</h1>
@@ -17,38 +17,40 @@
 
     <div class="alert alert-info" *ngIf="!loading && roles.length == 0">Nenhum grupo encontrado</div>
 
-    <table class="table table-hover">
-      <tbody>
-        <tr *ngFor="let role of roles">
-          <td scope="row">
-            <a [routerLink]="['/private/roles/edit', role.id]">
-              {{ role.name }}
-            </a>
-          </td>
-
-          <td width="100" *ngxPermissionsOnly="['ROLES_EDIT', 'ROLES_DELETE']">
-            <div class="mx-3 d-flex align-items-center">
-              <a [routerLink]="['/private/roles/edit', role.id]" *ngxPermissionsOnly="['ROLES_EDIT']">
-                <i class="mr-3 fas fa-edit fa-lg text-primary"></i>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let role of roles">
+            <td scope="row">
+              <a [routerLink]="['/private/roles/edit', role.id]">
+                {{ role.name }}
               </a>
-              <a href="javascript:" *ngxPermissionsOnly="['ROLES_DELETE']">
-                <i class="fas fa-trash-alt fa-lg text-primary" (click)="deleteRole(role)"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <ng-template [ngIf]="loading">
-          <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="loading">
-            <td>
-              <div class="loader-bg"></div>
             </td>
-            <td width="100">
-              <div class="loader-bg"></div>
+
+            <td width="100" *ngxPermissionsOnly="['ROLES_EDIT', 'ROLES_DELETE']">
+              <div class="mx-3 d-flex align-items-center">
+                <a [routerLink]="['/private/roles/edit', role.id]" *ngxPermissionsOnly="['ROLES_EDIT']">
+                  <i class="me-3 fas fa-edit fa-lg text-primary"></i>
+                </a>
+                <a href="javascript:" *ngxPermissionsOnly="['ROLES_DELETE']">
+                  <i class="fas fa-trash-alt fa-lg text-primary" (click)="deleteRole(role)"></i>
+                </a>
+              </div>
             </td>
           </tr>
-        </ng-template>
-      </tbody>
-    </table>
+
+          <ng-template [ngIf]="loading">
+            <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="loading">
+              <td>
+                <div class="loader-bg"></div>
+              </td>
+              <td width="100">
+                <div class="loader-bg"></div>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
   </form>
 </main>

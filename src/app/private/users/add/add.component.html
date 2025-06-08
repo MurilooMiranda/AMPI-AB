@@ -1,74 +1,71 @@
-<div class="mx-auto mt-4 card card-lg w-main container-fluid">
-  <div class="row">
-    <section class="p-0 mx-auto bg-white rounded col-12 p-xl-2">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="h4" translate *ngIf="!id">private.users.add.title</h1>
-            <h1 class="h4" translate *ngIf="id">private.users.add.titleEdit</h1>
-          </div>
-        </div>
-
-        <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
-          <div class="row">
-            <div class="col-6 form-group">
-              <div class="form-label-group">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="{{ 'private.users.add.name' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="name"
-                />
-                <label for="text" translate>private.users.add.name</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
-                [errors]="form.controls['name'].errors"
-                label="Nome"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-6 form-group">
-              <div class="form-label-group">
-                <input
-                  id="email"
-                  name="email"
-                  type="text"
-                  placeholder="{{ 'private.users.add.email' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="email"
-                />
-                <label for="text" translate>private.users.add.email</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
-                [errors]="form.controls['email'].errors"
-                label="Nome"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <label for="text" class="m-0" translate>private.users.add.roles</label>
-          <select class="w-100" formControlName="roles" multiple="true" required>
-            <option [value]="role.id" *ngFor="let role of roles">{{ role.name }}</option>
-          </select>
-
-          <div class="row justify-content-end mt-4">
-            <div class="col-auto">
-              <a routerLink="/private/users/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
-            </div>
-            <div class="col-auto">
-              <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>SALVAR</button>
-            </div>
-          </div>
-        </form>
+<div class="mx-auto mt-4 card card-lg w-main container-xxl">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4" translate *ngIf="!id">private.users.add.title</h1>
+        <h1 class="h4" translate *ngIf="id">private.users.add.titleEdit</h1>
       </div>
-    </section>
-  </div>
+    </div>
+
+    <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="name"
+              name="name"
+              maxlength="255"
+              type="text"
+              placeholder="{{ 'private.users.add.name' | translate }}"
+              class="form-control border-bottom"
+              formControlName="name"
+            />
+            <label for="text" translate>private.users.add.name</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+            [errors]="form.controls['name'].errors"
+            label="Nome"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="email"
+              name="email"
+              type="text"
+              placeholder="{{ 'private.users.add.email' | translate }}"
+              class="form-control border-bottom"
+              formControlName="email"
+            />
+            <label for="text" translate>private.users.add.email</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+            [errors]="form.controls['email'].errors"
+            label="E-mail"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <label for="text" class="m-0" translate>private.users.add.roles</label>
+      <select class="w-100" formControlName="roles" multiple="true">
+        <option [value]="role.id" *ngFor="let role of roles">{{ role.name }}</option>
+      </select>
+
+      <div class="row justify-content-end mt-4">
+        <div class="col-auto">
+          <a routerLink="/private/users/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
+        </div>
+        <div class="col-auto">
+          <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>SALVAR</button>
+        </div>
+      </div>
+    </form>
+  </section>
 </div>

@@ -1,15 +1,13 @@
 <form [formGroup]="form" autocomplete="off" focusInvalidInput #formElement (ngSubmit)="save()">
   <div class="modal-header">
     <h4 class="modal-title pull-left">Adicionar observador</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
   </div>
   <div class="modal-body">
     <div class="row">
       <!-- E-mail -->
       <div class="col-12">
-        <div class="form-label-group">
+        <div class="form-label-group form-floating">
           <input
             class="form-control"
             autocomplete="off"
@@ -17,6 +15,7 @@
             id="email"
             formControlName="email"
             type="email"
+            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"
             placeholder="Qual o seu e-mail?"
           />
           <label for="email">E-mail <b class="text-danger">*</b></label>
@@ -31,7 +30,7 @@
 
       <!-- Name -->
       <div class="col-12">
-        <div class="form-label-group">
+        <div class="form-label-group form-floating">
           <input
             class="form-control"
             autocomplete="off"
@@ -53,11 +52,12 @@
 
       <!-- ROLE -->
       <div class="col-12">
-        <div class="form-label-group">
+        <div class="form-label-group form-floating">
           <input
             class="form-control"
             name="role"
             id="role"
+            maxlength="255"
             autocomplete="off"
             formControlName="role"
             type="text"
@@ -75,9 +75,9 @@
     </div>
   </div>
   <div class="modal-footer">
-    <div class="row justify-content-end">
-      <a (click)="close()" class="btn btn-white btn-shadow mr-4">CANCELAR</a>
-      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-100" translate>SALVAR</button>
+    <div class="justify-content-end">
+      <a (click)="close()" class="btn btn-white btn-shadow me-4">CANCELAR</a>
+      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-200" translate>SALVAR</button>
     </div>
   </div>
 </form>

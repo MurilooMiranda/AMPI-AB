@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "espim-app": {
+    "espim-frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -18,7 +18,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/espim-app",
+            "aot": true,
+            "outputPath": "dist/espim-frontend",
             "index": "src/index.html",
             "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.app.json",
@@ -77,6 +78,20 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "dev": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "1mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": ""
@@ -84,18 +99,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "espim-app:build"
+            "browserTarget": "espim-frontend:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "espim-app:build:production"
+              "browserTarget": "espim-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "espim-app:build"
+            "browserTarget": "espim-frontend:build"
           }
         },
         "test": {
@@ -112,7 +127,7 @@
         }
       }
     },
-    "espim-app-e2e": {
+    "espim-frontend-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -121,17 +136,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "espim-app:serve"
+            "devServerTarget": "espim-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "espim-app:serve:production"
+              "devServerTarget": "espim-frontend:serve:production"
             }
           }
         }
       }
     }
   },
+  "_defaultProject": "espim-frontend",
   "cli": {
     "analytics": "eba90a0b-0580-4fdb-b105-0cbcfd364595"
   }

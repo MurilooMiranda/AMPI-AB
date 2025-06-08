@@ -1,5 +1,5 @@
 <div class="col" [formGroup]="form">
-  <div class="form-group" formArrayName="days">
+  <div class="mb-4" formArrayName="days">
     <div class="form-check mb-2" *ngFor="let weekDay of weeklyDays; index as i">
       <input class="form-check-input" [formControlName]="i" type="checkbox" [id]="weekDay.alias" [name]="weekDay.alias" />
       <label class="form-check-label" [for]="weekDay.alias">{{ weekDay.name }}</label>
@@ -12,7 +12,7 @@
     </input-validations>
   </div>
 
-  <div class="form-group">
+  <div class="mb-4">
     <label for="time">Horário:</label>
     <timepicker formControlName="time"></timepicker>
     <input-validations
@@ -25,7 +25,7 @@
 
   <div class="row">
     <div class="col-4">
-      <div class="form-group">
+      <div class="mb-4">
         <select class="w-100" formControlName="notificationType">
           <option value="" disabled>Selecione o tipo do som</option>
           <option [value]="notificationType.alias" *ngFor="let notificationType of notificationTypes">{{ notificationType.name }}</option>
@@ -38,7 +38,7 @@
         </input-validations>
       </div>
 
-      <div class="form-group">
+      <div class="mb-4">
         <label for="timeout">Tempo de exibição do alerta:</label>
         <input
           type="number"
@@ -47,6 +47,8 @@
           formControlName="timeout"
           class="form-control-plaintext border-bottom w-100"
         />
+        <div class="form-text">Tempo em minutos no qual o evento ficará disponível para responder.</div>
+
         <input-validations
           *ngIf="form.controls['timeout'].invalid && form.controls['timeout'].touched"
           [errors]="form.controls['timeout'].errors"
@@ -60,6 +62,6 @@
 
 <div class="row justify-content-end mt-5">
   <div class="col-auto">
-    <a href="javascript:" name="saveButton" class="btn btn-primary min-100" (click)="submit()">ADICIONAR DISPARO</a>
+    <a href="javascript:" name="saveButton" class="btn btn-primary min-200" (click)="submit()">ADICIONAR DISPARO</a>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="card box-event mt-4">
-  <div class="card-header box-header justify-content-between d-flex" [style]="{ 'background-color': formValue.color }">
+  <div class="card-header box-header align-items-center justify-content-between d-flex" [style]="{ 'background-color': formValue.color }">
     {{ formValue.title ? formValue.title : 'Novo Evento' }}
     <div class="box-buttons">
       <a class="btn btn-default btn-sm text-white" (click)="loadDetail()"><i class="fas fa-edit"></i></a>
@@ -8,7 +8,7 @@
   </div>
   <div class="card-body box-link" [collapse]="isOpen">
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md">
         Disparos:
         <span *ngIf="formValue.triggers.length == 0" class="text-danger">Não há disparos adicionados.</span>
         <span *ngIf="formValue.triggers.length > 0">
@@ -18,7 +18,7 @@
           >
         </span>
       </div>
-      <div class="col">
+      <div class="col-12 col-md">
         Intervenções:
         <span *ngIf="form.get('interventions').value.length == 0" class="text-danger">Não há intervenções adicionadas.</span>
         <span *ngIf="formValue.interventions.length > 0">
@@ -31,14 +31,15 @@
 
   <form focusInvalidInput class="card-body box-body" [formGroup]="form" [collapse]="!isOpen">
     <div class="row">
-      <div class="col-6 form-group">
-        <div class="form-label-group">
+      <div class="col-12 col-md-6 mb-4">
+        <div class="form-label-group form-floating">
           <input
             class="form-control border-bottom"
             [id]="'title-active' + index"
             formControlName="title"
             focusInput
             type="text"
+            maxlength="255"
             placeholder="Título"
           />
           <label class="form-label" [for]="'title-active' + index">Título <b class="text-danger">*</b>:</label>
@@ -53,12 +54,12 @@
     </div>
 
     <div class="row">
-      <div class="col-12 form-group">
-        <div class="form-label-group">
+      <div class="col-12 mb-4">
+        <div class="form-label-group form-floating">
           <textarea
             class="form-control border-bottom w-100 resize-none"
             [id]="'program-description-active' + index"
-            rows="2"
+            style="height: 100px"
             maxlength="200"
             placeholder="Descrição do evento"
             formControlName="description"
@@ -75,25 +76,27 @@
     </div>
 
     <div class="row">
-      <div class="col form-group">
+      <div class="col mb-4">
         <esm-choose-color (response)="updateColor($event)"></esm-choose-color>
       </div>
     </div>
 
     <div class="clearfix" *ngIf="!loadingInterventions">
       <div class="row">
-        <div class="col form-group text-center">
-          <a class="btn btn-primary py-2 px-4" href="javascript:" (click)="goToInterventions()">ADICIONAR INTERVENÇÕES</a>
+        <div class="col mb-4 text-center">
+          <a class="btn btn-primary py-2 px-4" href="javascript:" (click)="goToInterventions()">
+            {{ this.form.get('interventions').value.length == 0 ? 'ADICIONAR INTERVENÇÕES' : 'EDITAR INTERVENÇÕES' }}
+          </a>
         </div>
       </div>
 
       <div class="row">
-        <div class="col form-group">
-          <p class="font-weight-bold">Intervenções cadastradas</p>
+        <div class="col mb-4">
+          <p class="fw-bold">Intervenções cadastradas</p>
           <div *ngIf="this.form.get('interventions').value.length == 0">Nenhuma intervenção cadastrada</div>
-          <ul>
-            <li *ngFor="let intervention of this.form.get('interventions').value">
-              {{ intervention.getOrderDescription() + ' - ' + intervention.getTypeDescription() + ' - ' + intervention.getDescription() }}
+          <ul class="p-0">
+            <li *ngFor="let intervention of orderedInterventions">
+              {{ intervention.getEnunciado() }}
             </li>
           </ul>
         </div>
@@ -109,7 +112,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col"><p class="font-weight-bold">Intervenções cadastradas</p></div>
+        <div class="col"><p class="fw-bold">Intervenções cadastradas</p></div>
       </div>
       <div class="clearfix">
         <div class="loader-bg w-50"></div>
@@ -123,12 +126,12 @@
     </div>
 
     <div class="row">
-      <div class="col form-group">
-        <p class="font-weight-bold">Disparos cadastrados</p>
+      <div class="col mb-4">
+        <p class="fw-bold">Disparos cadastrados</p>
 
-        <div *ngFor="let trigger of form.get('triggers').value" class="mr-2 mb-2 d-inline-block">
-          <a class="label label-success" href="javascript:" (click)="removerTrigger(trigger)">
-            {{ trigger.getDescription() }} <i class="fas fa-times pointer ml-2"></i>
+        <div *ngFor="let trigger of form.get('triggers').value; index as i" class="me-2 mb-2 d-inline-block">
+          <a class="label label-success" href="javascript:" (click)="removerTrigger(i)">
+            {{ trigger.getDescription() }} <i class="fas fa-times pointer ms-2"></i>
           </a>
         </div>
 

@@ -31,8 +31,6 @@ export class TriggerDailyComponent implements OnInit {
       let cron = new Cron();
       cron.convertFromForm(this.form.get('time').value);
 
-      console.log(cron.toString());
-
       let trigger = new Trigger({
         condition: cron.toString(),
         priority: this.form.get('notificationType').value,

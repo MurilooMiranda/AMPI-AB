@@ -22,11 +22,17 @@ export class ComplexConditionComponent implements OnInit {
     if (this.eventComplexConditions) {
       this.eventComplexConditions.forEach((it) => {
         // Atualiza o [value] da lista complex conditions
-        this.complexConditions
+        let complexCondition = this.complexConditions
           .map((item) => item.complexConditions)
           .flat(1)
-          .find((item) => item.condition == it.condition && item.action == it.action).value = true;
+          .find((item) => item.condition == it.condition && item.action == it.action);
+
+        if (complexCondition) {
+          complexCondition.value = true;
+        }
       });
+
+      this.changeCondition();
     }
   }
 

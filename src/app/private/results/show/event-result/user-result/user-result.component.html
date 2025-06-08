@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-6">
+    <esm-bar-chart [customOptions]="chartByWeekDayOptions" title="Realização por dia da semana"></esm-bar-chart>
+  </div>
+  <div class="col-md-6">
+    <esm-pie-chart
+      [customOptions]="chartByMinutesOptions"
+      title="Distribuição por tempo de execução de eventos (em minutos)"
+    ></esm-pie-chart>
+  </div>
+</div>
+<div class="row" *ngFor="let sessionResult of sessionResults; index as i">
+  <div class="col-12">
+    <hr class="w-100 my-5" />
+  </div>
+  <div class="col-12">
+    <p class="m-0"><strong>Período</strong>: {{ sessionResult.started_at }} - {{ sessionResult.ended_at }}</p>
+    <p><strong>Duração:</strong> {{ sessionResult.ended_at ? getDuracao(sessionResult) : 'Não finalizada' }}</p>
+  </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tipo</th>
+            <th>Início</th>
+            <th>Fim</th>
+            <th>Duração</th>
+            <th>Enunciado - Intervenção</th>
+            <th>Resposta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr esm-user-result-table-row *ngFor="let result of sessionResult.results; index as i" [result]="result"></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

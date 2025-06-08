@@ -1,6 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import moment from 'moment';
+import { defineLocale, ptBrLocale } from 'ngx-bootstrap/chronos';
 import { Subscription } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 import { LoginService } from 'src/app/security/login/login.service';
@@ -22,6 +24,8 @@ export class AppComponent implements OnDestroy {
     private readonly loginService: LoginService
   ) {
     translate.setDefaultLang('pt');
+    moment.locale('pt-br');
+    defineLocale('pt-br', ptBrLocale);
   }
 
   ngOnInit() {

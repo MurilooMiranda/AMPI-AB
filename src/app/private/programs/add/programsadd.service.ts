@@ -161,6 +161,7 @@ export class ProgramsAddService {
 
   fixGamificationBadgeToSave(badge) {
     return {
+      id: badge.id,
       name: badge.name,
       media_id: badge.media.id,
     };

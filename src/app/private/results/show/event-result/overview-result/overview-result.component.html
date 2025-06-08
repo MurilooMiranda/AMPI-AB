@@ -1,0 +1,22 @@
+<esm-treemap-chart [customOptions]="chartOptions" title="Número de execuções por usuário"></esm-treemap-chart>
+
+<div class="table-responsive">
+  <table class="table table-sm mt-2">
+    <thead>
+      <tr>
+        <th scope="col">Usuário</th>
+        <th scope="col">Número de execuções</th>
+        <th scope="col">Tempo médio gasto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of countResultByUser">
+        <td>
+          <a href="javascript:" (click)="doLoadUser(result.id)">{{ result.fullname }}</a>
+        </td>
+        <td>{{ result.y }}</td>
+        <td>{{ result.mediaTempo }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

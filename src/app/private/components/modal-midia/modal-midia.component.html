@@ -1,8 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title margin-0">Anexar mídia</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
 </div>
 <div class="modal-body">
   <div class="fileSquare mt-2">
@@ -23,7 +21,7 @@
       </div>
     </div>
     <br />
-    <div class="row d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
       <video [src]="file.url" id="uploadVideo" height="360" controls *ngIf="file?.type == 'video'"></video>
       <audio [src]="file.url" id="uploadAudio" width="480" controls *ngIf="file?.type == 'audio'"></audio>
       <img [src]="file.url" id="uploadImage" spam="img-thumbnail" *ngIf="file?.type == 'image'" />
@@ -39,9 +37,9 @@
 
   <div class="row">
     <div class="col-12 justify-content-end d-flex">
-      <a (click)="close()" class="btn btn-white btn-shadow mr-4">CANCELAR</a>
+      <a (click)="close()" class="btn btn-white btn-shadow me-4">CANCELAR</a>
 
-      <button class="btn btn-success btn-shadow min-100" (click)="uploadFile()" (disabled)="(!file)">ENVIAR ARQUIVO</button>
+      <button class="btn btn-success btn-shadow min-200" (click)="uploadFile()" (disabled)="(!file)">ENVIAR ARQUIVO</button>
     </div>
   </div>
 </div>

@@ -1,5 +1,8 @@
 <div class="card box-event mt-4">
-  <div class="card-header box-header justify-content-between d-flex bg-primary" [ngStyle]="{ 'background-color': formValue.color }">
+  <div
+    class="card-header box-header align-items-center justify-content-between d-flex bg-primary"
+    [ngStyle]="{ 'background-color': formValue.color }"
+  >
     {{ formValue.title ? formValue.title : 'Nova Coleta por Sensor' }}
     <div class="box-buttons">
       <a class="btn btn-default btn-sm text-white" (click)="loadDetail()"><i class="fas fa-edit"></i></a>
@@ -8,7 +11,7 @@
   </div>
   <div class="card-body box-link" [collapse]="isOpen">
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md">
         Disparos:
         <span *ngIf="formValue.triggers.length == 0" class="text-danger">Não há disparos adicionados.</span>
         <span *ngIf="formValue.triggers.length > 0">
@@ -18,7 +21,7 @@
           >
         </span>
       </div>
-      <div class="col">
+      <div class="col-12 col-md">
         Sensores:
         <span *ngIf="form.get('sensors').value.length == 0" class="text-danger">Não há sensores adicionados.</span>
         <span *ngIf="formValue.sensors.length > 0">
@@ -31,13 +34,14 @@
 
   <form focusInvalidInput class="card-body box-body" [formGroup]="form" [collapse]="!isOpen">
     <div class="row">
-      <div class="col-6 form-group">
-        <div class="form-label-group">
+      <div class="col-12 col-md-6 mb-4">
+        <div class="form-label-group form-floating">
           <input
             class="form-control border-bottom"
             [id]="'title' + index"
             formControlName="title"
             focusInput
+            maxlength="255"
             type="text"
             placeholder="Título"
           />
@@ -53,17 +57,17 @@
     </div>
 
     <div class="row">
-      <div class="col-12 form-group">
-        <div class="form-label-group">
+      <div class="col-12 mb-4">
+        <div class="form-label-group form-floating">
           <textarea
             class="form-control border-bottom w-100 resize-none"
-            [id]="'program-description' + index"
+            [id]="'event-description' + index"
             rows="2"
             maxlength="200"
             placeholder="Descrição do evento"
             formControlName="description"
           ></textarea>
-          <label [for]="'program-description' + index"> Descrição do programa </label>
+          <label [for]="'event-description' + index"> Descrição do evento</label>
         </div>
         <input-validations
           *ngIf="form.controls['description'].invalid && form.controls['description'].touched"
@@ -75,16 +79,16 @@
     </div>
 
     <div class="clearfix mt-4 mb-4">
-      <p class="font-weight-bold">Coletas</p>
+      <p class="fw-bold">Coletas</p>
       <esm-sensors [eventSensors]="event.sensors" (response)="updateFormSensors($event)"></esm-sensors>
     </div>
     <div class="row">
-      <div class="col form-group">
-        <p class="font-weight-bold">Disparos cadastrados</p>
+      <div class="col mb-4">
+        <p class="fw-bold">Disparos cadastrados</p>
 
-        <div *ngFor="let trigger of form.get('triggers').value" class="mr-2 mb-2 d-inline-block">
-          <a class="label label-success" href="javascript:" (click)="removerTrigger(trigger)">
-            {{ trigger.getDescription() }} <i class="fas fa-times pointer ml-2"></i>
+        <div *ngFor="let trigger of form.get('triggers').value; index as i" class="me-2 mb-2 d-inline-block">
+          <a class="label label-success" href="javascript:" (click)="removerTrigger(i)">
+            {{ trigger.getDescription() }} <i class="fas fa-times pointer ms-2"></i>
           </a>
         </div>
 

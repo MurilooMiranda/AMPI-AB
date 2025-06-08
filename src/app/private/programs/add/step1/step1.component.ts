@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
+import { BsLocaleService, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Observable, Subscription } from 'rxjs';
 
 import { Program } from '../../../models/program.model';
@@ -13,14 +14,15 @@ import { ProgramsAddService } from '../programsadd.service';
 })
 export class Step1Component implements OnDestroy {
   program: Observable<Program>;
-  form: UntypedFormGroup;
-  bsConfig: any = { dateInputFormat: 'DD/MM/YYYY' };
+  form: FormGroup;
+  bsConfig: BsDatepickerConfig;
   private _subscription$: Subscription;
 
   constructor(
     private programAddService: ProgramsAddService,
     private formBuilder: UntypedFormBuilder,
     private router: Router,
+    private localeService: BsLocaleService,
     private _route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
@@ -38,6 +40,8 @@ export class Step1Component implements OnDestroy {
     this._subscription$ = this.programAddService.program.subscribe((programInstance: Program) => {
       this.setProgram(programInstance);
     });
+
+    this.localeService.use('pt-br');
   }
 
   ngOnDestroy(): void {
@@ -49,12 +53,12 @@ export class Step1Component implements OnDestroy {
     this.form.reset();
 
     if (program['starts']) {
-      program['beginDate'] = moment(program['starts']).format('DD/MM/YYYY');
+      program['beginDate'] = moment(program['starts']).toDate();
       program['beginTime'] = program['starts'];
     }
 
     if (program['ends']) {
-      program['endDate'] = moment(program['ends']).format('DD/MM/YYYY');
+      program['endDate'] = moment(program['ends']).toDate();
       program['endTime'] = program['ends'];
     }
     this.form.patchValue({ ...program });
@@ -76,9 +80,15 @@ export class Step1Component implements OnDestroy {
     this.form.markAllAsTouched();
 
     let dados = { ...this.form.value };
+    console.log(dados['beginDate']);
 
     dados['starts'] = this.toDate(dados['beginDate'], dados['beginTime']);
     dados['ends'] = this.toDate(dados['endDate'], dados['endTime']);
+
+    delete dados.beginTime;
+    delete dados.endTime;
+    delete dados.beginDate;
+    delete dados.endDate;
 
     if (this.form.valid) {
       this.programAddService.saveStep(dados).subscribe(() => {});

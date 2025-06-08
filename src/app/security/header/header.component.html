@@ -1,31 +1,33 @@
 <header>
   <nav class="p-0 navbar navbar-expand-xl h-xl-px-72">
-    <div class="navbar align-items-center">
-      <img src="assets/images/logo-espim-web.svg" alt="Logo do Espim" />
+    <div class="container-fluid px-4">
+      <div class="navbar align-items-center">
+        <img src="assets/images/logo-espim-web.svg" alt="Logo do Espim" />
 
-      <span class="px-3"><a class="text-white navbar-brand" routerLink="/">ESPIM</a></span>
-    </div>
+        <span class="px-3"><a class="text-white navbar-brand" routerLink="/">ESPIM</a></span>
+      </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav align-items-center ml-xl-auto h-xl-px-72">
-        <li class="py-2 nav-item dropdown w-100 w-xl-px-200" *ngIf="user$ | async as _user">
-          <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-toggle="dropdown">
-            <img class="rounded-circle" src="{{ _user.profilePhotoUrl }}" width="40" height="40" />
-          </a>
-          <ul class="text-center dropdown-menu w-xl-px-200">
-            <li><img class="mx-4 rounded-circle" src="{{ _user.profilePhotoUrl }}" width="102" height="102" /></li>
-            <li>
-              <small class="font-weight-bold">{{ _user.name }}</small>
-            </li>
-            <li class="dropdown-divider"></li>
-            <li>
-              <a class="text-center dropdown-item" (click)="logout()"
-                ><i class="fas fa-sign-out-alt"></i> <small translate>private.header.profile.exit</small></a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav align-items-center ms-xl-auto h-xl-px-72">
+          <li class="py-2 nav-item dropdown w-100 w-xl-px-200" *ngIf="user$ | async as _user">
+            <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <img class="rounded-circle" src="{{ _user.photoUrl }}" width="40" height="40" />
+            </a>
+            <ul class="text-center dropdown-menu dropdown-menu-end w-xl-px-200">
+              <li><img class="mx-4 rounded-circle" src="{{ _user.photoUrl }}" width="102" height="102" /></li>
+              <li>
+                <small class="fw-bold">{{ _user.name }}</small>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <a class="text-center dropdown-item" (click)="logout()"
+                  ><i class="fas fa-sign-out-alt"></i> <small translate>private.header.profile.exit</small></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

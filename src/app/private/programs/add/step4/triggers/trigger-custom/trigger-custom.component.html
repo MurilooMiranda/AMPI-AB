@@ -1,5 +1,5 @@
 <div class="col" [formGroup]="form">
-  <div class="form-group" formArrayName="days" *ngFor="let weekDay of weeklyDays; index as i">
+  <div class="mb-4" formArrayName="days" *ngFor="let weekDay of weeklyDays; index as i">
     <div class="row">
       <div class="col-auto col-weekday">
         <div class="form-check mb-2">
@@ -39,6 +39,6 @@
 
 <div class="row justify-content-end mt-5">
   <div class="col-auto">
-    <a href="javascript:" name="saveButton" class="btn btn-primary min-100" (click)="submit()">ADICIONAR DISPARO</a>
+    <a href="javascript:" name="saveButton" class="btn btn-primary min-200" (click)="submit()">ADICIONAR DISPARO</a>
   </div>
 </div>

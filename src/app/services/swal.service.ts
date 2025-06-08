@@ -9,7 +9,9 @@ export class SwalService {
     message: string = 'Essa ação não poderá ser desfeita',
     title: string = 'Atenção!',
     confirmButton: string = 'success',
-    showCancelButton: boolean = true
+    showCancelButton: boolean = true,
+    confirmButtonText: string = 'SIM',
+    cancelButtonText: string = 'NÃO'
   ): Promise<any> {
     return Swal.fire({
       title: title,
@@ -17,11 +19,11 @@ export class SwalService {
       icon: 'warning',
       showCancelButton: showCancelButton,
       reverseButtons: true,
-      cancelButtonText: 'NÃO',
-      confirmButtonText: 'SIM',
+      cancelButtonText: cancelButtonText,
+      confirmButtonText: confirmButtonText,
       customClass: {
         confirmButton: `btn btn-lg btn-${confirmButton} btn-shadow`,
-        cancelButton: 'btn btn-lg btn-secondary btn-shadow mr-4',
+        cancelButton: 'btn btn-lg btn-secondary btn-shadow me-4',
       },
       buttonsStyling: false,
     });
@@ -34,6 +36,7 @@ export class SwalService {
       icon: 'error',
       confirmButtonText: 'OK',
       buttonsStyling: false,
+      allowOutsideClick: false,
       customClass: {
         confirmButton: `btn btn-lg btn-success btn-shadow`,
       },
@@ -51,10 +54,23 @@ export class SwalService {
 
   confirmDelete(message: string = 'Essa ação não poderá ser desfeita', title: string = 'Atenção!'): Promise<any> {
     return this.warning(
-      'Você tem certeza que deseja deletar <strong class="d-block mt-2">' + message + '</strong>',
-      'Deletar ' + title,
-      'danger'
+      'Você tem certeza que deseja excluir? <strong class="d-block mt-2">' + message + '</strong>',
+      'Excluir ' + title,
+      'danger',
+      true,
+      'EXCLUIR',
+      'CANCELAR'
     );
+  }
+
+  confirm(
+    message: string = 'Você tem certeza que deseja excluir? <strong class="d-block mt-2">Essa ação não poderá ser desfeita</strong>',
+    title: string = 'Atenção!',
+    action = 'Excluir',
+    confirmButtonText: string = 'EXCLUIR',
+    cancelButtonText: string = 'CANCELAR'
+  ): Promise<any> {
+    return this.warning(message, `${action} ${title}`, 'danger', true, confirmButtonText, cancelButtonText);
   }
 
   showFormErrors(title: string, errors: string[]) {
@@ -72,7 +88,7 @@ export class SwalService {
     let errorList = '<ul>';
 
     errors.forEach((error) => {
-      errorList += `<li class="font-size-sm"><span class="font-weight-bold">${error.field}</span>: ${error.message} </li>`;
+      errorList += `<li class="font-size-sm"><span class="fw-bold">${error.field}</span>: ${error.message} </li>`;
     });
 
     errorList += '</ul>';

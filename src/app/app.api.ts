@@ -1,6 +1,10 @@
 // configure default backend location
+import { environment } from '@environments/environment';
 
-export const BASE_ESPIM_API = 'https://www.espim-lab.com.br:8083/api/';
+// export const BASE_ESPIM_API = 'https://www.espim-lab.com.br:8083/api/';
+// Base URL = localhost:8083
+// API = /espim-api
+export const BASE_ESPIM_API = environment.API + '/';
 
 export const ESPIM_API = BASE_ESPIM_API + 'web/';
 
@@ -39,5 +43,15 @@ export const ESPIM_REST_Permissions: string = ESPIM_API + 'permissions/';
 export const ESPIM_REST_Users: string = ESPIM_API + 'users/';
 
 export const ESPIM_REST_Badges: string = ESPIM_API + 'events/{{activeEventId}}/badges/';
+
+export const ESPIM_REST_Results: string = ESPIM_API + 'results/';
+
+export const ESPIM_REST_Settings: string = ESPIM_API + 'settings/';
+
 // config default page size
 export const PAGE_SIZE = 10;
+
+export const FIRST_TEXT = 'Primeira página';
+export const LAST_TEXT = 'Última página';
+export const NEXT_TEXT = 'Próximo';
+export const PREV_TEXT = 'Anterior';

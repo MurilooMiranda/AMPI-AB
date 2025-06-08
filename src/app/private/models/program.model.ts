@@ -18,6 +18,7 @@ export class Program {
   observers: Array<Observer> = [];
   passiveEvents: Array<Event> = [];
   activeEvents: Array<Event> = [];
+  activeEventsWithResults: Array<Event> = [];
   users: Array<User> = [];
 
   constructor(program: any = {}) {}

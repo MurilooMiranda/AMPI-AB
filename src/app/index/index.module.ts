@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 import { DAOService } from '../private/dao/dao.service';
 import { ObserversService } from '../private/observers/observers.service';
@@ -23,17 +21,7 @@ import { WorksComponent } from './works/works.component';
 
 //local components
 @NgModule({
-  imports: [
-    CommonModule,
-    IndexRoutingModule,
-    TranslateModule,
-    SecurityModule,
-    ComponentsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    BrowserAnimationsModule,
-    SocialLoginModule,
-  ],
+  imports: [CommonModule, IndexRoutingModule, TranslateModule, SecurityModule, ComponentsModule, ReactiveFormsModule, SharedModule],
   declarations: [
     IndexComponent,
     HeaderComponent,
@@ -45,22 +33,23 @@ import { WorksComponent } from './works/works.component';
     TeamComponent,
     DocumentationComponent,
   ],
-  providers: [
-    DAOService,
-    ObserversService,
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('497077852767-bktvt7of6h5dsc0qmbuksaa79i5iciva.apps.googleusercontent.com'),
-          },
-        ],
-      } as SocialAuthServiceConfig,
-    },
-  ],
+  // providers: [
+  //   DAOService,
+  //   ObserversService,
+  //   {
+  //     provide: 'SocialAuthServiceConfig',
+  //     useValue: {
+  //       autoLogin: false,
+  //       providers: [
+  //         {
+  //           id: GoogleLoginProvider.PROVIDER_ID,
+  //           provider: new GoogleLoginProvider('497077852767-bktvt7of6h5dsc0qmbuksaa79i5iciva.apps.googleusercontent.com'),
+  //         },
+  //       ],
+  //     } as SocialAuthServiceConfig,
+  //   },
+  // ],
+  providers: [DAOService, ObserversService],
   exports: [ComponentsModule],
 })
 export class IndexModule {}

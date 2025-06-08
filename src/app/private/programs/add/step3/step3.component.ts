@@ -49,7 +49,7 @@ export class Step3Component implements OnInit {
       )
       .subscribe((response) => {
         this.loading = false;
-        this.users = response.data;
+        this.users = response.data.map((user) => new User(user));
       });
   }
 
@@ -62,7 +62,7 @@ export class Step3Component implements OnInit {
     this.search.next('');
 
     this._subscription$ = this.programAddService.program.subscribe((programInstance: Program) => {
-      this.programUsers = programInstance.users;
+      this.programUsers = programInstance.users.map((user) => new User(user));
     });
   }
 
@@ -118,11 +118,7 @@ export class Step3Component implements OnInit {
   }
 
   sort(participants: User[]): User[] {
-    return participants.sort((a, b) => (a.name > b.name ? 1 : -1));
-  }
-
-  getName(user: User): string {
-    return (user.name ? user.name : user.alias) + ' ' + (user.name && user.alias ? `(${user.alias})` : `(${user.email})`);
+    return participants.sort((a, b) => (a.getName().toLowerCase() > b.getName().toLowerCase() ? 1 : -1));
   }
 
   submit(): void {

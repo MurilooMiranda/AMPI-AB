@@ -1,0 +1,94 @@
+<div class="mx-auto mt-4 card card-lg w-main container-xxl">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4" translate>private.settings.title</h1>
+      </div>
+    </div>
+
+    <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              maxlength="255"
+              required
+              placeholder="{{ 'private.settings.name' | translate }}"
+              class="form-control border-bottom"
+              formControlName="name"
+            />
+            <label for="text" translate>private.settings.name</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+            [errors]="form.controls['name'].errors"
+            label="Nome"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="email"
+              name="email"
+              required
+              type="email"
+              pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"
+              placeholder="{{ 'private.settings.email' | translate }}"
+              class="form-control border-bottom"
+              formControlName="email"
+            />
+            <label for="text" translate>private.settings.email</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+            [errors]="form.controls['email'].errors"
+            label="E-mail"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="role"
+              name="role"
+              type="text"
+              maxlength="255"
+              required
+              placeholder="{{ 'private.settings.role' | translate }}"
+              class="form-control border-bottom"
+              formControlName="role"
+            />
+            <label for="text" translate>private.settings.role</label>
+          </div>
+          <div class="form-text">Insira aqui o seu papel. Ex: Psicóloga</div>
+
+          <input-validations
+            *ngIf="form.controls['role'].invalid && form.controls['role'].touched"
+            [errors]="form.controls['role'].errors"
+            label="Papel"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row justify-content-end mt-4">
+        <div class="col-auto">
+          <a routerLink="/private" class="btn btn-success btn-lg btn-shadow">CANCELAR</a>
+        </div>
+        <div class="col-auto">
+          <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>SALVAR</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,11 +1,11 @@
 import { DecimalPipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, finalize, switchMap } from 'rxjs/operators';
-import { ESPIM_REST_ExternalApplications } from 'src/app/app.api';
+import { ESPIM_REST_ExternalApplications, FIRST_TEXT, LAST_TEXT, NEXT_TEXT, PREV_TEXT } from 'src/app/app.api';
 import { LoaderService } from 'src/app/services/loader.service';
 import { SwalService } from 'src/app/services/swal.service';
 
@@ -18,6 +18,11 @@ import { ExternalApplication } from '../../models/external-application.model';
   providers: [DecimalPipe],
 })
 export class ExternalApplicationListComponent {
+  firstText: string = FIRST_TEXT;
+  lastText: string = LAST_TEXT;
+  prevText: string = PREV_TEXT;
+  nextText: string = NEXT_TEXT;
+
   urlExternalApplications: string = ESPIM_REST_ExternalApplications;
   externalApplications: ExternalApplication[];
   total: number;
@@ -30,7 +35,6 @@ export class ExternalApplicationListComponent {
 
   constructor(
     private daoService: DAOService,
-    private readonly _modalService: BsModalService,
     private _loaderService: LoaderService,
     private readonly _swalService: SwalService,
     private _toastr: ToastrService

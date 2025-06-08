@@ -59,13 +59,17 @@ export class LoginService {
     let params = new HttpParams().set('include', 'observer.user');
     return this._observerService.fetchUser(BASE_ESPIM_API + 'me', params).pipe(
       map((response) => {
-        this._currentUserSubject.next(response.data);
-        this.userObserver = response.data.observer;
+        this.handleFetchUser(response);
 
         this._permissionsService.loadPermissions(this.userValue.permissions);
         return response.data;
       })
     );
+  }
+
+  handleFetchUser(response: any) {
+    this._currentUserSubject.next(response.data);
+    this.userObserver = response.data.observer;
   }
 
   handleAuth(response: any) {

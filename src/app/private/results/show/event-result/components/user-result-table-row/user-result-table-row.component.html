@@ -1,0 +1,26 @@
+<td>{{ result.intervention?.getOrderDescription() }}</td>
+<td>{{ result.intervention?.getTypeDescription() }}</td>
+<td>{{ result.started_at ? result.started_at : '-' }}</td>
+<td>{{ result.ended_at ? result.ended_at : '-' }}</td>
+<td>{{ getDuracao(result) }}</td>
+<td>{{ result.intervention?.getDescription() }}</td>
+<td>
+  <span *ngIf="result.answer">{{ result.answer }}</span>
+  <span *ngIf="result.media">
+    <a href="javascript:" (click)="showMidia(result.media)" *ngIf="result.media.type == 'image'">
+      <img [src]="result.media.url | safe | async" class="img-thumbnail mb-1" [alt]="result.media.name" />
+    </a>
+    <video
+      [src]="result.media.url | safe | async"
+      class="img-thumbnail mb-1"
+      controls
+      height="120"
+      *ngIf="result.media.type == 'video'"
+    ></video>
+    <div class="img-thumbnail mb-1" *ngIf="result.media.type == 'audio'">
+      <audio [src]="result.media.url | safe | async" width="150" height="70" controls></audio>
+    </div>
+    <a [href]="result.media.url" *ngIf="result.media.type == 'text'">Acessar arquivo</a>
+  </span>
+  <span *ngIf="!result.answer && !result.media">-</span>
+</td>

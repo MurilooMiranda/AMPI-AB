@@ -1,105 +1,105 @@
-<div class="mx-auto mt-4 card card-lg w-main container-fluid">
-  <div class="row">
-    <section class="p-0 mx-auto bg-white rounded col-12 p-xl-2">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="h4" translate *ngIf="!id">private.participants.add.title</h1>
-            <h1 class="h4" translate *ngIf="id">private.participants.add.titleEdit</h1>
-          </div>
-        </div>
-
-        <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)" class="mt-4">
-          <div class="row">
-            <div class="col-12 form-group">
-              <div class="form-label-group">
-                <input
-                  id="alias"
-                  name="alias"
-                  type="text"
-                  [placeholder]="'private.participants.add.alias' | translate"
-                  class="form-control border-bottom"
-                  formControlName="alias"
-                  [readonly]="editing"
-                />
-                <label for="text" translate>private.participants.add.alias</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['alias'].invalid && form.controls['alias'].touched"
-                [errors]="form.controls['alias'].errors"
-                [label]="'private.participants.add.alias' | translate"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12 form-group">
-              <div class="form-label-group">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="{{ 'private.participants.add.email' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="email"
-                  [readonly]="editing"
-                />
-                <label for="email" translate>private.participants.add.email</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
-                [errors]="form.controls['email'].errors"
-                label="E-mail"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12 form-group">
-              <label for="profession">Profissão</label>
-              <div class="form-label-group">
-                <select
-                  id="profession"
-                  name="profession"
-                  class="form-control border-bottom"
-                  [formControl]="form.get('user.profession')"
-                >
-                  <option value="" disabled>Selecione uma profissão</option>
-                  <option value="Enfermeiro">Enfermeiro</option>
-                  <option value="Médico">Médico</option>
-                  <option value="Cirurgião Dentista">Cirurgião Dentista</option>
-                  <option value="Fisioterapeuta">Fisioterapeuta</option>
-                  <option value="Assistente Social">Assistente Social</option>
-                  <option value="Nutricionista">Nutricionista</option>
-                  <option value="Psicólogo">Psicólogo</option>
-                  <option value="Técnico de Enfermagem">Técnico de Enfermagem</option>
-                  <option value="Auxiliar de Saúde Bucal">Auxiliar de Saúde Bucal</option>
-                  <option value="Agente Comunitário de Saúde">Agente Comunitário de Saúde</option>
-                  <option value="Estudante">Estudante</option>
-                  <option value="Outro">Outro</option>
-                </select>
-              </div>
-              <input-validations
-                *ngIf="form.get('user.profession').invalid && form.get('user.profession').touched"
-                [errors]="form.get('user.profession').errors"
-                label="Profissão"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row justify-content-end">
-            <div class="col-auto">
-              <a routerLink="/private/participants/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
-            </div>
-            <div class="col-auto">
-              <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>SALVAR</button>
-            </div>
-          </div>
-        </form>
+<div class="mx-auto mt-4 card card-lg w-main container-xxl">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4" translate *ngIf="!id">private.participants.add.title</h1>
+        <h1 class="h4" translate *ngIf="id">private.participants.add.titleEdit</h1>
       </div>
-    </section>
-  </div>
+    </div>
+
+    <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)" class="mt-4">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="alias"
+              name="alias"
+              type="text"
+              maxlength="100"
+              [placeholder]="'private.participants.add.alias' | translate"
+              class="form-control border-bottom"
+              formControlName="alias"
+              [readonly]="editing"
+            />
+            <label for="alias" translate>private.participants.add.alias</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['alias'].invalid && form.controls['alias'].touched"
+            [errors]="form.controls['alias'].errors"
+            [label]="'private.participants.add.alias' | translate"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-7 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"
+              maxlength="255"
+              placeholder="{{ 'private.participants.add.email' | translate }}"
+              class="form-control border-bottom"
+              formControlName="email"
+              [readonly]="editing"
+            />
+            <label for="email" translate>private.participants.add.email</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+            [errors]="form.controls['email'].errors"
+            label="E-mail"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <!-- Campo de profissão mantido do HEAD -->
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <label for="profession">Profissão</label>
+          <div class="form-label-group">
+            <select
+              id="profession"
+              name="profession"
+              class="form-control border-bottom"
+              [formControl]="form.get('user.profession')"
+            >
+              <option value="" disabled>Selecione uma profissão</option>
+              <option value="Enfermeiro">Enfermeiro</option>
+              <option value="Médico">Médico</option>
+              <option value="Cirurgião Dentista">Cirurgião Dentista</option>
+              <option value="Fisioterapeuta">Fisioterapeuta</option>
+              <option value="Assistente Social">Assistente Social</option>
+              <option value="Nutricionista">Nutricionista</option>
+              <option value="Psicólogo">Psicólogo</option>
+              <option value="Técnico de Enfermagem">Técnico de Enfermagem</option>
+              <option value="Auxiliar de Saúde Bucal">Auxiliar de Saúde Bucal</option>
+              <option value="Agente Comunitário de Saúde">Agente Comunitário de Saúde</option>
+              <option value="Estudante">Estudante</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <input-validations
+            *ngIf="form.get('user.profession').invalid && form.get('user.profession').touched"
+            [errors]="form.get('user.profession').errors"
+            label="Profissão"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a routerLink="/private/participants/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
+        </div>
+        <div class="col-auto">
+          <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>SALVAR</button>
+        </div>
+      </div>
+    </form>
+  </section>
 </div>

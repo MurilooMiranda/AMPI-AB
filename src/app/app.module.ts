@@ -1,10 +1,11 @@
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { MomentModule } from 'ngx-moment';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ToastrModule } from 'ngx-toastr';
@@ -13,14 +14,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './app.shared.module';
 import { ComponentsModule } from './components/components.module';
-import { IndexModule } from './index/index.module';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 import { JsonDateInterceptor } from './interceptors/json-date.interceptor';
-import { AuthInterceptor } from './security/auth.interceptor';
 import { LoggedInGuard } from './security/loggedin.guard';
 import { SecurityModule } from './security/security.module';
 import { EndpointsService } from './services/endpoints.service';
 import { LoaderService } from './services/loader.service';
+import { IndexModule } from './index/index.module';
 
 // local modules
 // tslint:disable-next-line:class-name
@@ -39,12 +40,15 @@ const providers = [LoaderService, EndpointsService];
   imports: [
     // imports modules
     BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     ComponentsModule,
     AppRoutingModule,
     IndexModule,
     MomentModule,
+    SocialLoginModule,
     SecurityModule,
+    HttpClientModule,
     SweetAlert2Module.forRoot(),
     NgxPermissionsModule.forRoot(),
     ToastrModule.forRoot({
@@ -84,7 +88,19 @@ const providers = [LoaderService, EndpointsService];
       useClass: ErrorHandlerInterceptor,
       multi: true,
     },
-    provideHttpClient(withInterceptorsFromDi()),
+    // provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('478246754730-rb5gg23ifmgg5f93msa8dknv2obcdagc.apps.googleusercontent.com'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
 })
 export class AppModule {

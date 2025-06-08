@@ -1,5 +1,5 @@
 <div class="row" [formGroup]="form">
-  <div class="col-auto form-group">
+  <div class="col-auto mb-4">
     <label [for]="'time' + uid">Horário:</label>
     <timepicker formControlName="time" [id]="'time' + uid"></timepicker>
     <input-validations
@@ -10,7 +10,7 @@
     </input-validations>
   </div>
 
-  <div class="col form-group">
+  <div class="col mb-4">
     <label [for]="'notificationType' + uid">Tipo de som:</label>
 
     <select class="w-100" [id]="'notificationType' + uid" formControlName="notificationType">
@@ -27,7 +27,7 @@
     </input-validations>
   </div>
 
-  <div class="col form-group">
+  <div class="col mb-4">
     <label [for]="'timeout' + uid">Tempo de exibição do alerta:</label>
     <input
       type="number"
@@ -37,6 +37,8 @@
       [id]="'timeout' + uid"
       class="form-control-plaintext border-bottom w-100"
     />
+    <div class="form-text">Tempo em minutos no qual o evento ficará disponível para responder.</div>
+
     <input-validations
       *ngIf="form.controls['timeout'].invalid && form.controls['timeout'].touched"
       [errors]="form.controls['timeout'].errors"

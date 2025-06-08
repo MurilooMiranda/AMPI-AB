@@ -2,26 +2,57 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Node v14.6.0 ou superior
+- Docker version 20.10.6 ou superior
 
-## Code scaffolding
+## Instalação
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para instalar, precisa instalar as dependências NPM através do comando:
 
-## Build
+- `npm install`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Server de desenvolvimento
 
-## Running unit tests
+Execute `ng serve` para um servidor de desenvolvimento. Navegue até `http://localhost:4200/`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Server de teste
 
-## Running end-to-end tests
+Para fazer o build, precisa rodar os seguintes comandos docker:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- `docker-compose -f docker-compose-desenvolvimento.yml build --no-cache`
+- `docker-compose -f docker-compose-desenvolvimento.yml up -d`
 
-## Further help
+Que irá habilitar o serviço do nginx, apontando para a pasta `/dist`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- **nginx** - `:80`
+
+## Server de produção
+
+Primeiro, você terá que rodar o front-end sem SSL, e dessa forma, gerar o Certificado:
+
+- `docker-compose -f docker-compose-validar-certificado.yml build --no-cache`
+- `docker-compose -f docker-compose-validar-certificado.yml up -d`
+- `docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d espim.icmc.usp.br`
+- `docker-compose -f docker-compose-validar-certificado.yml stop`
+
+Feito isso, serão gerados os certificados, e então, você pode subir o servidor de produção (com configurações ssl):
+
+- `docker-compose build --no-cache`
+- `docker-compose up -d`
+
+Que irá habilitar o serviço do nginx, apontando para a pasta `/dist`.
+
+- **nginx** - `:443`
+
+## Renovação do certificado
+
+Para renovar o certificado, será necessário criar um cron no servidor para rodar o seguinte comando:
+
+- `docker-compose run --rm certbot renew`
+
+Exemplo:
+
+- `crontab -e`
+- `0 5 1 */2 * /usr/bin/docker-compose -f /home/eadriano/sistema/espim-frontend-2021/docker-compose.yml run --rm certbot renew`

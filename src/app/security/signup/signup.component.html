@@ -8,7 +8,7 @@
       <div class="row">
         <!-- Placeholder -->
         <div class="col-12 col-md-12">
-          <div class="h2 font-weight-bold">Olá, {{ _user.name }}</div>
+          <div class="h2 fw-bold">Olá, {{ _user.name }}</div>
           <h4 class="mt-5">Complete o seu cadastro para acessar o sistema</h4>
         </div>
       </div>
@@ -20,7 +20,7 @@
         <div class="col-12 d-flex flex-column">
           <!-- E-mail -->
           <div class="w-100 mb-4">
-            <div class="form-label-group">
+            <div class="form-label-group form-floating">
               <input
                 class="form-control"
                 name="email"
@@ -36,7 +36,7 @@
 
           <!-- Name -->
           <div class="w-100 mb-4">
-            <div class="form-label-group">
+            <div class="form-label-group form-floating">
               <input class="form-control" name="name" id="name" formControlName="name" type="text" placeholder="Nome completo" />
               <label for="name">Nome</label>
             </div>
@@ -50,17 +50,20 @@
 
           <!-- ROLE -->
           <div class="w-100 mb-4">
-            <div class="form-label-group">
+            <div class="form-label-group form-floating">
               <input
                 class="form-control"
                 name="role"
                 id="role"
+                maxlength="255"
                 formControlName="role"
                 type="text"
                 placeholder="Insira aqui o seu papel. Ex: Psicóloga"
               />
               <label for="name">Papel</label>
             </div>
+            <div class="form-text">Insira aqui o seu papel. Ex: Psicóloga</div>
+
             <input-validations
               *ngIf="form.controls['role'].invalid && form.controls['role'].touched"
               [errors]="form.controls['role'].errors"
@@ -73,8 +76,8 @@
     </div>
 
     <div class="d-flex justify-content-end w-100">
-      <button name="saveButton" class="btn btn-white btn-lg btn-shadow mr-4">VOLTAR</button>
-      <button name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100">ENTRAR</button>
+      <button name="saveButton" class="btn btn-white btn-lg btn-shadow me-4">VOLTAR</button>
+      <button name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200">ENTRAR</button>
     </div>
   </form>
 </main>

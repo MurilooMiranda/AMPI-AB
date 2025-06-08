@@ -2,3 +2,33 @@ nav {
   height: 62px;
   z-index: 10;
 }
+
+.navbar-toggler {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .text-large {
+    display: none;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar-brand {
+    margin: 0;
+  }
+
+  .holder-navs {
+    > .navbar {
+      span {
+        display: none;
+      }
+    }
+  }
+
+  .nav-link-close {
+    span {
+      display: none;
+    }
+  }
+}

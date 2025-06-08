@@ -37,8 +37,8 @@ export class LevelsAddComponent implements OnInit {
 
     this.form = this._formBuilder.group({
       name: this._formBuilder.control('', [Validators.required]),
-      min_points: this._formBuilder.control('', [Validators.required]),
-      max_points: this._formBuilder.control('', [Validators.required]),
+      min_points: this._formBuilder.control('', [Validators.required, Validators.min(0), Validators.max(9999)]),
+      max_points: this._formBuilder.control('', [Validators.required, Validators.min(0), Validators.max(9999)]),
     });
 
     if (this.id) {

@@ -1,55 +1,73 @@
 <nav class="d-flex align-items-stretch justify-content-around bg-primary w-100 position-fixed px-2 text-white">
-  <div class="d-flex align-items-center justify-content-center" (click)="debug()">
-    <img class="pr-1" src="assets/images/logo-espim-web.svg" alt="Logo do Espim" />
+  <div class="navbar-brand d-flex align-items-center justify-content-center" (click)="debug()">
+    <img class="pe-1" src="assets/images/logo-espim-web.svg" alt="Logo do Espim" />
     <span class="text-large">ESPIM</span>
   </div>
 
-  <ul class="navbar align-items-center m-0 justify-content-center">
-    <li class="nav-item dropdown">
-      <a href="#" class="dropdown-toggle text-white nav-link" role="button" data-toggle="dropdown"
-        ><i class="fas fa-plus-circle pr-1"></i>Adicionar</a
-      >
-      <ul class="dropdown-menu">
-        <li *ngFor="let itemQuestion of itensQuestion">
-          <a class="dropdown-item" href="javascript:" (click)="addIntervention(itemQuestion.type, itemQuestion.subtype)">
-            <i [class]="itemQuestion.icon" class="pr-1"></i><span>{{ itemQuestion.text }}</span>
-          </a>
+  <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+    <i class="fas fa-bars text-white"></i>
+  </button>
+
+  <div class="holder-navs d-flex align-items-center">
+    <div class="navbar-full" [class]="{ active: activeMenu }" #menu>
+      <ul class="navbar align-items-center m-0 justify-content-center">
+        <li class="nav-item dropdown">
+          <a href="javascript:" class="dropdown-toggle text-white nav-link" role="button" data-bs-toggle="dropdown"
+            ><i class="fas fa-plus-circle pe-1"></i>Adicionar</a
+          >
+          <ul class="dropdown-menu">
+            <li *ngFor="let itemQuestion of itensQuestion">
+              <a
+                class="dropdown-item"
+                href="javascript:"
+                menuClose
+                [menu]="menu"
+                (click)="addIntervention(itemQuestion.type, itemQuestion.subtype)"
+              >
+                <i [class]="itemQuestion.icon" class="pe-1"></i><span>{{ itemQuestion.text }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="javascript:" (click)="previousState()" [class]="{ disabled: !nextStateEnabled() }">
+            <i class="fas fa-undo-alt pe-1"></i> <span>Desfazer</span></a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="javascript:" (click)="nextState()" [class]="{ disabled: !previousStateEnabled() }">
+            <i class="fas fa-redo-alt pe-1"></i> <span>Refazer</span></a
+          >
         </li>
       </ul>
-    </li>
+      <a href="javascript:" class="st-pusher" (click)="toggleMenu()"></a>
+    </div>
 
-    <li class="nav-item">
-      <a class="nav-link text-white" href="javascript:" (click)="previousState()" [class]="{ disabled: !nextStateEnabled() }">
-        <i class="fas fa-undo-alt pr-1"></i> <span>Desfazer</span></a
-      >
-    </li>
+    <ul class="navbar align-items-center m-0 justify-content-center ps-0">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="javascript:" (click)="zoomIn()" [class]="{ disabled: zoom == 1 }">
+          <i class="fas fa-search-plus pe-1"></i> <span>Mais zoom</span></a
+        >
+      </li>
 
-    <li class="nav-item">
-      <a class="nav-link text-white" href="javascript:" (click)="nextState()" [class]="{ disabled: !previousStateEnabled() }">
-        <i class="fas fa-redo-alt pr-1"></i> <span>Refazer</span></a
-      >
-    </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="javascript:" (click)="zoomOut()" [class]="{ disabled: zoom == 0.6 }">
+          <i class="fas fa-search-minus pe-1"></i> <span>Menos zoom</span></a
+        >
+      </li>
 
-    <li class="nav-item">
-      <a class="nav-link text-white" href="javascript:" (click)="zoomIn()" [class]="{ disabled: zoom == 1 }">
-        <i class="fas fa-search-plus pr-1"></i> <span>Mais zoom</span></a
-      >
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link text-white" href="javascript:" (click)="zoomOut()" [class]="{ disabled: zoom == 0.6 }">
-        <i class="fas fa-search-minus pr-1"></i> <span>Menos zoom</span></a
-      >
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link text-white" href="javascript:" (click)="finish()">
-        <i class="fas fa-check-circle pr-1"></i> <span>Concluir</span></a
-      >
-    </li>
-  </ul>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="javascript:" (click)="finish()">
+          <i class="fas fa-check-circle pe-1"></i> <span>Concluir</span></a
+        >
+      </li>
+    </ul>
+  </div>
 
   <div class="d-flex align-items-center justify-content-center">
-    <a class="nav-link text-white" href="javascript:" (click)="close()"> <i class="fas fa-times pr-1"></i> <span>Fechar</span></a>
+    <a class="nav-link nav-link-close text-white" href="javascript:" (click)="close()">
+      <i class="fas fa-times pe-1"></i> <span>Fechar</span></a
+    >
   </div>
 </nav>

@@ -3,20 +3,23 @@
   <h1 class="h4 mb-3">Informações do Programa</h1>
 
   <div class="row">
-    <div class="col-12 form-group">
-      <input type="checkbox" name="program-checkbox" id="program-checkbox" formControlName="isPublic" />
-      <label for="program-checkbox">Programa público</label>
+    <div class="col-12 mb-4">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="program-checkbox" id="program-checkbox" formControlName="isPublic" />
+        <label for="program-checkbox" class="form-check-label">Programa público</label>
+      </div>
     </div>
   </div>
 
   <!--Nome do programa-->
   <div class="row">
-    <div class="col-6 form-group">
-      <div class="form-label-group">
+    <div class="col-12 col-md-6 mb-4">
+      <div class="form-label-group form-floating">
         <input
           id="title"
           name="title"
           type="text"
+          maxlength="255"
           placeholder="Nome do programa"
           formControlName="title"
           class="form-control border-bottom"
@@ -33,13 +36,13 @@
   </div>
 
   <div class="row">
-    <div class="col-12 form-group">
-      <div class="form-label-group">
+    <div class="col-12 mb-4">
+      <div class="form-label-group form-floating">
         <textarea
           class="form-control border-bottom w-100"
           name="program-description"
           id="program-description"
-          rows="2"
+          style="height: 100px"
           placeholder="Descrição do programa"
           formControlName="description"
         ></textarea>
@@ -55,13 +58,13 @@
   </div>
 
   <div class="row">
-    <div class="col-7 form-group">
+    <div class="col-12 col-md-7 mb-4">
       <label for="beginDate">Data e hora de início:</label>
 
-      <div class="form-row form-group input-group">
+      <div class="form-row mb-4 input-group">
         <!--Data de Início-->
         <div class="col form-inline">
-          <div class="form-label-group mt-3 w-100">
+          <div class="form-label-group form-floating mt-1 w-100">
             <input
               type="text"
               placeholder="Data de início"
@@ -96,12 +99,12 @@
   </div>
 
   <div class="row">
-    <div class="col-7 form-group">
+    <div class="col-12 col-md-7 mb-4">
       <label for="beginDate">Data e hora de fim:</label>
-      <div class="form-row form-group input-group">
+      <div class="form-row mb-4 input-group">
         <!--Data de Fim-->
         <div class="col form-inline">
-          <div class="form-label-group mt-3 w-100">
+          <div class="form-label-group form-floating mt-1 w-100">
             <input
               type="text"
               placeholder="Data de fim"
@@ -139,7 +142,7 @@
       <a routerLink="/private/programs/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
     </div>
     <div class="col-auto">
-      <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>PROSSEGUIR</button>
+      <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>PROSSEGUIR</button>
     </div>
   </div>
 </form>

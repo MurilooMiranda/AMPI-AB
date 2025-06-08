@@ -29,6 +29,8 @@ import { TriggersComponent } from './add/step4/triggers/triggers.component';
 import { UserCheckBoxComponent } from './add/user-checkbox/user-checkbox.component';
 import { ProgramsListComponent } from './list/programslist.component';
 import { ProgramsRoutingModule } from './programs-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 // imports from dependencies
 
@@ -58,7 +60,7 @@ import { ProgramsRoutingModule } from './programs-routing.module';
     ModalAddParticipantComponent,
     InputFileComponent,
   ],
-  imports: [InterventionModule, PortalModule, SharedModule, ComponentsModule, ProgramsRoutingModule, CommonModule],
+  imports: [InterventionModule, PortalModule, SharedModule, ComponentsModule, ProgramsRoutingModule, CommonModule, ReactiveFormsModule, CollapseModule],
   exports: [],
 })
 export class ProgramsModule {}

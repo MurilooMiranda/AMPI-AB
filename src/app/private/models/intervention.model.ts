@@ -39,6 +39,10 @@ export class Intervention {
   }
 
   getOrderDescription() {
+    return this.order_position < 0 ? toChar(this.order_position * -1) : this.graph_index + 1;
+  }
+
+  getOrderDescriptionByPosition() {
     return this.order_position < 0 ? toChar(this.order_position * -1) : this.order_position + 1;
   }
 
@@ -48,6 +52,10 @@ export class Intervention {
     } else {
       return 'Sem descrição';
     }
+  }
+
+  getEnunciado() {
+    return this.getOrderDescription() + ' - ' + this.getTypeDescription() + ' - ' + this.getDescription();
   }
 }
 
@@ -84,6 +92,7 @@ export class QuestionIntervention extends Intervention {
   public conditions: {};
   public options: string[];
   public scales: string[];
+  public complex_conditions: InterventionComplexCondition;
 
   constructor(intervention: any = {}) {
     super(intervention);
@@ -98,6 +107,9 @@ export class QuestionIntervention extends Intervention {
     this.conditions = isNullOrUndefined(intervention.conditions) || intervention.conditions.length == 0 ? {} : intervention.conditions;
     this.options = intervention.options || [];
     this.scales = intervention?.scales || [];
+
+    this.complex_conditions = intervention.complex_conditions || null;
+
     this.type = 'question';
   }
 
@@ -113,8 +125,8 @@ export class QuestionIntervention extends Intervention {
 }
 
 export class TaskIntervention extends Intervention {
-  app_package: string = '';
-  parameters: object = {};
+  app_package: string;
+  parameters: object;
   start_from_notification: boolean;
 
   constructor(intervention: any = {}) {
@@ -122,9 +134,27 @@ export class TaskIntervention extends Intervention {
 
     this.obrigatory = !isNullOrUndefined(intervention.obrigatory) ? intervention.obrigatory : false;
     this.app_package = intervention.app_package ? intervention.app_package : '';
+
+    if (intervention.parameters && Object.keys(intervention.parameters).length == 0 && intervention.app_package) {
+      intervention.parameters[intervention.app_package] = '';
+    }
+
     this.parameters = intervention.parameters ? intervention.parameters : {};
     this.start_from_notification = intervention.start_from_notification;
     this.type = 'task';
+  }
+
+  getTypeDescription() {
+    return 'Aplicação externa';
+  }
+}
+
+export class InterventionComplexCondition {
+  action: string;
+  condition: string;
+  constructor(dados: any = {}) {
+    this.condition = dados.action || '';
+    this.action = dados.condition || '';
   }
 }
 

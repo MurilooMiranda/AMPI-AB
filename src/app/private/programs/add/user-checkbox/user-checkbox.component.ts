@@ -13,6 +13,7 @@ import { Observer } from '../../../models/observer.model';
 export class UserCheckBoxComponent implements OnInit {
   @Input() user: Observer | User;
   @Input() label: string;
+  @Input() title: string;
   @Input() checked: boolean;
   @Input() disabled: boolean;
   uid: string = uuid();

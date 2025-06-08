@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import cloneDeep from 'lodash/cloneDeep';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 import { ActiveEvent, ComplexCondition, Event, GamificationConditions } from 'src/app/private/models/event.model';
@@ -9,12 +10,13 @@ import { Trigger } from 'src/app/private/models/trigger.model';
 
 import { ESPIM_REST_Programs } from '../../../../../app.api';
 import { InterventionComponent } from '../intervention/intervention.component';
+import { InterventionService } from '../intervention/intervention.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
   selector: 'esm-active-event',
   templateUrl: './active-event.component.html',
-  styleUrls: ['./active-event.component.scss', './../step4.component.scss'],
+  styleUrls: ['./active-event.component.scss'],
 })
 export class ActiveEventComponent implements OnInit {
   urlPrograms: string = ESPIM_REST_Programs;
@@ -40,7 +42,12 @@ export class ActiveEventComponent implements OnInit {
     gamificationConditions: this.formBuilder.control(null),
   });
 
-  constructor(private formBuilder: UntypedFormBuilder, private readonly _modalService: BsModalService) {}
+  //private formBuilder: UntypedFormBuilder
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly _modalService: BsModalService,
+    private readonly interventionService: InterventionService
+  ) {}
 
   ngOnInit(): void {
     // Verifica se é um "NOVO EVENTO"
@@ -77,6 +84,12 @@ export class ActiveEventComponent implements OnInit {
     return this.form.value;
   }
 
+  get orderedInterventions(): Intervention[] {
+    return cloneDeep(this.form.get('interventions').value).sort((a, b) =>
+      a.getOrderDescriptionByPosition() > b.getOrderDescriptionByPosition() ? 1 : -1
+    );
+  }
+
   updateFormComplexConditions(complexConditions: ComplexCondition[]) {
     this.event.complexConditions = complexConditions;
     this.complexConditionsFormArray.clear();
@@ -97,8 +110,6 @@ export class ActiveEventComponent implements OnInit {
   }
 
   deleteEvent() {
-    this.isOpen = !this.isOpen;
-    this.form.reset();
     this.removeEvent(this.event);
     return;
   }
@@ -145,7 +156,7 @@ export class ActiveEventComponent implements OnInit {
       ignoreBackdropClick: true,
       initialState: {
         activeEvent: this.event,
-        interventionsToInit: this.form.get('interventions').value,
+        interventionsToInit: this.interventionService.fixOrderAndNextForOldSPIMInterventions(this.form.get('interventions').value),
       },
     };
 

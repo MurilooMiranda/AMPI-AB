@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12 d-flex justify-content-end">
-    <a href="javascript:" class="btn btn-light btn-sm min-100" (click)="openComplex = !openComplex">
+    <a href="javascript:" class="btn btn-light btn-sm min-200" (click)="openComplex = !openComplex">
       Opções Avançadas
       <span
         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white"
@@ -18,14 +18,17 @@
             <p>{{ row.text }}</p>
           </div>
           <div class="col-12" *ngFor="let complexCond of row.complexConditions; index as i">
-            <input
-              type="checkbox"
-              [(ngModel)]="complexCond.value"
-              [id]="complexCond.condition + i + uid"
-              [name]="complexCond.condition + i + uid"
-              (change)="changeCondition()"
-            />
-            <label [for]="complexCond.condition + i + uid">{{ complexCond.text }}</label>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [(ngModel)]="complexCond.value"
+                [id]="complexCond.condition + i + uid"
+                [name]="complexCond.condition + i + uid"
+                (change)="changeCondition()"
+              />
+              <label class="form-check-label" [for]="complexCond.condition + i + uid">{{ complexCond.text }}</label>
+            </div>
           </div>
         </div>
       </div>

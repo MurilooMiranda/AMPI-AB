@@ -6,11 +6,11 @@
   <div class="container-flex" aria-label="alphabet">
     <div class="row justify-content-center"></div>
     <div class="row justify-content-center">
-      <div class="col-12 mb-2 d-flex justify-content-between">
+      <div class="col-12 mb-2 d-flex flex-wrap justify-content-between">
         <button
           *ngFor="let letter of letters"
           type="button"
-          class="col btn btn-lg btn-default text-primary font-weight-bold p-1"
+          class="col btn btn-lg btn-default text-primary fw-bold p-1"
           [ngClass]="{ 'btn-default-active': letter === filterQuery }"
           (click)="filter_by(letter)"
         >
@@ -25,14 +25,14 @@
       <div *ngIf="!programUsers?.length">Você não selecionou nenhum participante.</div>
 
       <div class="align-items-center" *ngIf="programUsers.length > 0">
-        <span class="mr-2">Você adicionou:</span>
+        <span class="me-2">Você adicionou:</span>
         <a
-          class="label label-primary label-sm mr-2 mb-2 d-inline-block"
+          class="label label-primary label-sm me-2 mb-2 d-inline-block"
           href="javascript:"
           (click)="removeProgramUser(selectedUser)"
           *ngFor="let selectedUser of sort(programUsers)"
         >
-          {{ selectedUser.name ? selectedUser.name : selectedUser.alias }} <i class="fas fa-times pointer ml-2"></i>
+          {{ selectedUser.getName() }} <i class="fas fa-times pointer ms-2"></i>
         </a>
       </div>
     </div>
@@ -44,10 +44,11 @@
       <div class="card-body">
         <div class="row">
           <div *ngIf="!users?.length" class="col-12">O filtro selecionado resultou em nada, tente troca-lo.</div>
-          <div class="col-4 d-flex align-items-center overflow-hidden text-nowrap" *ngFor="let user of users">
+          <div class="col-md-6 col-12 d-flex align-items-center overflow-hidden text-nowrap" *ngFor="let user of users">
             <esm-user-checkbox
               [user]="user"
-              [label]="getName(user)"
+              [label]="user.getName()"
+              [title]="user.email"
               [checked]="isChecked(user)"
               (addUser)="addProgramUser($event)"
               (removeUser)="removeProgramUser($event)"
@@ -65,8 +66,8 @@
       </div>
 
       <div class="col-auto">
-        <a [routerLink]="['../second']" class="btn btn-success btn-lg btn-shadow mr-4">VOLTAR</a>
-        <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>PROSSEGUIR</button>
+        <a [routerLink]="['../second']" class="btn btn-success btn-lg btn-shadow me-4">VOLTAR</a>
+        <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>PROSSEGUIR</button>
       </div>
     </div>
   </form>

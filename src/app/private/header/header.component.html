@@ -1,139 +1,185 @@
 <header>
   <nav class="p-0 navbar navbar-expand-xl h-xl-px-72">
-    <div class="navbar align-items-center">
-      <img src="assets/images/logo-espim-web.svg" alt="Logo do Espim" />
+    <div class="container-fluid px-4">
+      <div class="navbar-brand align-items-center">
+        <img src="assets/images/logo-espim-web.svg" alt="Logo do Espim" />
 
-      <span class="px-3"><a class="text-white navbar-brand" routerLink="/private">ESPIM</a></span>
-    </div>
+        <span class="px-3"><a class="text-white navbar-brand" routerLink="/private">ESPIM</a></span>
+      </div>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="sr-only">Toggle menu</span>
-      <span class="my-1 text-white bg-white d-block" style="width: 25px; height: 3px"></span>
-      <span class="my-1 text-white bg-white d-block" style="width: 25px; height: 3px"></span>
-      <span class="my-1 text-white bg-white d-block" style="width: 25px; height: 3px"></span>
-    </button>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars text-white"></i>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav align-items-center mr-xl-auto">
-        <li class="py-3 nav-item dropdown w-100 w-xl-px-200" [routerLinkActive]="['active']">
-          <a
-            routerLinkActive="active"
-            class="text-center text-white nav-link dropdown-toggle"
-            role="button"
-            data-toggle="dropdown"
-            translate
-            >private.header.participants.participants</a
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" #menu>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="py-3 px-3 mx-3 nav-item dropdown" [routerLinkActive]="['active']">
+            <a
+              routerLinkActive="active"
+              class="text-center text-white nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              translate
+              >private.header.participants.participants</a
+            >
+            <ul class="py-0 text-center dropdown-menu py-xl-2">
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLinkActive]="['active']"
+                  menuClose
+                  [menu]="menu"
+                  routerLink="/private/participants/add"
+                  translate
+                  >private.header.participants.add</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLinkActive]="['active']"
+                  menuClose
+                  [menu]="menu"
+                  routerLink="/private/participants/list"
+                  translate
+                  >private.header.participants.list</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="py-3 px-3 mx-3 nav-item dropdown" [routerLinkActive]="['active']">
+            <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" translate
+              >private.header.programs.programs</a
+            >
+            <ul class="py-0 text-center dropdown-menu py-xl-2">
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLinkActive]="['active']"
+                  menuClose
+                  [menu]="menu"
+                  [routerLink]="['programs/add', 'first']"
+                  translate
+                  >private.header.programs.add</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLinkActive]="['active']"
+                  menuClose
+                  [menu]="menu"
+                  routerLink="/private/programs/list"
+                  translate
+                  >private.header.programs.list</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li
+            class="py-3 px-3 mx-3 nav-item dropdown"
+            [routerLinkActive]="['active']"
+            *ngxPermissionsOnly="['ROLES_LIST', 'PERMISSIONS_LIST']"
           >
-          <ul class="py-0 text-center dropdown-menu w-xl-px-200 py-xl-2">
-            <li>
-              <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="/private/participants/add" translate
-                >private.header.participants.add</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="/private/participants/list" translate
-                >private.header.participants.list</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="py-3 nav-item dropdown w-100 w-xl-px-200" [routerLinkActive]="['active']">
-          <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-toggle="dropdown" translate
-            >private.header.programs.programs</a
-          >
-          <ul class="py-0 text-center dropdown-menu w-xl-px-200 py-xl-2">
-            <li>
-              <a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="['programs/add', 'first']" translate
-                >private.header.programs.add</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="/private/programs/list" translate
-                >private.header.programs.list</a
-              >
-            </li>
-          </ul>
-        </li>
+            <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" translate
+              >private.header.admin.title</a
+            >
+            <ul class="py-0 text-center dropdown-menu py-xl-2">
+              <li *ngxPermissionsOnly="['ROLES_LIST']">
+                <a
+                  [routerLinkActive]="['active']"
+                  [routerLink]="['/private/roles/list']"
+                  class="dropdown-item"
+                  menuClose
+                  [menu]="menu"
+                  translate
+                  >private.header.admin.roles</a
+                >
+              </li>
+              <li *ngxPermissionsOnly="['USERS_LIST']">
+                <a
+                  [routerLinkActive]="['active']"
+                  [routerLink]="['/private/users/list']"
+                  class="dropdown-item"
+                  menuClose
+                  [menu]="menu"
+                  translate
+                  >private.header.admin.users</a
+                >
+              </li>
+              <li *ngxPermissionsOnly="['LEVELS_LIST']">
+                <a [routerLinkActive]="['active']" routerLink="/private/levels/list" class="dropdown-item" menuClose [menu]="menu" translate
+                  >private.header.admin.levels</a
+                >
+              </li>
+              <li *ngxPermissionsOnly="['EXTERNAL_APP_LIST']">
+                <a
+                  [routerLinkActive]="['active']"
+                  routerLink="/private/external-applications/list"
+                  class="dropdown-item"
+                  menuClose
+                  [menu]="menu"
+                  translate
+                  >private.header.admin.externalApplication</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="py-3 px-3 mx-3 nav-item dropdown" [routerLinkActive]="['active']">
+            <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" translate
+              >private.header.results.results</a
+            >
+            <ul class="py-0 text-center dropdown-menu py-xl-2">
+              <li>
+                <a
+                  [routerLinkActive]="['active']"
+                  [routerLink]="['/private/results/list']"
+                  class="dropdown-item"
+                  menuClose
+                  [menu]="menu"
+                  translate
+                  >private.header.results.list</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
 
-        <li
-          class="py-3 nav-item dropdown w-100 w-xl-px-200"
-          [routerLinkActive]="['active']"
-          *ngxPermissionsOnly="['ROLES_LIST', 'PERMISSIONS_LIST']"
-        >
-          <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-toggle="dropdown" translate
-            >private.header.admin.title</a
-          >
-          <ul class="py-0 text-center dropdown-menu w-xl-px-200 py-xl-2">
-            <li *ngxPermissionsOnly="['ROLES_LIST']">
-              <a [routerLinkActive]="['active']" [routerLink]="['/private/roles/list']" class="dropdown-item" translate
-                >private.header.admin.roles</a
-              >
-            </li>
-            <li *ngxPermissionsOnly="['USERS_LIST']">
-              <a [routerLinkActive]="['active']" [routerLink]="['/private/users/list']" class="dropdown-item" translate
-                >private.header.admin.users</a
-              >
-            </li>
-            <li *ngxPermissionsOnly="['LEVELS_LIST']">
-              <a [routerLinkActive]="['active']" routerLink="/private/levels/list" class="dropdown-item" translate
-                >private.header.admin.levels</a
-              >
-            </li>
-            <li *ngxPermissionsOnly="['EXTERNAL_APP_LIST']">
-              <a [routerLinkActive]="['active']" routerLink="/private/external-applications/list" class="dropdown-item" translate
-                >private.header.admin.externalApplication</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="py-3 nav-item dropdown w-100 w-xl-px-200" [routerLinkActive]="['active']">
-          <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-toggle="dropdown" translate
-            >private.header.results.results</a
-          >
-          <ul class="py-0 text-center dropdown-menu w-xl-px-200 py-xl-2">
-            <li>
-              <a [routerLinkActive]="['active']" [routerLink]="['/private/results/list']" class="dropdown-item" translate
-                >private.header.results.list</a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav align-items-center ml-xl-auto h-xl-px-72">
-        <li class="py-2 nav-item dropdown w-100 w-xl-px-200" *ngIf="user$ | async as _user">
-          <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-toggle="dropdown">
-            <img class="rounded-circle" [src]="_user.photoUrl" width="40" height="40" />
-          </a>
-          <ul class="text-center dropdown-menu w-xl-px-200">
-            <li>
-              x
-              <a class="dropdown-item" routerLink="observers/add"
-                ><img class="mx-4 rounded-circle" [src]="_user.photoUrl" width="102" height="102"
-              /></a>
-            </li>
-            <li>
-              <a class="text-center dropdown-item" routerLink="observers/add"
-                ><small class="font-weight-bold text-wrap">{{ _user.name }}</small></a
-              >
-            </li>
-            <li class="dropdown-divider d-none d-xl-block"></li>
-            <li>
-              <a class="text-center dropdown-item" (click)="logout()"
-                ><i class="fas fa-sign-out-alt"></i> <small translate>private.header.profile.exit</small></a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
+        <ul class="navbar-nav align-items-center ms-xl-auto h-xl-px-72">
+          <li class="py-2 nav-item dropdown" *ngIf="user$ | async as _user">
+            <a href="#" class="text-center text-white nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <img class="rounded-circle" [src]="_user.photoUrl" width="40" height="40" />
+            </a>
+            <ul class="text-center dropdown-menu dropdown-menu-end px-1">
+              <li><img class="mx-4 rounded-circle" [src]="_user.photoUrl" width="102" height="102" /></li>
+              <li>
+                <small class="fw-bold text-wrap dropdown-item">{{ _user.name }}</small>
+              </li>
+              <li class="dropdown-divider d-none d-xl-block"></li>
+              <li>
+                <a class="dropdown-item text-center" menuClose [menu]="menu" routerLink="settings"
+                  ><i class="fas fa-cog"></i> <small translate>private.header.profile.settings</small></a
+                >
+              </li>
+              <li class="dropdown-divider d-none d-xl-block"></li>
+              <li>
+                <a class="text-center dropdown-item" menuClose [menu]="menu" (click)="logout()"
+                  ><i class="fas fa-sign-out-alt"></i> <small translate>private.header.profile.exit</small></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

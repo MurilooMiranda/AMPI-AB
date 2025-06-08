@@ -1,86 +1,84 @@
-<div class="mx-auto mt-4 card card-lg w-main container-fluid">
-  <div class="row">
-    <section class="p-0 mx-auto bg-white rounded col-12 p-xl-2">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="h4" translate *ngIf="!id">private.external-applications.add.title</h1>
-            <h1 class="h4" translate *ngIf="id">private.external-applications.add.titleEdit</h1>
-          </div>
-        </div>
-
-        <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
-          <div class="row">
-            <div class="col-6 form-group">
-              <div class="form-label-group">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="{{ 'private.external-applications.add.name' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="name"
-                />
-                <label for="text" translate>private.external-applications.add.name</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
-                [errors]="form.controls['name'].errors"
-                label="Nome"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-6 form-group">
-              <div class="form-label-group">
-                <input
-                  id="package"
-                  name="package"
-                  type="text"
-                  placeholder="{{ 'private.external-applications.add.package' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="package"
-                  [readonly]="editing"
-                />
-                <label for="email" translate>private.external-applications.add.package</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['package'].invalid && form.controls['package'].touched"
-                [errors]="form.controls['package'].errors"
-                label="Package"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row mt-4 mb-5">
-            <div class="col-12 form-group">
-              <h3 class="h6">Parâmetros</h3>
-              <div class="mb-2" *ngFor="let param of form.get('parameters').value; index as i">
-                <esm-parameter
-                  [parameter]="param"
-                  [parameters]="form.get('parameters').value"
-                  [index]="i"
-                  (remover)="removerParametro(i)"
-                ></esm-parameter>
-              </div>
-              <div class="alert alert-info" *ngIf="form.get('parameters').value.length == 0">Nenhum parâmetro cadastrado</div>
-              <a href="javascript:" class="btn btn-white btn-shadow" (click)="novoParametro()">Adicionar parâmetro</a>
-            </div>
-          </div>
-
-          <div class="row justify-content-end">
-            <div class="col-auto">
-              <a routerLink="/private/external-applications/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
-            </div>
-            <div class="col-auto">
-              <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>SALVAR</button>
-            </div>
-          </div>
-        </form>
+<div class="mx-auto mt-4 card card-lg w-main container-xxl">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4" translate *ngIf="!id">private.external-applications.add.title</h1>
+        <h1 class="h4" translate *ngIf="id">private.external-applications.add.titleEdit</h1>
       </div>
-    </section>
-  </div>
+    </div>
+
+    <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating form-floating form-floating form-floating form-floating">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              maxlength="255"
+              placeholder="{{ 'private.external-applications.add.name' | translate }}"
+              class="form-control border-bottom"
+              formControlName="name"
+            />
+            <label for="text" translate>private.external-applications.add.name</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+            [errors]="form.controls['name'].errors"
+            label="Nome"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="package"
+              name="package"
+              type="text"
+              maxlength="255"
+              placeholder="{{ 'private.external-applications.add.package' | translate }}"
+              class="form-control border-bottom"
+              formControlName="package"
+              [readonly]="editing"
+            />
+            <label for="package" translate>private.external-applications.add.package</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['package'].invalid && form.controls['package'].touched"
+            [errors]="form.controls['package'].errors"
+            label="Package"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row mt-4 mb-5">
+        <div class="col-12 mb-4">
+          <h3 class="h6">Parâmetros</h3>
+          <div class="mb-2" *ngFor="let param of form.get('parameters').value; index as i">
+            <esm-parameter
+              [parameter]="param"
+              [parameters]="form.get('parameters').value"
+              [index]="i"
+              (remover)="removerParametro(i)"
+            ></esm-parameter>
+          </div>
+          <div class="alert alert-info" *ngIf="form.get('parameters').value.length == 0">Nenhum parâmetro cadastrado</div>
+          <a href="javascript:" class="btn btn-white btn-shadow" (click)="novoParametro()">Adicionar parâmetro</a>
+        </div>
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a routerLink="/private/external-applications/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
+        </div>
+        <div class="col-auto">
+          <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>SALVAR</button>
+        </div>
+      </div>
+    </form>
+  </section>
 </div>

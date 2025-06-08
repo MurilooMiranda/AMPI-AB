@@ -3,8 +3,8 @@
     <h3 class="h6">Parâmetro {{ index + 1 }}</h3>
 
     <div class="row">
-      <div class="col-4">
-        <div class="form-label-group">
+      <div class="col-12 col-sm-4">
+        <div class="form-label-group form-floating">
           <input id="name" name="name" type="text" placeholder="Nome visual" class="form-control border-bottom" formControlName="name" />
           <label for="text">Nome visual</label>
         </div>
@@ -16,8 +16,8 @@
         >
         </input-validations>
       </div>
-      <div class="col-4">
-        <div class="form-label-group">
+      <div class="col-12 col-sm-4">
+        <div class="form-label-group form-floating">
           <input id="key" name="key" type="text" placeholder="Nome real" class="form-control border-bottom" formControlName="key" />
           <label for="text">Nome real</label>
         </div>
@@ -29,7 +29,7 @@
         </input-validations>
       </div>
       <div class="col">
-        <div class="form-label-group">
+        <div class="form-label-group form-floating">
           <input
             id="default_value"
             name="default_value"
@@ -48,7 +48,7 @@
         </input-validations>
       </div>
       <div class="col-auto">
-        <a href="javascript:" class="btn btn-danger btn-sm" (click)="excluir()">
+        <a href="javascript:" class="btn btn-danger btn-sm mt-3" (click)="excluir()">
           <i class="fas fa-trash-alt"></i>
         </a>
       </div>

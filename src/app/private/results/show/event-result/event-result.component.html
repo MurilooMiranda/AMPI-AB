@@ -1,0 +1,64 @@
+<div class="card box-event mt-4" #container>
+  <div class="card-header box-header align-items-center justify-content-between d-flex" [style]="{ 'background-color': event.color }">
+    {{ event.title }}
+    <div class="box-buttons">
+      <a class="btn btn-default btn-sm text-white" (click)="loadDetail(!isOpen)">
+        <i class="fas fa-eye" *ngIf="!isOpen"></i>
+        <i class="fas fa-eye-slash" *ngIf="isOpen"></i>
+      </a>
+    </div>
+  </div>
+  <div class="card-body box-link" [collapse]="isOpen">
+    <div class="row">
+      <div class="col-12 col-md">
+        Disparos:
+        <span *ngIf="event.triggers.length == 0" class="text-danger">Não há disparos adicionados.</span>
+        <span *ngIf="event.triggers.length > 0">
+          {{ event.triggers[0].getDescription() }}
+          <span *ngIf="event.triggers.length > 1"
+            >e mais {{ event.triggers.length - 1 }} disparo<span *ngIf="event.triggers.length > 2">s</span></span
+          >
+        </span>
+      </div>
+      <div class="col-12 col-md">
+        Intervenções:
+        {{ event.interventions.length }} cadastrada<span *ngIf="event.interventions.length > 1">s</span>
+      </div>
+      <a href="javascript:" class="link-abs" (click)="loadDetail(true)">{{ event.title }}</a>
+    </div>
+  </div>
+
+  <div class="card-body" [collapse]="!isOpen">
+    <div *ngIf="!loadingUsers">
+      <select class="w-100" [(ngModel)]="pessoaSelecionada" (change)="loadGraphs()">
+        <option selected [value]="null">Visão geral</option>
+        <option *ngFor="let user of users; index as i" [value]="user.id">{{ user.getName() }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="results && results.length == 0 && !loadingGraphs">Nenhum resultado encontrado</div>
+
+    <div *ngIf="!loadingGraphs && results?.length > 0" class="mt-4">
+      <esm-overview-result
+        [results]="results"
+        [users]="users"
+        (loadUser)="loadUser($event)"
+        *ngIf="pessoaSelecionada == null || pessoaSelecionada == 'null'; else userResult"
+      ></esm-overview-result>
+
+      <ng-template #userResult>
+        <esm-user-result *ngIf="results" [sessionResults]="results"></esm-user-result>
+      </ng-template>
+    </div>
+
+    <div *ngIf="loadingUsers || loadingGraphs">
+      <div class="loader-bg"></div>
+      <div class="loader-bg"></div>
+      <div class="loader-bg"></div>
+      <div class="loader-bg mb-1"></div>
+      <div class="loader-bg"></div>
+      <div class="loader-bg"></div>
+      <div class="loader-bg"></div>
+    </div>
+  </div>
+</div>

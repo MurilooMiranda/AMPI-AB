@@ -117,8 +117,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     if (environment.production) {
       message += `<br />
         Caso o problema persista,
-        entre em contato com o suporte técnico por meio da
-        <a class="text-white" href="https://servicos.ufscar.br/plugins/formcreator/front/formdisplay.php?id=36" target="_blank">Central de Serviços da UFSCar</a>.`;
+        entre em contato com o suporte técnico`;
     }
 
     return message;

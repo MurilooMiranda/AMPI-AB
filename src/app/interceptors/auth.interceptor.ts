@@ -1,8 +1,8 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { LoginService } from './login/login.service';
+import { LoginService } from '../security/login/login.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -12,12 +12,14 @@ export class AuthInterceptor implements HttpInterceptor {
     const accessToken = this._loginService.accessToken;
 
     if (this._loginService.isLoggedIn()) {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${accessToken}`,
+      const modified = request.clone({
+        setHeaders: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
 
-      const authRequest = request.clone({ headers });
-      return next.handle(authRequest);
+      return next.handle(modified);
     } else {
       return next.handle(request);
     }

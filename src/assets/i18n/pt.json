@@ -138,7 +138,7 @@
       "add": {
         "title": "Novo participante",
         "titleEdit": "Editar informações do participante",
-        "name": "Name",
+        "name": "Nome",
         "email": "E-mail",
         "alias": "Alias",
         "profession": "Cargo",
@@ -165,7 +165,7 @@
     "programs": {
       "add": {},
       "list": {
-        "addButton": "Novo program",
+        "addButton": "Novo programa",
         "pageTitle": "Lista de programas",
         "listTitle": "Lista de programas",
         "totalNumber": "Total",
@@ -229,6 +229,18 @@
       }
     },
 
+    "results": {
+      "show": {
+        "title": "Resultados"
+      },
+      "list": {
+        "pageTitle": "Lista de resultados",
+        "totalNumber": "Total de resultados",
+        "listTitle": "Lista de resultados",
+        "noObjects": "Não há resultados cadastrados."
+      }
+    },
+
     "levels": {
       "add": {
         "title": "Novo level",
@@ -245,6 +257,13 @@
         "listTitle": "Lista de levels",
         "noObjects": "Não há levels cadastrados."
       }
+    },
+    "settings": {
+      "title": "Editar perfil",
+      "name": "Nome",
+      "email": "E-mail",
+      "role": "Papel",
+      "saveButton": "SALVAR"
     }
   },
   "errors": {

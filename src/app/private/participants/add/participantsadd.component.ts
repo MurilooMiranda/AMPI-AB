@@ -36,7 +36,7 @@ export class ParticipanstAddComponent implements OnInit {
     this.id = this.activeRoute.snapshot.params.id;
 
     this.form = this._formBuilder.group({
-      email: this._formBuilder.control({ value: '', disabled: !!this.id }, [Validators.required, Validators.email]),
+      email: this._formBuilder.control({ value: '', disabled: !!this.id }, [Validators.required]),
       alias: this._formBuilder.control('', [Validators.required]),
       user: this._formBuilder.group({
         profession: this._formBuilder.control(''),

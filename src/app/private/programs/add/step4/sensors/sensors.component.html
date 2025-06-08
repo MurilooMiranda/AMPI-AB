@@ -1,5 +1,5 @@
 <div class="row justify-content-between">
-  <div class="col form-group" *ngFor="let sensor of sensors; index as i">
+  <div class="col mb-4" *ngFor="let sensor of sensors; index as i">
     <p>{{ sensor.name }}</p>
     <div class="form-check" *ngFor="let collector of collectors">
       <input

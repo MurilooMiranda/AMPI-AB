@@ -1,14 +1,12 @@
 <form [formGroup]="form" autocomplete="off" focusInvalidInput #formElement (ngSubmit)="save()">
   <div class="modal-header">
     <h4 class="modal-title pull-left">Adicionar participante</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
   </div>
   <div class="modal-body">
     <div class="row">
-      <div class="col-12 form-group">
-        <div class="form-label-group">
+      <div class="col-12 mb-4">
+        <div class="form-label-group form-floating">
           <input
             id="alias"
             name="alias"
@@ -29,12 +27,13 @@
     </div>
 
     <div class="row">
-      <div class="col-12 form-group">
-        <div class="form-label-group">
+      <div class="col-12 mb-4">
+        <div class="form-label-group form-floating">
           <input
             id="email"
             name="email"
             type="email"
+            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"
             placeholder="{{ 'private.participants.add.email' | translate }}"
             class="form-control border-bottom"
             formControlName="email"
@@ -86,9 +85,9 @@
   </div>
 
   <div class="modal-footer">
-    <div class="row justify-content-end">
-      <a (click)="close()" class="btn btn-white btn-shadow mr-4">CANCELAR</a>
-      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-100">SALVAR</button>
+    <div class="justify-content-end">
+      <a (click)="close()" class="btn btn-white btn-shadow me-4">CANCELAR</a>
+      <button type="submit" name="saveButton" class="btn btn-success btn-shadow min-200" translate>SALVAR</button>
     </div>
   </div>
 </form>

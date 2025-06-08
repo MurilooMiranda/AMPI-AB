@@ -1,7 +1,7 @@
 <div class="container-fluid" *ngIf="program | async as _program">
   <div class="row my-5 holder-steps">
-    <div class="col-3 step">
-      <div class="row justify-content-center text-center">
+    <div class="col-sm-3 col-6 mb-3 step">
+      <div class="d-flex justify-content-center text-center">
         <a
           [routerLinkActive]="['rounded-tab-active']"
           [routerLink]="['first/']"
@@ -12,12 +12,12 @@
         >
         <i class="fas fa-exclamation-circle text-warning" *ngIf="biggerStepOpened > 1 && _program.title == ''"></i>
       </div>
-      <div class="row align-items-center justify-content-center mt-3">
-        <small class="medium font-weight-bold">Informações</small>
+      <div class="row text-center mt-3">
+        <small class="medium fw-bold">Informações</small>
       </div>
     </div>
-    <div class="col-3 step">
-      <div class="row justify-content-center text-center">
+    <div class="col-sm-3 col-6 mb-3 step">
+      <div class="d-flex justify-content-center text-center">
         <a
           [routerLinkActive]="['rounded-tab-active']"
           [routerLink]="['second/']"
@@ -28,12 +28,12 @@
         >
         <i class="fas fa-exclamation-circle text-warning" *ngIf="biggerStepOpened > 2 && _program.observers.length == 0"></i>
       </div>
-      <div class="row align-items-center justify-content-center mt-3">
-        <small class="medium font-weight-bold">Observadores</small>
+      <div class="row text-center mt-3">
+        <small class="medium fw-bold">Observadores</small>
       </div>
     </div>
-    <div class="col-3 step">
-      <div class="row justify-content-center text-center">
+    <div class="col-sm-3 col-6 mb-3 step">
+      <div class="d-flex justify-content-center text-center">
         <a
           [routerLinkActive]="['rounded-tab-active']"
           [routerLink]="['third/']"
@@ -44,12 +44,12 @@
         >
         <i class="fas fa-exclamation-circle text-warning" *ngIf="biggerStepOpened > 3 && _program.users.length == 0"></i>
       </div>
-      <div class="row align-items-center justify-content-center mt-3">
-        <small class="medium font-weight-bold">Participantes</small>
+      <div class="row text-center mt-3">
+        <small class="medium fw-bold">Participantes</small>
       </div>
     </div>
-    <div class="col-3 step">
-      <div class="row justify-content-center text-center">
+    <div class="col-sm-3 col-6 mb-3 step">
+      <div class="d-flex justify-content-center text-center">
         <a
           [routerLinkActive]="['rounded-tab-active']"
           [routerLink]="['fourth/']"
@@ -63,7 +63,7 @@
           *ngIf="biggerStepOpened == 4 && currentStep < 4 && _program.activeEvents.length == 0 && _program.passiveEvents.length == 0"
         ></i>
       </div>
-      <div class="row justify-content-center mt-3"><small class="font-weight-bold medium">Eventos</small></div>
+      <div class="row text-center mt-3"><small class="fw-bold medium">Eventos</small></div>
     </div>
   </div>
 </div>

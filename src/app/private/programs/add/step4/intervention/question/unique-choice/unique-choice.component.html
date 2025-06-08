@@ -1,7 +1,70 @@
-<span class="font-weight-bold text-primary mb-2">Alternativas</span>
+<div class="mb-4" *ngIf="hasComplexConditions">
+  <div class="fw-bold text-primary mb-2">
+    Repetir intervenções
+    <a href="javascript:">
+      <i class="fas fa-trash text-primary" (click)="toggleComplexConditions()" style="font-size: 1em"></i>
+    </a>
+  </div>
+
+  <div [formGroup]="form">
+    <div class="d-flex flex-column w-100 mb-3">
+      <label [for]="graphIndex + 'complexConditions'">Se a resposta for:</label>
+      <select class="w-100" formControlName="condition">
+        <option [ngValue]="item.value" *ngFor="let item of complexConditionsItems">{{ item.name }}</option>
+      </select>
+
+      <select class="w-100" formControlName="alternative" *ngIf="selectedCondition?.requireOption">
+        <option selected disabled value="">Selecione uma opção</option>
+        <option [ngValue]="i" *ngFor="let alternative of alternatives; index as i; trackBy: trackByFn">{{ i }} - {{ alternative }}</option>
+      </select>
+    </div>
+
+    <div class="d-flex flex-column w-100 mb-3">
+      <label [for]="graphIndex + 'repeatNumber'">Limitar quantidade de repetições a:</label>
+      <input
+        type="number"
+        formControlName="repeatNumber"
+        name="repeatNumber"
+        min="1"
+        (blur)="verifyRepeatNumber()"
+        [id]="graphIndex + 'repeatNumber'"
+        class="form-control-plaintext border-bottom w-100"
+      />
+    </div>
+
+    <div class="d-flex flex-column w-100 mb-3">
+      <label [for]="graphIndex + 'repeatMessage'">Mensagem de repetições:</label>
+      <textarea
+        class="w-100"
+        cols="1"
+        placeholder="Digite o texto..."
+        formControlName="repeatMessage"
+        [id]="graphIndex + 'repeatMessage'"
+      ></textarea>
+    </div>
+
+    <div class="d-flex flex-column w-100">
+      <label [for]="graphIndex + 'continueMessage'">Mensagem de continuação:</label>
+      <textarea
+        class="w-100"
+        cols="1"
+        placeholder="Digite o texto..."
+        formControlName="continueMessage"
+        [id]="graphIndex + 'continueMessage'"
+      ></textarea>
+    </div>
+  </div>
+</div>
+
+<span class="fw-bold text-primary mb-2">
+  Alternativas
+  <a href="javascript:">
+    <i class="fas fa-retweet text-primary" (click)="toggleComplexConditions()" style="font-size: 1.1em"></i>
+  </a>
+</span>
 <div class="mb-3" *ngFor="let alternative of alternatives; index as i; trackBy: trackByFn">
   <div class="d-flex justify-content-between">
-    <label class="pl-1 pr-3" style="font-size: 1.2em" [for]="graphIndex + 'alternative' + i">{{ i }}</label>
+    <label class="ps-1 pe-3" style="font-size: 1.2em" [for]="graphIndex + 'alternative' + i">{{ i }}</label>
     <div class="d-flex flex-column w-100">
       <textarea
         class="w-100"
@@ -26,7 +89,12 @@
         <option [value]="null">Finalizar</option>
       </select>
     </div>
-    <i class="fas fa-minus-circle text-primary pr-1 pl-3" (click)="removeChoice(i)" style="font-size: 1.3em"></i>
+    <i
+      class="fas fa-minus-circle text-primary pe-1 ps-3"
+      (click)="removeChoice(i)"
+      [ngClass]="{ 'link-disabled': intervention.options.length <= 1 }"
+      style="font-size: 1.3em"
+    ></i>
   </div>
 </div>
 

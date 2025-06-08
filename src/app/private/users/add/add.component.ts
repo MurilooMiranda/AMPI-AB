@@ -42,7 +42,7 @@ export class AddComponent implements OnInit {
     this.form = this._formBuilder.group({
       name: this._formBuilder.control(null, [Validators.required]),
       email: this._formBuilder.control(null, [Validators.required]),
-      roles: this._formBuilder.control([], [Validators.required]),
+      roles: this._formBuilder.control([]),
     });
 
     this.fetchData(this.id);

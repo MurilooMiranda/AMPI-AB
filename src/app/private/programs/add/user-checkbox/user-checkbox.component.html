@@ -1,2 +1,11 @@
-<input type="checkbox" [id]="uid" [checked]="checked" [disabled]="disabled" (click)="checkboxHandler($event.target.checked)" />
-<label class="m-0" [for]="uid">{{ label }}</label>
+<div class="form-check">
+  <input
+    type="checkbox"
+    class="form-check-input"
+    [id]="uid"
+    [checked]="checked"
+    [disabled]="disabled"
+    (click)="checkboxHandler($event.target.checked)"
+  />
+  <label class="m-0form-check-label" [title]="title" [for]="uid">{{ label }}</label>
+</div>

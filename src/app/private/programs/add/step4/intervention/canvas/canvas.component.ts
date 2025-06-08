@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { isNullOrUndefined } from 'src/app/util/functions';
 
 import { HTMLInterventionElement, InterventionService } from '../intervention.service';
 
+@UntilDestroy({ checkProperties: true })
 @Component({
   selector: 'esm-canvas',
   templateUrl: './canvas.component.html',
@@ -15,7 +17,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   constructor(private interventionService: InterventionService) {}
 
   ngOnInit(): void {
-    this.interventionService.redrawGraph$.subscribe((_) => this.drawAllArrows());
+    this.interventionService.redrawGraph$.pipe(untilDestroyed(this)).subscribe((_) => {
+      this.drawAllArrows();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -48,9 +52,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   drawAllArrows() {
     this.resizeCanvas();
-    // // An array to keep control of which interventions had its arrows drew
+    // An array to keep control of which interventions had its arrows drew
     const already_drew: boolean[] = new Array<boolean>(this.interventionService.graphElements.length);
-    // // Here we make a BFS
+    // Here we make a BFS
     const queue: { intervention: number; order_position: number }[] = [];
 
     queue.push({ intervention: this.interventionService.firstIntervention, order_position: 0 });
@@ -66,6 +70,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         this.interventionService.warnCycle(order_position);
         continue;
       }
+
       this.interventionService.graphElement(intervention).order_position = order_position;
       already_drew[intervention] = true;
       for (const destination of this.interventionService.interventionElementsGraph[intervention]) {

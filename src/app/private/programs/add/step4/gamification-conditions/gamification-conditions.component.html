@@ -1,14 +1,27 @@
 <div class="row">
   <div class="col-12 d-flex justify-content-end">
-    <a href="javascript:" class="btn btn-light btn-sm min-100 mt-2" (click)="openComplex = !openComplex">Opções de gamificação</a>
+    <a
+      href="javascript:"
+      class="btn btn-light btn-sm min-200 mt-2"
+      (click)="openComplex = !openComplex"
+    >Opções de gamificação</a>
   </div>
-  <div class="col-12" [collapse]="!openComplex">
+  <div
+    class="col-12"
+    [collapse]="!openComplex"
+  >
     <div class="card mt-2">
-      <div class="card-body" [formGroup]="form">
-        <p class="font-weight-bold">Quantidade de pontos para receber ao:</p>
+      <div
+        class="card-body"
+        [formGroup]="form"
+      >
+        <p class="fw-bold">Quantidade de pontos para receber ao:</p>
 
-        <div class="form-group row">
-          <label for="staticEmail" class="col-md-4 col-form-label text-right text-success">Concluir todas as intervenções:</label>
+        <div class="mb-4 row">
+          <label
+            for="staticEmail"
+            class="col-md-4 col-form-label text-end text-success"
+          >Concluir todas as intervenções:</label>
           <div class="col-auto">
             <div class="input-group">
               <input
@@ -33,8 +46,11 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label for="staticEmail" class="col-md-4 col-form-label text-right">Concluir pela metade as intervenções:</label>
+        <div class="mb-4 row">
+          <label
+            for="staticEmail"
+            class="col-md-4 col-form-label text-end"
+          >Concluir pela metade as intervenções:</label>
           <div class="col-auto">
             <div class="input-group">
               <input
@@ -59,8 +75,11 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label for="staticEmail" class="col-md-4 col-form-label text-right text-danger">Não concluir as intervenções:</label>
+        <div class="mb-4 row">
+          <label
+            for="staticEmail"
+            class="col-md-4 col-form-label text-end text-danger"
+          >Não concluir as intervenções:</label>
           <div class="col-auto">
             <div class="input-group">
               <input
@@ -78,20 +97,34 @@
           </div>
         </div>
 
-        <p class="font-weight-bold">Badges</p>
+        <p class="fw-bold">Medalhas</p>
         <div class="row">
-          <div class="col-2" *ngFor="let badge of form.value.badges; index as i">
+          <div
+            class="col-2"
+            *ngFor="let badge of form.value.badges; index as i"
+          >
             <div class="box-badge">
-              <img [src]="badge.media.url" class="img-thumbnail mb-1" [alt]="badge.media.name" />
+              <img
+                [src]="badge.media.url | safe | async"
+                class="img-thumbnail mb-1"
+                [alt]="badge.media.name"
+              />
               <p>{{ badge.name }}</p>
 
-              <button class="btn btn-danger btn-sm w-100" (click)="removerBadge(i)">Remover badge <i class="far fa-trash-alt"></i></button>
+              <button
+                class="btn btn-danger btn-sm w-100"
+                (click)="removerBadge(i)"
+              >Remover medalha <i class="far fa-trash-alt"></i></button>
             </div>
           </div>
-          <div class="col-2">
-            <a href="javascript:" class="box-badge box-add d-flex justify-content-center" (click)="openModalBadge()">
-              <div class="inner-box align-self-center"><i class="fas fa-plus d-block"></i>Adicionar badge</div></a
+          <div class="col-6 col-sm-3 col-md-2">
+            <a
+              href="javascript:"
+              class="box-badge box-add d-flex justify-content-center"
+              (click)="openModalBadge()"
             >
+              <div class="inner-box align-self-center"><i class="fas fa-plus d-block"></i>Adicionar medalha</div>
+            </a>
           </div>
         </div>
       </div>

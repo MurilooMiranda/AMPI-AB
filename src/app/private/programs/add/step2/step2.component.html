@@ -5,11 +5,11 @@
 <div class="container-flex" aria-label="alphabet">
   <div class="row justify-content-center"></div>
   <div class="row justify-content-center">
-    <div class="col-12 mb-2 d-flex justify-content-between">
+    <div class="col-12 mb-2 d-flex flex-wrap justify-content-between">
       <button
         *ngFor="let letter of letters"
         type="button"
-        class="col btn btn-lg btn-default text-primary font-weight-bold p-1"
+        class="col btn btn-lg btn-default text-primary fw-bold p-1"
         [ngClass]="{ 'btn-default-active': letter === filterQuery }"
         (click)="filter_by(letter)"
       >
@@ -24,15 +24,20 @@
     <div *ngIf="!programObservers?.length">Você não selecionou nenhum observador.</div>
 
     <div class="align-items-center" *ngIf="programObservers.length > 0">
-      <span class="mr-2">Você adicionou:</span>
-      <a
-        class="label label-primary label-sm mr-2 mb-2 d-inline-block"
-        href="javascript:"
-        (click)="removeProgramObserver(selectedObserver)"
-        *ngFor="let selectedObserver of sort(programObservers)"
-      >
-        {{ selectedObserver.user.name }} <i class="fas fa-times pointer ml-2"></i>
-      </a>
+      <span class="me-2">Você adicionou:</span>
+      <ng-container *ngFor="let selectedObserver of sort(programObservers)">
+        <a
+          class="label label-primary label-sm me-2 mb-2 d-inline-block"
+          href="javascript:"
+          *ngIf="!isDisabled(selectedObserver)"
+          (click)="removeProgramObserver(selectedObserver)"
+        >
+          {{ selectedObserver.user.name }} <i class="fas fa-times pointer ms-2"></i>
+        </a>
+        <span class="label label-primary label-sm me-2 mb-2 d-inline-block" *ngIf="isDisabled(selectedObserver)">
+          {{ selectedObserver.user.name }}
+        </span>
+      </ng-container>
     </div>
   </div>
 </form>
@@ -43,10 +48,14 @@
     <div class="card-body">
       <div class="row">
         <div *ngIf="!observers?.length" class="col-12">O filtro selecionado resultou em nada, tente troca-lo.</div>
-        <div class="col-3 d-flex align-items-center overflow-hidden text-nowrap" *ngFor="let observer of sort(observers)">
+        <div
+          class="col-md-4 col-12 col-sm-6 d-flex align-items-center overflow-hidden text-nowrap"
+          *ngFor="let observer of sort(observers)"
+        >
           <esm-user-checkbox
             [user]="observer"
             [label]="observer.user.name"
+            [title]="observer.user.email"
             [checked]="isChecked(observer)"
             [disabled]="isDisabled(observer)"
             (addUser)="addProgramObserver($event)"
@@ -62,9 +71,9 @@
       <a name="buttonObserver" class="btn btn-white btn-lg btn-shadow" (click)="openModalObserver()" translate>ADICIONAR OBSERVADOR</a>
     </div>
     <div class="col-auto">
-      <a [routerLink]="['../first']" class="btn btn-success btn-lg btn-shadow mr-4">VOLTAR</a>
+      <a [routerLink]="['../first']" class="btn btn-success btn-lg btn-shadow me-4">VOLTAR</a>
 
-      <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>PROSSEGUIR</button>
+      <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>PROSSEGUIR</button>
     </div>
   </div>
 </form>

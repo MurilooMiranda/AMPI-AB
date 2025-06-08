@@ -1,90 +1,87 @@
-<div class="mx-auto mt-4 card card-lg w-main container-fluid">
-  <div class="row">
-    <section class="p-0 mx-auto bg-white rounded col-12 p-xl-2">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="h4" translate *ngIf="!id">private.levels.add.title</h1>
-            <h1 class="h4" translate *ngIf="id">private.levels.add.titleEdit</h1>
-          </div>
-        </div>
-
-        <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
-          <div class="row">
-            <div class="col-6 form-group">
-              <div class="form-label-group">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="{{ 'private.levels.add.name' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="name"
-                />
-                <label for="text" translate>private.levels.add.name</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
-                [errors]="form.controls['name'].errors"
-                label="Nome"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-3 form-group">
-              <div class="form-label-group">
-                <input
-                  id="min_points"
-                  name="min_points"
-                  type="number"
-                  placeholder="{{ 'private.levels.add.minPoints' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="min_points"
-                />
-                <label for="min_points" translate>private.levels.add.minPoints</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['min_points'].invalid && form.controls['min_points'].touched"
-                [errors]="form.controls['min_points'].errors"
-                label="Mínimo de pontos"
-              >
-              </input-validations>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-3 form-group">
-              <div class="form-label-group">
-                <input
-                  id="max_points"
-                  name="max_points"
-                  type="number"
-                  placeholder="{{ 'private.levels.add.maxPoints' | translate }}"
-                  class="form-control border-bottom"
-                  formControlName="max_points"
-                />
-                <label for="max_points" translate>private.levels.add.maxPoints</label>
-              </div>
-              <input-validations
-                *ngIf="form.controls['max_points'].invalid && form.controls['max_points'].touched"
-                [errors]="form.controls['max_points'].errors"
-                label="Máximo de pontos"
-              >
-              </input-validations>
-            </div>
-          </div>
-          <div class="row justify-content-end">
-            <div class="col-auto">
-              <a routerLink="/private/levels/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
-            </div>
-            <div class="col-auto">
-              <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-100" translate>SALVAR</button>
-            </div>
-          </div>
-        </form>
+<div class="mx-auto mt-4 card card-lg w-main container-xxl">
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="h4" translate *ngIf="!id">private.levels.add.title</h1>
+        <h1 class="h4" translate *ngIf="id">private.levels.add.titleEdit</h1>
       </div>
-    </section>
-  </div>
+    </div>
+
+    <form [formGroup]="form" focusInvalidInput #formElement (ngSubmit)="save($event)">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="name"
+              name="name"
+              maxlength="255"
+              type="text"
+              placeholder="{{ 'private.levels.add.name' | translate }}"
+              class="form-control border-bottom"
+              formControlName="name"
+            />
+            <label for="text" translate>private.levels.add.name</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+            [errors]="form.controls['name'].errors"
+            label="Nome"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="min_points"
+              name="min_points"
+              type="number"
+              placeholder="{{ 'private.levels.add.minPoints' | translate }}"
+              class="form-control border-bottom"
+              formControlName="min_points"
+            />
+            <label for="min_points" translate>private.levels.add.minPoints</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['min_points'].invalid && form.controls['min_points'].touched"
+            [errors]="form.controls['min_points'].errors"
+            label="Mínimo de pontos"
+          >
+          </input-validations>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3 mb-4">
+          <div class="form-label-group form-floating">
+            <input
+              id="max_points"
+              name="max_points"
+              type="number"
+              placeholder="{{ 'private.levels.add.maxPoints' | translate }}"
+              class="form-control border-bottom"
+              formControlName="max_points"
+            />
+            <label for="max_points" translate>private.levels.add.maxPoints</label>
+          </div>
+          <input-validations
+            *ngIf="form.controls['max_points'].invalid && form.controls['max_points'].touched"
+            [errors]="form.controls['max_points'].errors"
+            label="Máximo de pontos"
+          >
+          </input-validations>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a routerLink="/private/levels/list" class="btn btn-success btn-lg btn-shadow">VOLTAR</a>
+        </div>
+        <div class="col-auto">
+          <button type="submit" name="saveButton" class="btn btn-primary btn-lg btn-shadow min-200" translate>SALVAR</button>
+        </div>
+      </div>
+    </form>
+  </section>
 </div>

@@ -1,4 +1,4 @@
-<main class="px-5 mx-auto mt-4 mb-5 card card-lg w-main">
+<main class="mx-auto mt-4 mb-5 card card-lg w-main container-xxl">
   <!--Título & busca-->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h4" translate>private.external-applications.list.pageTitle</h1>
@@ -18,44 +18,50 @@
 
     <div class="alert alert-info" *ngIf="!loading && externalApplications.length == 0">Nenhuma aplicação externa encontrada</div>
 
-    <table class="table table-hover">
-      <tbody>
-        <tr *ngFor="let externalApp of externalApplications">
-          <td scope="row">
-            <a [routerLink]="['/private/external-applications/edit', externalApp.id]">
-              {{ externalApp.name }}
-              -
-              {{ externalApp.package }}
-            </a>
-          </td>
-
-          <td width="100" *ngxPermissionsOnly="['EXTERNAL_APP_EDIT', 'EXTERNAL_APP_DELETE']">
-            <div class="mx-3 d-flex align-items-center">
-              <a [routerLink]="['/private/external-applications/edit', externalApp.id]" *ngxPermissionsOnly="['EXTERNAL_APP_EDIT']">
-                <i class="mr-3 fas fa-edit fa-lg text-primary"></i>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let externalApp of externalApplications">
+            <td scope="row">
+              <a [routerLink]="['/private/external-applications/edit', externalApp.id]">
+                {{ externalApp.name }}
+                -
+                {{ externalApp.package }}
               </a>
-              <a href="javascript:" *ngxPermissionsOnly="['EXTERNAL_APP_DELETE']">
-                <i class="fas fa-trash-alt fa-lg text-primary" (click)="deleteExternalApp(externalApp)"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <ng-template [ngIf]="loading">
-          <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="loading">
-            <td>
-              <div class="loader-bg"></div>
             </td>
-            <td width="100">
-              <div class="loader-bg"></div>
+
+            <td width="100" *ngxPermissionsOnly="['EXTERNAL_APP_EDIT', 'EXTERNAL_APP_DELETE']">
+              <div class="mx-3 d-flex align-items-center">
+                <a [routerLink]="['/private/external-applications/edit', externalApp.id]" *ngxPermissionsOnly="['EXTERNAL_APP_EDIT']">
+                  <i class="me-3 fas fa-edit fa-lg text-primary"></i>
+                </a>
+                <a href="javascript:" *ngxPermissionsOnly="['EXTERNAL_APP_DELETE']">
+                  <i class="fas fa-trash-alt fa-lg text-primary" (click)="deleteExternalApp(externalApp)"></i>
+                </a>
+              </div>
             </td>
           </tr>
-        </ng-template>
-      </tbody>
-    </table>
+
+          <ng-template [ngIf]="loading">
+            <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="loading">
+              <td>
+                <div class="loader-bg"></div>
+              </td>
+              <td width="100">
+                <div class="loader-bg"></div>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
 
     <div class="p-2">
       <pagination
+        [firstText]="firstText"
+        [lastText]="lastText"
+        [previousText]="prevText"
+        [nextText]="nextText"
         [totalItems]="total"
         *ngIf="total"
         [(ngModel)]="page"

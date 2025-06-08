@@ -1,0 +1,76 @@
+<main class="mx-auto mt-4 mb-5 card card-lg w-main container-xxl">
+  <!--Título & busca-->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h4" translate>private.results.list.pageTitle</h1>
+  </div>
+
+  <esm-search (doSearch)="handleChange($event, true)"></esm-search>
+  <form>
+    <!-- Cabeçalho -->
+    <esm-list-header
+      [title]="'private.results.list.listTitle' | translate"
+      [subtitle]="'private.results.list.totalNumber' | translate"
+    ></esm-list-header>
+
+    <div class="alert alert-info" *ngIf="!loading && results.length == 0">{{ 'private.results.list.noObjects' | translate }}</div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let result of results">
+            <td scope="row">
+              <a [routerLink]="['/private/results/show', result.id]">
+                {{ result.title }}
+              </a>
+            </td>
+
+            <td width="70">
+              <div class="mx-3 d-flex align-items-center">
+                <a [routerLink]="['/private/results/show', result.id]" tooltip="Ver resultados" class="me-3">
+                  <i class="fas fa-chart-pie fa-lg text-primary"></i>
+                </a>
+                <a [routerLink]="['/private/results/graphs', result.id]" tooltip="Ver resultados em grafos" class="me-3">
+                  <i class="fas fa-project-diagram fa-lg text-primary"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <ng-template [ngIf]="loading">
+            <tr *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]" class="loading">
+              <td>
+                <div class="loader-bg"></div>
+              </td>
+              <td width="100">
+                <div class="loader-bg"></div>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="p-2">
+      <pagination
+        [firstText]="firstText"
+        [lastText]="lastText"
+        [previousText]="prevText"
+        [nextText]="nextText"
+        [totalItems]="total"
+        *ngIf="total"
+        [(ngModel)]="page"
+        name="page"
+        (pageChanged)="handleChange($event)"
+        [disabled]="!total"
+        [maxSize]="15"
+        [boundaryLinks]="true"
+      ></pagination>
+
+      <div *ngIf="total == null">
+        <div class="loader-bg w-25"></div>
+        <div class="loader-bg w-25"></div>
+        <div class="loader-bg w-25"></div>
+      </div>
+    </div>
+  </form>
+</main>

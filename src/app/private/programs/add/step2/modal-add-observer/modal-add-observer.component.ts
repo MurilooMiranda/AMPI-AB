@@ -51,9 +51,13 @@ export class ModalAddObserverComponent implements OnInit {
         .pipe(finalize(() => this._loaderService.hide()))
         .subscribe(
           (resp) => {
-            this._toastr.success(resp.message);
-            this.response.emit(resp.data);
-            this.bsModalRef.hide();
+            if (resp.error) {
+              FormUtil.setErrorsBackend(this.form, resp);
+            } else {
+              this._toastr.success(resp.message);
+              this.response.emit(new Observer(resp.data));
+              this.bsModalRef.hide();
+            }
           },
           (resp) => FormUtil.setErrorsBackend(this.form, resp.data, this.formElement)
         );
