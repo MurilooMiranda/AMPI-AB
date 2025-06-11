@@ -41,6 +41,10 @@
                 "input": "node_modules/popper.js/dist/umd/popper.js"
               },
               {
+                "input": "node_modules/@popperjs/core/dist/umd/popper.min.js"
+              },
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              {
                 "input": "node_modules/bootstrap/dist/js/bootstrap.js"
               }
             ],

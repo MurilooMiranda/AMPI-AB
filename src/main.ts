@@ -3,6 +3,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import * as Popper from '@popperjs/core';
+
+(window as any).Popper = Popper;
+
 
 if (environment.production) {
   enableProdMode();
