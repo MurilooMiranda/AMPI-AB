@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Para instalar, precisa instalar as dependências NPM através do comando:
 
-- `npm install`
+- `npm install --legacy-peer-deps`
 
 ## Server de desenvolvimento
 
