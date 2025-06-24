@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { PrivateRoutingModule } from './private-routing.module';
 import { PrivateComponent } from './private.component';
+import { RouterOutlet } from '@angular/router';
 
 // local imports
 @NgModule({

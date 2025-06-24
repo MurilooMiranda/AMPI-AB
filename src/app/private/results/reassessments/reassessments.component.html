@@ -1,0 +1,39 @@
+<div class="patients">
+  <div class="page-content">
+    <div class="search-container">
+      <div class="search-field">
+        <input
+          type="text"
+          placeholder="Pesquisar nome de paciente"
+          class="form-control"
+        />
+        <button class="btn-primary">
+          <i class="material-icons">search</i>
+        </button>
+      </div>
+    </div>
+
+    <div class="patients-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pacientes</th>
+            <th class="text-center">Pontuação</th>
+            <th class="text-middle">Data de Avaliação</th>
+            <th class="text-right">Prazo para Reavaliação</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reassessment of patients; track reassessment.name) {
+            <tr>
+              <td>{{ reassessment.name }}</td>
+              <td class="text-center">{{ reassessment.score }}</td>
+              <td class="text-middle">{{ reassessment.date }}</td>
+              <td class="text-right">{{ reassessment.reassessmentPeriod }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

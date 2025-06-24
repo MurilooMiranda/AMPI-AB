@@ -1,0 +1,45 @@
+<div class="patients">
+  <div class="page-content">
+    <div class="search-container">
+      <div class="search-field">
+        <input
+          type="text"
+          placeholder="Pesquisar nome de paciente"
+          class="form-control"
+        />
+        <button class="btn-primary">
+          <i class="material-icons">search</i>
+        </button>
+      </div>
+    </div>
+
+    <div class="patients-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pacientes</th>
+            <th class="text-center">Pontuação</th>
+            <th>Idade</th>
+            <th>Data de Avaliação</th>
+            <th>Relatório AMPI-AB</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (patient of patients; track patient.name) {
+            <tr>
+              <td>{{ patient.name }}</td>
+              <td class="text-center">{{ patient.score }}</td>
+              <td>{{ patient.age }}</td>
+              <td>{{ patient.date }}</td>
+              <td>
+                <button class="btn btn-link">
+                  <i class="bi bi-file-text"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

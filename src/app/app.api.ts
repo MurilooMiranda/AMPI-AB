@@ -5,6 +5,9 @@ import { environment } from '@environments/environment';
 // Base URL = localhost:8083
 // API = /espim-api
 export const BASE_ESPIM_API = environment.API + '/';
+//export const BASE_ESPIM_API = 'https://espim.icmc.usp.br:8083/api/';
+
+//export const BASE_ESPIM_API = 'https://192.168.0.154:8083/api/';
 
 export const ESPIM_API = BASE_ESPIM_API + 'web/';
 

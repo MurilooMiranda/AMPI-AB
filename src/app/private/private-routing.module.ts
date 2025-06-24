@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { LoggedInGuard } from '../security/loggedin.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { PrivateComponent } from './private.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderResultsComponent } from './components/header-data/header.component';
+import { LoggedInGuard } from '../security/loggedin.guard';
+
+
 
 const routes: Routes = [
   {
@@ -56,3 +58,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class PrivateRoutingModule {}
+
+

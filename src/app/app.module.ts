@@ -22,6 +22,7 @@ import { SecurityModule } from './security/security.module';
 import { EndpointsService } from './services/endpoints.service';
 import { LoaderService } from './services/loader.service';
 import { IndexModule } from './index/index.module';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 // local modules
 // tslint:disable-next-line:class-name
@@ -101,6 +102,7 @@ const providers = [LoaderService, EndpointsService];
         ],
       } as SocialAuthServiceConfig,
     },
+    provideCharts(withDefaultRegisterables())
   ],
 })
 export class AppModule {

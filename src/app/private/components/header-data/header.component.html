@@ -1,0 +1,63 @@
+<div class="header">
+  <div class="headline">
+    <div class="section-text">
+      <div class="top">
+        <h1>Relatório de avaliação AMPI-AB</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-tabs">
+    <div class="tabs-container">
+      <div class="tabs">
+        <div class="tab" routerLink="dashboard" routerLinkActive="active">
+          <span>Geral</span>
+        </div>
+        <div class="tab" routerLink="patients" routerLinkActive="active">
+          <span>Pacientes</span>
+        </div>
+        <div class="tab" routerLink="reassessments" routerLinkActive="active">
+          <span>Reavaliações</span>
+        </div>
+      </div>
+
+      <div class="date-fields">
+        <div class="date-field">
+          <mat-form-field class="data" appearance="outline">
+            <mat-label>Data inicial</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              [(ngModel)]="startDate"
+              (ngModelChange)="onDateChange()"
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <button class="separator">
+          <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+
+        <div class="date-field">
+          <mat-form-field class="data" appearance="outline">
+            <mat-label>Data final</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              [(ngModel)]="endDate"
+              (ngModelChange)="onDateChange()"
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+

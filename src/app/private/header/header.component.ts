@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/security/login/login.service';
 
 import { User } from '../models/user.model';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'esm-private-header',
