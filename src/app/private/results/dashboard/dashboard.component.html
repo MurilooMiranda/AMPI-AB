@@ -17,23 +17,19 @@
     <div class="row dashboard-sections">
       <div class="col-md-6">
         <div class="dashboard-section">
-          <h3>Perfil de dimensões</h3>
-          <div class="legend-and-button">
+          <h3>Perfil de dimensões</h3> <div class="legend-and-button">
             <div class="legend">
               <div class="legend-item">
                 <span class="legend-color orange"></span>
-                <span>NÃO para todos os itens</span>
-              </div>
+                <span>NÃO para todos os itens</span> </div>
               <div class="legend-item">
                 <span class="legend-color pink"></span>
-                <span>SIM de 1 a 4 itens </span>
-              </div>
+                <span>SIM de 1 a 4 itens </span> </div>
             </div>
 
             <div class="dense-1">
               <mat-form-field class="dimension-select" appearance="outline">
-                <mat-label>Selecione</mat-label>
-                <mat-select [(ngModel)]="selectedDimension">
+                <mat-label>Selecione</mat-label> <mat-select [(ngModel)]="selectedDimension">
                   <mat-option
                     *ngFor="let option of dimensionOptions"
                     [value]="option"
@@ -44,7 +40,13 @@
               </mat-form-field>
             </div>
           </div>
-
+          <div class="chart-wrapper">
+            <canvas baseChart
+              [data]="dimensionChartData"
+              [type]="dimensionChartType"
+              [options]="dimensionChartOptions">
+            </canvas>
+          </div>
         </div>
       </div>
 
@@ -66,6 +68,13 @@
                 <span>Não-Frágil</span>
               </div>
             </div>
+            </div>
+          <div class="chart-wrapper">
+            <canvas baseChart
+              [data]="fragilityChartData"
+              [type]="fragilityChartType"
+              [options]="fragilityChartOptions">
+            </canvas>
           </div>
         </div>
       </div>
@@ -74,27 +83,22 @@
     <div class="row demographics-row">
       <div class="col-md-6">
         <div class="dashboard-section">
-          <h3>Perfil Sociodemográfico</h3>
-          <div class="legend-and-button">
+          <h3>Perfil Sociodemográfico</h3> <div class="legend-and-button">
             <div class="legend">
               <div class="legend-item">
                 <span class="legend-color red"></span>
-                <span>Negro</span>
-              </div>
+                <span>Negro</span> </div>
               <div class="legend-item">
                 <span class="legend-color cyan"></span>
-                <span>Branco</span>
-              </div>
+                <span>Branco</span> </div>
               <div class="legend-item">
                 <span class="legend-color purple"></span>
-                <span>Pardo</span>
-              </div>
+                <span>Pardo</span> </div>
             </div>
 
             <div class="dense-1">
               <mat-form-field class="dimension-select" appearance="outline">
-                <mat-label>Selecione</mat-label>
-                <mat-select [(ngModel)]="selectedDemographic">
+                <mat-label>Selecione</mat-label> <mat-select [(ngModel)]="selectedDemographic">
                   <mat-option
                     *ngFor="let option of demographicOptions"
                     [value]="option"
@@ -104,6 +108,13 @@
                 </mat-select>
               </mat-form-field>
             </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas baseChart
+              [data]="demographicChartData"
+              [type]="demographicChartType"
+              [options]="demographicChartOptions">
+            </canvas>
           </div>
         </div>
       </div>
@@ -126,6 +137,13 @@
                 <span>Assistente social</span>
               </div>
             </div>
+            </div>
+          <div class="chart-wrapper">
+            <canvas baseChart
+              [data]="professionalsChartData"
+              [type]="professionalsChartType"
+              [options]="professionalsChartOptions">
+            </canvas>
           </div>
         </div>
       </div>
@@ -150,6 +168,13 @@
                 <span>Limitação Física</span>
               </div>
             </div>
+            </div>
+          <div class="chart-wrapper">
+            <canvas baseChart
+              [data]="outcomesChartData"
+              [type]="outcomesChartType"
+              [options]="outcomesChartOptions">
+            </canvas>
           </div>
           <div class="description">
             <p> Maior Pontuação: </p>

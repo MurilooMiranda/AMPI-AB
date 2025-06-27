@@ -49,7 +49,4 @@ export class ReassessmentsComponent {
       reassessmentPeriod: "2 meses",
     },
   ];
-
-  startDate: string = "Data Inicial";
-  endDate: string = "Data Final";
 }

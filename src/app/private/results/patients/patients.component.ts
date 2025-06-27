@@ -71,7 +71,4 @@ export class PatientsComponent {
       date: "20/09/2024",
     },
   ];
-
-  startDate: string = "18/01/2025";
-  endDate: string = "28/05/2025";
 }
