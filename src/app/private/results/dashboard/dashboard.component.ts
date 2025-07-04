@@ -32,12 +32,13 @@ export class DashboardResultsComponent implements OnInit {
   };
   dimensionChartOptions: ChartOptions<'pie'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // Important for controlling size with CSS
     plugins: {
       legend: {
         display: false
       }
     }
+    // Removed: cutout: '60%', // Reverted to full pie chart
   };
 
   fragilityChartType: ChartType = 'bar';
@@ -66,7 +67,7 @@ export class DashboardResultsComponent implements OnInit {
   };
   fragilityChartOptions: ChartOptions<'bar'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // Important for controlling size with CSS
     scales: {
       x: {
         stacked: true,
@@ -97,12 +98,13 @@ export class DashboardResultsComponent implements OnInit {
   };
   demographicChartOptions: ChartOptions<'pie'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // Important for controlling size with CSS
     plugins: {
       legend: {
         display: false
       }
     }
+    // Removed: cutout: '60%', // Reverted to full pie chart
   };
 
   professionalsChartType: ChartType = 'bar';
@@ -128,7 +130,7 @@ export class DashboardResultsComponent implements OnInit {
   };
   professionalsChartOptions: ChartOptions<'bar'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // Important for controlling size with CSS
     scales: {
       y: {
         title: {
@@ -174,16 +176,11 @@ export class DashboardResultsComponent implements OnInit {
         data: [50, 40, 30, 45, 25],
         backgroundColor: '#6f42c1',
       },
-      {
-        label: 'Quedas',
-        data: [30, 20, 10, 25, 15],
-        backgroundColor: '#ffc107',
-      },
     ],
   };
   outcomesChartOptions: ChartOptions<'bar'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // Important for controlling size with CSS
     scales: {
       y: {
         min: 0,
@@ -198,11 +195,30 @@ export class DashboardResultsComponent implements OnInit {
     }
   };
 
-  selectedDimension: string | null = "Condições Bucais";
-  dimensionOptions: string[] = ['Condições Bucais', 'Outra Dimensão 1', 'Outra Dimensão 2'];
+  selectedDimension: string | null;
+  dimensionOptions: string[] = [
+    "Idade",
+    "Autopercepção de Saúde",
+    "Suporte Social",
+    "Condição Crônica",
+    "Medicamentos",
+    "Internações",
+    "Quedas",
+    "Visão",
+    "Audição",
+    "Limitação Física",
+    "Cognição",
+    "Humor",
+    "ABVD",
+    "AIVD",
+    "Incontinência",
+    "Perda de Peso",
+    "Condição Bucal"
 
-  selectedDemographic: string | null = "Raça";
-  demographicOptions: string[] = ['Raça', 'Idade', 'Gênero'];
+  ];
+
+  selectedDemographic: string | null;
+  demographicOptions: string[] = ["Idade", "Raça", "Cor"];
 
   constructor(private cdr: ChangeDetectorRef) {}
 

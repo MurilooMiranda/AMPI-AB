@@ -14,22 +14,26 @@
       </div>
     </div>
 
-    <div class="row dashboard-sections">
-      <div class="col-md-6">
+    <div class="row dashboard-sections row-cols-1 row-cols-md-2">
+      <div class="col">
         <div class="dashboard-section">
-          <h3>Perfil de dimensões</h3> <div class="legend-and-button">
+          <h3>Perfil de dimensões</h3>
+          <div class="legend-and-button">
             <div class="legend">
               <div class="legend-item">
                 <span class="legend-color orange"></span>
-                <span>NÃO para todos os itens</span> </div>
+                <span>NÃO para todos os itens</span>
+              </div>
               <div class="legend-item">
                 <span class="legend-color pink"></span>
-                <span>SIM de 1 a 4 itens </span> </div>
+                <span>SIM de 1 a 4 itens </span>
+              </div>
             </div>
 
             <div class="dense-1">
               <mat-form-field class="dimension-select" appearance="outline">
-                <mat-label>Selecione</mat-label> <mat-select [(ngModel)]="selectedDimension">
+                <mat-label>Selecione</mat-label>
+                <mat-select [(ngModel)]="selectedDimension">
                   <mat-option
                     *ngFor="let option of dimensionOptions"
                     [value]="option"
@@ -40,7 +44,7 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="chart-wrapper">
+          <div class="chart-wrapper pie-chart-wrapper">
             <canvas baseChart
               [data]="dimensionChartData"
               [type]="dimensionChartType"
@@ -50,13 +54,13 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col">
         <div class="dashboard-section">
           <h3>Perfil de Fragilidade</h3>
           <div class="legend-and-button">
             <div class="legend">
               <div class="legend-item">
-                <span class="legend-color dark-blue"></span>
+                <span class="legend-color blue"></span>
                 <span>Saudável</span>
               </div>
               <div class="legend-item">
@@ -68,8 +72,8 @@
                 <span>Não-Frágil</span>
               </div>
             </div>
-            </div>
-          <div class="chart-wrapper">
+          </div>
+          <div class="chart-wrapper bar-chart-wrapper">
             <canvas baseChart
               [data]="fragilityChartData"
               [type]="fragilityChartType"
@@ -80,25 +84,30 @@
       </div>
     </div>
 
-    <div class="row demographics-row">
-      <div class="col-md-6">
+    <div class="row demographics-row row-cols-1 row-cols-md-2">
+      <div class="col">
         <div class="dashboard-section">
-          <h3>Perfil Sociodemográfico</h3> <div class="legend-and-button">
+          <h3>Perfil Sociodemográfico</h3>
+          <div class="legend-and-button">
             <div class="legend">
               <div class="legend-item">
                 <span class="legend-color red"></span>
-                <span>Negro</span> </div>
+                <span>Negro</span>
+              </div>
               <div class="legend-item">
                 <span class="legend-color cyan"></span>
-                <span>Branco</span> </div>
+                <span>Branco</span>
+              </div>
               <div class="legend-item">
                 <span class="legend-color purple"></span>
-                <span>Pardo</span> </div>
+                <span>Pardo</span>
+              </div>
             </div>
 
             <div class="dense-1">
               <mat-form-field class="dimension-select" appearance="outline">
-                <mat-label>Selecione</mat-label> <mat-select [(ngModel)]="selectedDemographic">
+                <mat-label>Selecione</mat-label>
+                <mat-select [(ngModel)]="selectedDemographic">
                   <mat-option
                     *ngFor="let option of demographicOptions"
                     [value]="option"
@@ -109,7 +118,7 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="chart-wrapper">
+          <div class="chart-wrapper pie-chart-wrapper">
             <canvas baseChart
               [data]="demographicChartData"
               [type]="demographicChartType"
@@ -119,7 +128,7 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col">
         <div class="dashboard-section">
           <h3>Profissionais que mais fizeram avaliações</h3>
           <div class="legend-and-button">
@@ -133,12 +142,12 @@
                 <span>Médico</span>
               </div>
               <div class="legend-item">
-                <span class="legend-color dark-blue"></span>
+                <span class="legend-color light-blue"></span>
                 <span>Assistente social</span>
               </div>
             </div>
-            </div>
-          <div class="chart-wrapper">
+          </div>
+          <div class="chart-wrapper bar-chart-wrapper">
             <canvas baseChart
               [data]="professionalsChartData"
               [type]="professionalsChartType"
@@ -156,20 +165,28 @@
           <div class="legend-and-button">
             <div class="legend">
               <div class="legend-item">
-                <span class="legend-color pink"></span>
+                <span class="legend-color dark-pink"></span>
                 <span>Humor</span>
               </div>
               <div class="legend-item">
-                <span class="legend-color green"></span>
+                <span class="legend-color dark-green"></span>
                 <span>Cognição</span>
               </div>
               <div class="legend-item">
-                <span class="legend-color orange"></span>
+                <span class="legend-color light-orange"></span>
                 <span>Limitação Física</span>
               </div>
+              <div class="legend-item">
+                <span class="legend-color other-cyan"></span>
+                <span>Visão</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color other-purple"></span>
+                <span>Audição</span>
+              </div>
             </div>
-            </div>
-          <div class="chart-wrapper">
+          </div>
+          <div class="chart-wrapper large-bar-chart-wrapper">
             <canvas baseChart
               [data]="outcomesChartData"
               [type]="outcomesChartType"
@@ -177,8 +194,8 @@
             </canvas>
           </div>
           <div class="description">
-            <p> Maior Pontuação: </p>
-            <p> Menor Pontuação: </p>
+            <p> Maior Pontuação no período: </p>
+            <p> Menor Pontuação no período: </p>
           </div>
         </div>
       </div>

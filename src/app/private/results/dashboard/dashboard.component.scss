@@ -1,32 +1,35 @@
 .dashboard {
   background-color: #f2f4f8;
   min-height: 100vh;
+  padding: 1rem 0; // Add some vertical padding to the dashboard itself
 
   .page-content {
     width: 100%;
+    max-width: 1200px; // Optional: Constrain overall content width
     margin: 0 auto;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 1rem; // Reduced padding
+    padding-left: 1rem; // Reduced padding
   }
 
   .stats-card {
     border: 0.485px solid #dde1e6;
-    padding: 8px;
+    padding: 10px; // Adjusted padding
     background-color: #fff;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    max-width: 200px;
+    margin-bottom: 15px; // Increased margin
+    margin-top: 15px; // Increased margin
+    max-width: 250px; // Slightly increased max-width for better look
     width: fit-content;
 
     .content {
-      align-items: center;
-      gap: 8px;
+      display: flex; // Use flex for better alignment
+      flex-direction: column;
+      gap: 5px; // Adjusted gap
       padding-right: 5px;
     }
 
     .description {
       color: #4e4f50;
-      font-size: 14px; /* Increased from 12px */
+      font-size: 15px;
       font-weight: 400;
       line-height: 1.4;
     }
@@ -34,12 +37,12 @@
     .title-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px; // Adjusted gap
     }
 
     .title {
       color: #21272a;
-      font-size: 20px; /* Increased from 16px */
+      font-size: 22px; // Adjusted font size
       font-weight: 700;
       line-height: 1.1;
       margin: 0;
@@ -47,8 +50,8 @@
 
     .badge {
       border-radius: 6px;
-      padding: 1px 6px;
-      font-size: 10px; /* Increased from 8px */
+      padding: 2px 8px; // Adjusted padding
+      font-size: 11px; // Adjusted font size
       color: #fff;
       font-weight: 400;
       text-align: center;
@@ -60,37 +63,85 @@
     }
   }
 
+  .dashboard-sections, .demographics-row {
+    margin-bottom: 20px; // Add space between rows of sections
+    .col {
+      padding: 0 10px; // Add padding between columns for visual separation
+    }
+  }
+
   .dashboard-section {
     border: 0.485px solid #dde1e6;
     background-color: #fff;
-    padding: 8px;
-    margin-bottom: 12px;
+    padding: 15px; // Increased padding for a more spacious look
+    margin-bottom: 15px; // Consistent margin-bottom
     position: relative;
+    height: 100%; // Ensure all sections in a row take full height
 
     h3 {
-      font-size: 18px; /* Increased from 14px */
+      font-size: 19px;
       font-weight: 700;
       line-height: 1.1;
       color: #21272a;
-      margin: 0 0 8px;
-      padding-left: 5px;
-      padding-top: 10px;
+      margin: 0 0 10px; // Adjusted margin
+      padding-left: 0px; // Removed padding-left
+      padding-top: 0px; // Removed padding-top
     }
 
-    .chart-container {
+    .legend-and-button {
+      display: flex;
+      justify-content: space-between; // Keeps legend and button on opposite ends
+      align-items: flex-start; // Aligns items to the top
+      flex-wrap: wrap; // Allows wrapping for smaller screens
+      margin-bottom: 15px; // Add space below legend/button
+
+      .dense-1 { // This targets your mat-form-field container
+        margin-left: auto; // Pushes the select dropdown to the right
+      }
+    }
+
+    .chart-wrapper {
       position: relative;
-      min-height: 200px;
-      margin: 20px 0;
+      width: 100%;
+      // Common styles for both chart types
+      &.pie-chart-wrapper {
+        height: 250px; // Fixed height for pie charts
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        canvas {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto !important; // Override ng2-charts inline width
+          height: auto !important; // Override ng2-charts inline height
+        }
+      }
+
+      &.bar-chart-wrapper {
+        height: 300px; // Fixed height for bar charts, more vertical space
+        canvas {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+
+      &.large-bar-chart-wrapper { // For the outcomes chart
+        height: 350px; // Larger height for this chart as it has more bars
+        canvas {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
     }
 
     .legend {
-      font-size: 12px; /* Increased from 10px */
+      font-size: 13px; // Adjusted font size
       font-weight: 400;
       line-height: 1.4;
-      margin-top: 8px;
-      padding-left: 5px;
+      margin-top: 0px; // Removed margin-top
+      padding-left: 0px; // Removed padding-left
       display: flex;
-      gap: 16px;
+      gap: 12px; // Adjusted gap
       flex-wrap: wrap;
 
       .legend-item {
@@ -100,16 +151,22 @@
       }
 
       .legend-color {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
         border-radius: 1px;
 
+        // Perfil de dimensões
         &.orange {
-          background-color: #C96807;
+          background-color: #fd7e14;
         }
 
         &.pink {
-          background-color: #EA00FF;
+          background-color: #e83e8c;
+        }
+
+        // Perfil de fragilidade
+        &.blue {
+          background-color: #007bff;
         }
 
         &.yellow {
@@ -120,36 +177,55 @@
           background-color: #51FF00;
         }
 
-        &.orange {
-          background-color: #ff832b;
-        }
-
-        &.yellow {
-          background-color: #f1c21b;
-        }
-
+        // Perfil Sociodemográfico
         &.red {
-          background-color: #FF0004;
+          background-color: #dc3545;
         }
 
         &.cyan {
-          background-color: #00FFD9;
+          background-color: #00e0ff;
         }
 
         &.purple {
-          background-color: #AA00FF;
+          background-color: #6f42c1;
         }
 
+        // Profissionais
         &.dark-purple {
-          background-color: #A300D9;
+          background-color: #6610f2;
         }
 
         &.gold {
-          background-color: #8E8C23;
+          background-color: #ffc107;
         }
 
-        &.dark-blue {
-          background-color: #050FC7;
+        &.light-blue{
+          background-color: #007bff;
+        }
+
+        // Desfechos
+        &.dark-pink{
+          background-color: #e83e8c;
+        }
+
+        &.dark-green{
+          background-color: #28a745;
+
+        }
+
+        &.light-orange{
+          background-color: #fd7e14;
+
+        }
+
+        &.other-cyan{
+          background-color: #00e0ff;
+
+        }
+
+        &.other-purple{
+          background-color: #6f42c1;
+
         }
       }
     }
@@ -158,14 +234,14 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 10px;
-      margin-left: 100px;
-      margin-top: 50px;
-      font-size: 12px; /* Increased from 10px */
+      padding: 8px 12px; // Adjusted padding
+      font-size: 13px; // Adjusted font size
       color: #000;
       background: #e1e1e1;
       border: 1px solid rgba(0, 0, 0, 0.1);
       cursor: pointer;
+      margin-left: 0; // Removed margin-left
+      margin-top: 0; // Removed margin-top
 
       .arrow-icon {
         width: 6px;
@@ -176,13 +252,17 @@
     }
 
     .description {
-      font-size: 15px; /* Increased from 13px */
-      font-weight: 400;
+      font-size: 14px; // Adjusted font size
+      font-weight: 450;
       line-height: 1.4;
-      margin-top: 8px;
-      padding-left: 5px;
-      gap: 16px;
+      margin-top: 15px; // Adjusted margin-top
+      padding-left: 0px; // Removed padding-left
+      gap: 10px;
       flex-wrap: wrap;
+      color: #000;
+      p {
+        margin: 0; // Remove default paragraph margins
+      }
     }
   }
 
@@ -191,11 +271,14 @@
     justify-content: space-between;
     margin-top: 8px;
     padding: 0 20px;
-    font-size: 10px; /* Increased from 8px */
+    font-size: 10px;
     color: #000;
   }
 
   .outcomes-row {
+    .dashboard-section {
+      padding-top: 15px; // Consistent padding-top
+    }
     .legend-row {
       display: flex;
       gap: 16px;
@@ -204,19 +287,19 @@
   }
 
   mat-form-field {
-    width: 150px;
-    margin-top: 10px;
-    font-size: 12px !important; /* Increased from 10px */
+    width: 180px; // Slightly wider for better appearance
+    margin-top: 0px; // Removed margin-top, as flexbox will handle alignment
+    font-size: 13px !important; // Adjusted font size
     height: fit-content;
   }
 
   mat-form-field .mat-form-field-label {
     color: #4e4f50;
-    font-size: 16px; /* Increased from 14px */
+    font-size: 15px; // Adjusted font size
   }
 
   .mat-mdc-floating-label {
-    font-size: 12px !important; /* Increased from 10px */
+    font-size: 13px !important; // Adjusted font size
   }
 
   mat-form-field .mat-select {
@@ -242,6 +325,7 @@
   }
 
   .dimension-select {
+    margin-top: 15px;
     display: flex;
     font-family: Roboto, -apple-system, Helvetica, sans-serif;
     color: #697077;
