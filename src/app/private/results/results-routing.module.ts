@@ -15,9 +15,9 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardResultsComponent },
       { path: 'patients', component: PatientsComponent },
       { path: 'reassessments', component: ReassessmentsComponent },
-      { path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
   },
+
   { path: 'list', component: ListComponent },
   { path: 'show/:id', component: ShowComponent },
   { path: 'show/graphs/:id', component: ShowComponent },
@@ -28,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UsersRoutingModule {}
+export class UsersRoutingModule { }

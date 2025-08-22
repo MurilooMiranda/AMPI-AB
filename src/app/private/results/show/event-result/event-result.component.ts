@@ -1,8 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { finalize } from 'rxjs/operators';
-import { ESPIM_REST_Results } from 'src/app/app.api';
+import { forkJoin } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
+import { ESPIM_REST_Results, ESPIM_REST_RESULTS_AMPI_AB } from 'src/app/app.api';
 import { DAOService } from 'src/app/private/dao/dao.service';
 import { ActiveEvent } from 'src/app/private/models/event.model';
 import { SessionResult } from 'src/app/private/models/result.model';
@@ -25,14 +26,14 @@ export class EventResultComponent implements OnInit {
   loadingUsers: boolean = false;
   loadingGraphs: boolean = false;
   pessoaSelecionada: string = null;
-  users: User[]; // These are the general users
+  users: User[];
   results: SessionResult[];
 
   constructor(
     private readonly _loaderService: LoaderService,
     private readonly _daoService: DAOService,
     private activeRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params.id;
@@ -56,16 +57,115 @@ export class EventResultComponent implements OnInit {
   }
 
   loadGraphs() {
+
     this.loadingGraphs = true;
+
     this.results = [];
 
-    this._daoService
-      .getObjects(this.urlResults + this.id + '/events/' + this.event.id, { user: this.pessoaSelecionada })
-      .pipe(finalize(() => (this.loadingGraphs = false)))
-      .subscribe((response) => {
-        this.results = response.data.map((result) => new SessionResult(result));
+    const endpointBase = this.urlResults + 1383 + '/events/' + 3617;
+
+    const compiledResults: {
+
+      [userId: number]: {
+
+        sessions: SessionResult[],
+
+        answers: { [question: string]: string | null }
+
+      }
+
+    } = {};
+
+    this._daoService.getObjects(endpointBase, { user: null }).subscribe((initialResponse) => {
+
+      console.log('✅ Chamada inicial com user=null', initialResponse);
+
+
+
+      const completedUserIds = new Set<number>();
+
+
+
+      initialResponse.data.forEach((entry: any) => {
+
+        const userId = entry.user?.id;
+
+        const endedAt = entry.ended_at;
+
+
+
+        if (userId && endedAt !== null) {
+
+          completedUserIds.add(userId);
+
+        }
+
       });
+
+      const requests = Array.from(completedUserIds).map((userId) => {
+
+        return this._daoService.getObjects(endpointBase, { user: userId }).pipe(
+
+          map((response: any) => ({ userId, data: response.data }))
+
+        );
+
+      });
+
+      if (requests.length === 0) {
+
+        this.loadingGraphs = false;
+
+        console.warn('⚠️ Nenhum usuário com ended_at preenchido.');
+
+        return;
+
+      }
+
+      forkJoin(requests)
+
+        .pipe(finalize(() => (this.loadingGraphs = false)))
+
+        .subscribe((userResponses) => {
+
+          userResponses.forEach(({ userId, data }) => {
+
+            const sessionResults = data.map((r: any) => new SessionResult(r));
+
+            const answers: { [question: string]: string | null } = {};
+
+            // Percorre cada sessão e cada resposta
+            data.forEach((session: any) => {
+
+              session.results?.forEach((result: any) => {
+
+                const statement = result.intervention?.statement?.trim();
+
+                const answer = result.answer;
+
+                if (statement && !(statement in answers)) {
+
+                  answers[statement] = answer;
+
+                }
+
+              });
+
+            });
+            compiledResults[userId] = {
+
+              sessions: sessionResults,
+
+              answers
+
+            };
+          });
+          console.log('📊 Resultados finais compilados:', compiledResults);
+        });
+    });
   }
+
+
 
   loadUser(userId: number) {
     this.pessoaSelecionada = userId.toString();

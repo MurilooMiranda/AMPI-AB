@@ -150,10 +150,13 @@
 
 .patients-table {
   margin-top: 20px;
-  border: 1px solid #c1c7cd;
   background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 
   .table {
+    width: 100%;
     margin-bottom: 0;
     font-family:
       Roboto,
@@ -161,18 +164,28 @@
       Helvetica,
       sans-serif;
     font-size: 14px;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 16px;
+      vertical-align: middle;
+      text-align: left;
+    }
 
     th {
-      padding: 16px;
-      font-weight: 400;
+      font-weight: 600;
+      color: #333;
       border-bottom: 1px solid #dde1e6;
-      font-weight: 700;
+    }
+
+    th:nth-child(2), td:nth-child(2),
+    th:nth-child(3), td:nth-child(3),
+    th:nth-child(4), td:nth-child(4) {
+      text-align: center;
     }
 
     td {
-      padding: 16px;
-      vertical-align: middle;
-
+      color: #555;
       .btn-link {
         padding: 0;
         color: #014f9e;
@@ -184,7 +197,10 @@
     }
 
     tr:nth-child(even) {
-      background-color: #f2f4f8;
+      background-color: #f8f9fa;
+    }
+    tbody tr:last-child td {
+        border-bottom: none;
     }
   }
 }

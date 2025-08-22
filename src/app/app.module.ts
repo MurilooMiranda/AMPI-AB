@@ -73,7 +73,7 @@ const providers = [LoaderService, EndpointsService];
   ],
   providers: [
     // import services
-    LoggedInGuard,
+    //LoggedInGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

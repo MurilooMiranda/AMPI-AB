@@ -11,12 +11,12 @@ const routes: Routes = [
   {
     path: 'security',
     loadChildren: () => import('./security/security.module').then((m) => m.SecurityModule),
-    canLoad: [LoggedInGuard],
+    //canLoad: [LoggedInGuard],
   },
   {
     path: 'private',
     loadChildren: () => import('./private/private.module').then((m) => m.PrivateModule),
-    canLoad: [LoggedInGuard],
+    //canLoad: [LoggedInGuard],
   },
 ];
 

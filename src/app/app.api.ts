@@ -49,6 +49,8 @@ export const ESPIM_REST_Badges: string = ESPIM_API + 'events/{{activeEventId}}/b
 
 export const ESPIM_REST_Results: string = ESPIM_API + 'results/';
 
+export const ESPIM_REST_RESULTS_AMPI_AB: string = ESPIM_API + 'results/1383/events/3617';
+
 export const ESPIM_REST_Settings: string = ESPIM_API + 'settings/';
 
 // config default page size
