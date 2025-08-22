@@ -1,58 +1,76 @@
-# EspimApp
+# AMPI-AB 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+Um painel de front-end desenvolvido em Angular para visualização de informações de usuários.
 
-## Requisitos
+---
 
-- Node v14.6.0 ou superior
-- Docker version 20.10.6 ou superior
+## Índice
 
-## Instalação
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Pré-requisitos](#-pré-requisitos)
+- [Como Rodar o Projeto](#-como-rodar-o-projeto)
 
-Para instalar, precisa instalar as dependências NPM através do comando:
+---
 
-- `npm install --legacy-peer-deps`
+## Sobre o Projeto
 
-## Server de desenvolvimento
+O **AMPI-AB** é um projeto feito em parceria entre o Departamento de Gerontologia da UFSCar e o Departamento de Computação da USP - São Carlos. Ele foi desenvolvido para modernizar o projeto "AMPI-AB", que antes era feito em papel, usando o app 
+para coleta de dados dos usuários e o site web para gerenciamento e manutenção de intervenções e visualização dos dados. O AMPI-AB é uma funcionalidade criada dentro do ESPIM, uma plataforma de criação e gerenciamento de intervenções desenvolvido
+pela USP - São Carlos, e por conta da sua utilidade para o projeto, foi conveniente integrar o AMPI-AB nessa aplicação. O meu papel no projeto foi principalmente cuidar da parte de tornar a visualização de dados mais fácil e intuitiva, sendo
+criado na parte de resultados a aba "AMPI-AB", e nela possui as funcionalidades abaixo listadas.
 
-Execute `ng serve` para um servidor de desenvolvimento. Navegue até `http://localhost:4200/`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
+INFORMAÇÕES IMPORTANTES:
+- O projeto não teve continuidade por desentendimento no gerenciamento de tempo e planejamento do projeto. Então são usados dados simulados e nomes fictícios para testar o comportamento dos gráficos e tabelas.
+- Por conta do tópico acima, o site está com problemas de login, e para ser visto o que eu fiz no projeto, eu comentei a opção de login no projeto (LoggedInGuard). Então, para acessar o conteúdo do site basta
+  acrescentar o endpoint '/private' no localhost.
+---
 
-## Server de teste
+## Tecnologias Utilizadas
 
-Para fazer o build, precisa rodar os seguintes comandos docker:
+Este projeto foi construído utilizando as seguintes tecnologias:
 
-- `docker-compose -f docker-compose-desenvolvimento.yml build --no-cache`
-- `docker-compose -f docker-compose-desenvolvimento.yml up -d`
+-   **[Angular](https://angular.io/)** (Framework principal)
+-   **[TypeScript](https://www.typescriptlang.org/)** (Linguagem base para o Angular)
+-   **[Angular CLI](https://angular.io/cli)** (Interface de linha de comando para gerenciar o projeto)
+-   **[RxJS](https://rxjs.dev/)** (Para programação reativa e gerenciamento de operações assíncronas)
+-   **[NPM](https://www.npmjs.com/)** (Gerenciador de pacotes)
 
-Que irá habilitar o serviço do nginx, apontando para a pasta `/dist`.
+---
 
-- **nginx** - `:80`
+## Pré-requisitos
 
-## Server de produção
+Antes de começar, você vai precisar ter as seguintes ferramentas instaladas em sua máquina:
+-   [Node.js (versão 18.x ou superior)](https://nodejs.org/en)
+-   [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+-   [Angular CLI](https://angular.io/cli)
+-   Um editor de código, como o [VSCode](https://code.visualstudio.com/)
 
-Primeiro, você terá que rodar o front-end sem SSL, e dessa forma, gerar o Certificado:
+---
 
-- `docker-compose -f docker-compose-validar-certificado.yml build --no-cache`
-- `docker-compose -f docker-compose-validar-certificado.yml up -d`
-- `docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d espim.icmc.usp.br`
-- `docker-compose -f docker-compose-validar-certificado.yml stop`
+## Como Rodar o Projeto
 
-Feito isso, serão gerados os certificados, e então, você pode subir o servidor de produção (com configurações ssl):
+Siga os passos abaixo para configurar e rodar o projeto localmente.
 
-- `docker-compose build --no-cache`
-- `docker-compose up -d`
+```bash
+# 1. Clone este repositório
+$ git clone [https://github.com/MurilooMiranda/AMPI-AB.git](https://github.com/MurilooMiranda/AMPI-AB.git)
 
-Que irá habilitar o serviço do nginx, apontando para a pasta `/dist`.
+# 2. Navegue até o diretório do projeto
+$ cd AMPI-AB
 
-- **nginx** - `:443`
+# 3. Instale as dependências
+$ npm install -g @angular/cli --legacy-peer-deps
 
-## Renovação do certificado
+# 4. Rode o projeto em modo de desenvolvimento
+$ ng serve
 
-Para renovar o certificado, será necessário criar um cron no servidor para rodar o seguinte comando:
+# 5. Acesse o projeto no seu navegador
+ O servidor de desenvolvimento será iniciado, geralmente em http://localhost:5173 (dependendo da sua máquina)
 
-- `docker-compose run --rm certbot renew`
+# 6. Ver a página AMPI-AB
+ Mude o endpoint para '/private'
+ Vá em 'Resultados' e selecione a opção 'AMPI-AB' 
 
-Exemplo:
-
-- `crontab -e`
-- `0 5 1 */2 * /usr/bin/docker-compose -f /home/eadriano/sistema/espim-frontend-2021/docker-compose.yml run --rm certbot renew`
+```
+**Observação:** Como comentado acima, este é um projeto de front-end. Ele precisa se conectar a uma API de backend para que as funcionalidades de cadastro, login e exibição de dados funcionem corretamente. Certifique-se de que o backend está rodando e acessível na URL configurada no arquivo `.env`.
